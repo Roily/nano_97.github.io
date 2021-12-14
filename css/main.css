@@ -1972,3 +1972,60 @@ note-default {
     margin-left: 1rem;
   }
 }
+.nano-flex-center {
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  cursor: default;
+}
+.nano-flex-start-align-end {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  cursor: default;
+}
+.nano-ul-flex {
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  flex-direction: column;
+  cursor: default;
+}
+a:link {
+  text-decoration: none !important;
+}
+a:visited {
+  text-decoration: none !important;
+}
+a:hover {
+  text-decoration: none !important;
+}
+a:active {
+  text-decoration: none !important;
+}
+.nano-pointer {
+  cursor: pointer;
+}
+.nano-pointer:hover {
+  color: #1f87dd;
+}
+.nano-tips {
+  padding: 10px 0;
+}
+.nano-tips span {
+  font-weight: 700;
+}
+.nano-success {
+  padding: 20px 0;
+  font-weight: 700;
+  color: #07ce66;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.nano-pd {
+  padding: 20px 0;
+}
+.nano-pb-20 {
+  padding-bottom: 20px;
+}

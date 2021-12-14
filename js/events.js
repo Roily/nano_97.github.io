@@ -49,10 +49,10 @@ Fluid.events = {
         oVal = max;
       }
       bg.css({
-        transform          : 'translate3d(0,' + oVal + 'px,0)',
+        transform: 'translate3d(0,' + oVal + 'px,0)',
         '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
-        '-ms-transform'    : 'translate3d(0,' + oVal + 'px,0)',
-        '-o-transform'     : 'translate3d(0,' + oVal + 'px,0)'
+        '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
+        '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
       });
       var toc = jQuery('#toc');
       if (toc) {
@@ -93,7 +93,7 @@ Fluid.events = {
       posDisplay = right >= 50;
       topArrow.css({
         'bottom': posDisplay && scrollDisplay ? '20px' : '-60px',
-        'right' : right - 64 + 'px'
+        'right': right - 64 + 'px'
       });
     };
     setTopArrowPos();
@@ -111,13 +111,15 @@ Fluid.events = {
     topArrow.on('click', function() {
       jQuery('body,html').animate({
         scrollTop: 0,
-        easing   : 'swing'
+        easing: 'swing'
       });
     });
   },
 
   registerImageLoadedEvent: function() {
-    if (!('NProgress' in window)) { return; }
+    if (!('NProgress' in window)) {
+      return;
+    }
 
     var bg = document.getElementById('banner');
     if (bg) {
@@ -128,7 +130,9 @@ Fluid.events = {
         window.NProgress && window.NProgress.inc(0.2);
       };
       img.src = url;
-      if (img.complete) { img.onload(); }
+      if (img.complete) {
+        img.onload();
+      }
     }
 
     var notLazyImages = jQuery('main img:not([lazyload])');
@@ -139,7 +143,9 @@ Fluid.events = {
         old && old();
         window.NProgress && window.NProgress.inc(0.5 / total);
       };
-      if (img.complete) { img.onload(); }
+      if (img.complete) {
+        img.onload();
+      }
     }
   },
 
@@ -149,19 +155,7 @@ Fluid.events = {
     }
     // eslint-disable-next-line no-console
     console.log(`
-------------------------------------------------
-|                                              |
-|     ________  __            _        __      |
-|    |_   __  |[  |          (_)      |  ]     |
-|      | |_ \\_| | | __   _   __   .--.| |      |
-|      |  _|    | |[  | | | [  |/ /'\`\\' |      |
-|     _| |_     | | | \\_/ |, | || \\__/  |      |
-|    |_____|   [___]'.__.'_/[___]'.__.;__]     |
-|                                              |
-|           Powered by Hexo x Fluid            |
-|         GitHub: https://git.io/JqpVD         |
-|                                              |
-------------------------------------------------
+      欢迎来到Nano的博客~
     `);
   }
 };
