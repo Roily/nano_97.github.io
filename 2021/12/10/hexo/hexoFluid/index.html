@@ -16,43 +16,35 @@
   <meta name="description" content="前端菜鸡的博客">
   <meta name="author" content="Nano">
   <meta name="keywords" content="">
-  <meta name="description" content="前言  想着做一个图床,方便博客的图片管理以及减少静态资源的占用量 PicGo介绍 一个用于快速上传图片并获取图片 URL 链接的工具   支持拖拽图片上传 支持快捷键上传剪贴板里第一张图片 Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+) 上传图片后自动复制链接到剪贴板 支持自定义复制到剪贴板的链接格式 支持修改快捷键，默认快速上传快捷键：command+shif">
+  <meta name="description" content="Fluid介绍Fluid 是基于 Hexo 的一款 Material Design 风格的主题  优势1.设计遵循简洁至上，同时具有轻快的体验，和优雅的颜值；2.提供大量定制化配置项，使每个用户使用该主题都能具有独特的样式；3.响应式页面，适配手机、平板等设备；4.为数不多内置支持 LaTeX 语法公式的主题。  特性1.图片懒加载2.自定义代码高亮方案3.内置多语言4.内置多款评论插件5.外部覆">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于gitee的PicGo的搭建">
-<meta property="og:url" content="https://roily.github.io/2021/12/13/hexo/picGo/index.html">
+<meta property="og:title" content="Fluid配置使用">
+<meta property="og:url" content="https://roily.github.io/2021/12/10/hexo/hexoFluid/index.html">
 <meta property="og:site_name" content="Nano-Block">
-<meta property="og:description" content="前言  想着做一个图床,方便博客的图片管理以及减少静态资源的占用量 PicGo介绍 一个用于快速上传图片并获取图片 URL 链接的工具   支持拖拽图片上传 支持快捷键上传剪贴板里第一张图片 Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+) 上传图片后自动复制链接到剪贴板 支持自定义复制到剪贴板的链接格式 支持修改快捷键，默认快速上传快捷键：command+shif">
+<meta property="og:description" content="Fluid介绍Fluid 是基于 Hexo 的一款 Material Design 风格的主题  优势1.设计遵循简洁至上，同时具有轻快的体验，和优雅的颜值；2.提供大量定制化配置项，使每个用户使用该主题都能具有独特的样式；3.响应式页面，适配手机、平板等设备；4.为数不多内置支持 LaTeX 语法公式的主题。  特性1.图片懒加载2.自定义代码高亮方案3.内置多语言4.内置多款评论插件5.外部覆">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-login-1.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-login-2.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-login-3.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-create-store-1.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-create-store-2.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-1.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-2.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-3.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-4.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-5.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-6.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-pack.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-1.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-2.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-3.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-4.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-5.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-6.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-7.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-8.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-waring.jpg">
-<meta property="article:published_time" content="2021-12-13T08:24:39.000Z">
-<meta property="article:modified_time" content="2021-12-14T16:05:50.668Z">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fuild-save.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fuild-create-1.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-1.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-2.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-3.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-4.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-1.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-2.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-3.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-3.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-4.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-4.png">
+<meta property="article:published_time" content="2021-12-10T08:07:06.000Z">
+<meta property="article:modified_time" content="2021-12-15T15:21:38.089Z">
 <meta property="article:author" content="Nano">
-<meta property="article:tag" content="picGo">
-<meta property="article:tag" content="gitee">
+<meta property="article:tag" content="Fluid">
+<meta property="article:tag" content="hexo主题">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-login-1.png">
+<meta name="twitter:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fuild-save.png">
   
-  <title>基于gitee的PicGo的搭建 - Nano-Block</title>
+  <title>Fluid配置使用 - Nano-Block</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -194,7 +186,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="基于gitee的PicGo的搭建">
+            <span class="h2" id="subtitle" title="Fluid配置使用">
               
             </span>
 
@@ -204,8 +196,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-13 16:24" pubdate>
-        2021年12月13日 下午
+      <time datetime="2021-12-10 16:07" pubdate>
+        2021年12月10日 下午
       </time>
     </span>
   
@@ -215,7 +207,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      663 字
+      1.2k 字
     </span>
   
 
@@ -224,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      4 分钟
     </span>
   
 
@@ -253,68 +245,59 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">基于gitee的PicGo的搭建</h1>
+            <h1 style="display: none">Fluid配置使用</h1>
             
             <div class="markdown-body">
-              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>  想着做一个图床,方便博客的图片管理以及减少静态资源的占用量</p>
-<h3 id="PicGo介绍"><a href="#PicGo介绍" class="headerlink" title="PicGo介绍"></a>PicGo介绍</h3><blockquote>
-<p>一个用于快速上传图片并获取图片 URL 链接的工具</p>
-</blockquote>
+              <h3 id="Fluid介绍"><a href="#Fluid介绍" class="headerlink" title="Fluid介绍"></a>Fluid介绍</h3><p><a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a> 是基于 Hexo 的一款 Material Design 风格的主题</p>
 <ul>
-<li>支持拖拽图片上传</li>
-<li>支持快捷键上传剪贴板里第一张图片</li>
-<li>Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+)</li>
-<li>上传图片后自动复制链接到剪贴板</li>
-<li>支持自定义复制到剪贴板的链接格式</li>
-<li>支持修改快捷键，默认快速上传快捷键：command+shift+p（macOS）| control+shift+p（Windows\Linux)</li>
-<li>支持插件系统，已有插件支持 Gitee、青云等第三方图床</li>
-<li>更多第三方插件。</li>
-<li>支持通过发送 HTTP 请求调用 PicGo 上传（v2.2.0+)</li>
-</ul>
-<h3 id="准备搭建"><a href="#准备搭建" class="headerlink" title="准备搭建"></a>准备搭建</h3><blockquote>
-<p>环境准备: </p>
-</blockquote>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://git-scm.com/">git</a></li>
-<li><a target="_blank" rel="noopener" href="https://gitee.com/">gitee</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">PicGo</a></li>
-</ul>
-<h3 id="Gitee准备"><a href="#Gitee准备" class="headerlink" title="Gitee准备"></a>Gitee准备</h3><ol>
-<li>注册<a target="_blank" rel="noopener" href="https://gitee.com/login">gitee</a>账号(默认都安装了git,这里就不介绍了)  </li>
-</ol>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-login-1.png" srcset="/img/loading.gif" lazyload alt="gitee注册界面" title="gitee注册步骤一"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-login-2.png" srcset="/img/loading.gif" lazyload alt="gitee注册界面" title="gitee注册步骤二"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-login-3.png" srcset="/img/loading.gif" lazyload alt="gitee注册界面" title="gitee注册步骤三"></p>
-<ol start="2">
-<li>创建仓库</li>
-</ol>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-create-store-1.png" srcset="/img/loading.gif" lazyload alt="gitee新建仓库界面" title="gitee新建仓库步骤一"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-create-store-2.png" srcset="/img/loading.gif" lazyload alt="gitee新建仓库界面" title="gitee新建仓库步骤二"></p>
-<ol start="3">
-<li>配置私人令牌</li>
-</ol>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-1.png" srcset="/img/loading.gif" lazyload alt="gitee配置私人令牌" title="gitee配置私人令牌步骤一"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-2.png" srcset="/img/loading.gif" lazyload alt="gitee配置私人令牌" title="gitee配置私人令牌步骤二"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-3.png" srcset="/img/loading.gif" lazyload alt="gitee配置私人令牌" title="gitee配置私人令牌步骤三"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-4.png" srcset="/img/loading.gif" lazyload alt="gitee配置私人令牌" title="gitee配置私人令牌步骤四"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-5.png" srcset="/img/loading.gif" lazyload alt="gitee配置私人令牌" title="gitee配置私人令牌步骤五"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/gitee-picgo-set-6.png" srcset="/img/loading.gif" lazyload alt="gitee配置私人令牌" title="gitee配置私人令牌步骤六"></p>
-<h3 id="PicGo准备"><a href="#PicGo准备" class="headerlink" title="PicGo准备"></a>PicGo准备</h3><ol>
-<li>点击进入下载地址连接(<a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a>)</li>
-</ol>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-pack.png" srcset="/img/loading.gif" lazyload alt="下载对应的PicGo安装包" title="下载对应的PicGo安装包"></p>
+<li><p>优势<br>1.设计遵循简洁至上，同时具有轻快的体验，和优雅的颜值；<br>2.提供大量定制化配置项，使每个用户使用该主题都能具有独特的样式；<br>3.响应式页面，适配手机、平板等设备；<br>4.为数不多内置支持 LaTeX 语法公式的主题。</p>
+</li>
+<li><p>特性<br>1.图片懒加载<br>2.自定义代码高亮方案<br>3.内置多语言<br>4.内置多款评论插件<br>5.外部覆盖配置<br>6.静态资源配置<br>7.文章搜索<br>8.页脚备案信息<br>9.网页访问统计<br>10.支持 LaTeX 数学公式<br>11.音乐播放器</p>
 <blockquote>
-<p><strong>Tips:</strong> 选择对应的下载版本,建议不要用beta版本</p>
+<p><strong>Tips:</strong><br>  Fluid主题github仓库<a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">https://github.com/fluid-dev/hexo-theme-fluid</a><br>  hexo还有很多主题,具体可以查看<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
 </blockquote>
+<h3 id="配置流程"><a href="#配置流程" class="headerlink" title="配置流程"></a>配置流程</h3></li>
+<li><p>方法1(推荐): Hexo 5.0.0 版本以上，推荐通过 npm 直接安装，进入博客目录执行命令</p>
+<ol>
+<li><p>输入指令</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">npm install --save hexo-theme-fluid<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fuild-save.png" srcset="/img/loading.gif" lazyload alt="Fluid版本下载" title="Fluid版本下载"></p>
+</li>
+<li><p>在与<code>_config.yml</code>文件平级的目录下,新建文件<code>_config.fluid.yml</code><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fuild-create-1.png" srcset="/img/loading.gif" lazyload alt="创建Fluid配置文件" title="创建Fluid配置文件"></p>
+</li>
+<li><p>创建文件后,打开Fluid的github仓库地址: <a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">https://github.com/fluid-dev/hexo-theme-fluid</a>,进入仓库后点击打开Fluid仓库中的<code>_config.yml</code>文件<br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-1.png" srcset="/img/loading.gif" lazyload alt="打开_config.yml文件" title="打开_config.yml文件"></p>
+</li>
+<li><p>打开后,复制全部代码,粘贴入刚才创建的<code>_config.fluid.yml</code>文件中<br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-2.png" srcset="/img/loading.gif" lazyload alt="复制_config.yml文件" title="复制config.yml文件"></p>
+</li>
+<li><p>粘贴成功后,点击<code>_config.yml</code>文件,点击搜索<code>theme</code>关键字,将之前的默认主题landscape换成<code>fluid</code><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-3.png" srcset="/img/loading.gif" lazyload alt="更换fluid主题" title="更换fluid主题"></p>
+</li>
+</ol>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">最后执行:
+    hexo g
+    hexo s
+    就可以本地运行打开查看已经配置好的fluid主题~<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-4.png" srcset="/img/loading.gif" lazyload alt="完成更换fluid主题" title="完成更换fluid主题"></p>
+</li>
+<li><p>方法2:</p>
+<ol>
+<li>进入github仓库下载最新 release 版本解压到themes目录并将解压出的文件夹重命名为 fluid，最后将整个fluid拷贝至脚手架的themes文件夹内</li>
+</ol>
+<p>  <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-1.png" srcset="/img/loading.gif" lazyload alt="下载最新release压缩包" title="下载最新release压缩包"></p>
+<p>  <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-2.png" srcset="/img/loading.gif" lazyload alt="重命名release压缩包" title="重命名release压缩包"></p>
+<p>  <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-3.png" srcset="/img/loading.gif" lazyload alt="放置release压缩包" title="放置release压缩包"></p>
 <ol start="2">
-<li><p><strong>下载成功后一直下一步安装即可。</strong></p>
-</li>
-<li><p>PicGo配置( <strong>安装成功后</strong>)</p>
-</li>
+<li>完成后同样需要将<code>_config.yml</code>文件的<code>theme</code>关键字,更换成<code>fluid</code><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-3.png" srcset="/img/loading.gif" lazyload alt="更换fluid主题" title="更换fluid主题"><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">最后执行:
+  hexo g
+  hexo s
+  同方法1一样可以本地运行打开查看已经配置好的fluid主题~<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 </ol>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-1.png" srcset="/img/loading.gif" lazyload alt="PicGo配置" title="PicGo配置步骤一"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-2.png" srcset="/img/loading.gif" lazyload alt="PicGo配置" title="PicGo配置步骤二"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-3.png" srcset="/img/loading.gif" lazyload alt="PicGo配置" title="PicGo配置步骤三"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-4.png" srcset="/img/loading.gif" lazyload alt="PicGo配置" title="PicGo配置步骤四"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-5.png" srcset="/img/loading.gif" lazyload alt="PicGo配置" title="PicGo配置步骤五"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-6.png" srcset="/img/loading.gif" lazyload alt="PicGo配置" title="PicGo配置步骤六"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-7.png" srcset="/img/loading.gif" lazyload alt="PicGo配置" title="PicGo配置步骤七"><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-setting-8.png" srcset="/img/loading.gif" lazyload alt="PicGo配置" title="PicGo配置步骤八"></p>
-<h3 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h3><blockquote>
-<p>示例链接: <a target="_blank" rel="noopener" href="https://gitee.com/roily/test-pic-bed/raw/master/img/test033.png">https://gitee.com/roily/test-pic-bed/raw/master/img/test033.png</a></p>
-</blockquote>
-<ul>
-<li>一些需要注意的问题:<ol>
-<li>当使用图床的url后,在微信打开无法显示,应该是微信做了某些限制,手机浏览器和钉钉内部打开是可以的。<br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/picgo-waring.jpg" srcset="/img/loading.gif" lazyload alt="PicGo问题" title="PicGo问题"></li>
-<li>为什么不使用github做为图床仓库?<br>因为github在国内访问速度较慢,所以没有考虑,github也是可以做图床的。</li>
-</ol>
+<p>  <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-4.png" srcset="/img/loading.gif" lazyload alt="完成更换fluid主题" title="完成更换fluid主题"></p>
 </li>
 </ul>
+<h3 id="需要注意"><a href="#需要注意" class="headerlink" title="需要注意"></a>需要注意</h3><blockquote>
+<p>在使用方法2完成了主题更换的前提下,我们之后如果要在主题上进行修改,每次修改都需要到/themes/fluid下修改主题的<code>_config.yml</code>文件，这样特别麻烦，并且在版本更新时，都要注意怕被新的<code>_config.yml</code>文件替换掉，又回滚到了初始的代码，所以官方也建议将主题的<code>_config.yml</code>文件复制一份重命名为<code>_config.fluid.yml</code>文件到Hexo脚手架的根目录下，和<code>_config.yml</code>文件并列。这样，在官方更新版本时，直接覆盖.themes/fluid下的文件就可以了，不会影响到<code>_config.fluid.yml</code>文件</p>
+</blockquote>
+<p>  <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-4.png" srcset="/img/loading.gif" lazyload alt="备份fluid主题文件" title="备份fluid主题文件"></p>
 
             </div>
             <hr>
@@ -332,9 +315,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/picGo/">picGo</a>
+                      <a class="hover-with-bg" href="/tags/Fluid/">Fluid</a>
                     
-                      <a class="hover-with-bg" href="/tags/gitee/">gitee</a>
+                      <a class="hover-with-bg" href="/tags/hexo%E4%B8%BB%E9%A2%98/">hexo主题</a>
+                    
+                      <a class="hover-with-bg" href="/tags/hexo/">hexo</a>
                     
                   </div>
                 
@@ -351,9 +336,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/15/hexo/fluidOptions/">
+                      <a href="/2021/12/13/hexo/picGo/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Fluid主题配置</span>
+                        <span class="hidden-mobile">基于gitee的PicGo的搭建</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -361,8 +346,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/10/hexo/hexoFluid/">
-                        <span class="hidden-mobile">Fluid配置使用</span>
+                      <a href="/2021/11/18/JavaScript/jsNote/">
+                        <span class="hidden-mobile">jsNotetest</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

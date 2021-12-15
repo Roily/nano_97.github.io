@@ -16,35 +16,25 @@
   <meta name="description" content="前端菜鸡的博客">
   <meta name="author" content="Nano">
   <meta name="keywords" content="">
-  <meta name="description" content="Fluid介绍Fluid 是基于 Hexo 的一款 Material Design 风格的主题  优势1.设计遵循简洁至上，同时具有轻快的体验，和优雅的颜值；2.提供大量定制化配置项，使每个用户使用该主题都能具有独特的样式；3.响应式页面，适配手机、平板等设备；4.为数不多内置支持 LaTeX 语法公式的主题。  特性1.图片懒加载2.自定义代码高亮方案3.内置多语言4.内置多款评论插件5.外部覆">
+  <meta name="description" content="前言之前介绍了如何使用Fluid的主题,这篇将继续深入如何去使用Fluid。  基础目录结构 使用hexo n 文件名称创建一个md文档,用来创作博客文章,进入md文档后,基础结构展示如下: --- title: 使用Hexo搭建博客（基础版） # 博客文章标题 date: 2021-12-15 01:47:44  # 文章编写日期 index_img: https:&#x2F;&#x2F;git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fluid配置使用">
-<meta property="og:url" content="https://roily.github.io/2021/12/10/hexo/hexo-fuild/index.html">
+<meta property="og:title" content="Fluid主题配置">
+<meta property="og:url" content="https://roily.github.io/2021/12/15/hexo/fluidOptions/index.html">
 <meta property="og:site_name" content="Nano-Block">
-<meta property="og:description" content="Fluid介绍Fluid 是基于 Hexo 的一款 Material Design 风格的主题  优势1.设计遵循简洁至上，同时具有轻快的体验，和优雅的颜值；2.提供大量定制化配置项，使每个用户使用该主题都能具有独特的样式；3.响应式页面，适配手机、平板等设备；4.为数不多内置支持 LaTeX 语法公式的主题。  特性1.图片懒加载2.自定义代码高亮方案3.内置多语言4.内置多款评论插件5.外部覆">
+<meta property="og:description" content="前言之前介绍了如何使用Fluid的主题,这篇将继续深入如何去使用Fluid。  基础目录结构 使用hexo n 文件名称创建一个md文档,用来创作博客文章,进入md文档后,基础结构展示如下: --- title: 使用Hexo搭建博客（基础版） # 博客文章标题 date: 2021-12-15 01:47:44  # 文章编写日期 index_img: https:&#x2F;&#x2F;git">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fuild-save.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fuild-create-1.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-1.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-2.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-3.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-4.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-1.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-2.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-3.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-3.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-4.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-4.png">
-<meta property="article:published_time" content="2021-12-10T08:07:06.000Z">
-<meta property="article:modified_time" content="2021-12-14T17:29:44.734Z">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-options-1.png">
+<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-options-2.png">
+<meta property="article:published_time" content="2021-12-14T17:47:44.000Z">
+<meta property="article:modified_time" content="2021-12-15T15:21:32.579Z">
 <meta property="article:author" content="Nano">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Fluid">
 <meta property="article:tag" content="hexo主题">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fuild-save.png">
+<meta name="twitter:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-options-1.png">
   
-  <title>Fluid配置使用 - Nano-Block</title>
+  <title>Fluid主题配置 - Nano-Block</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -56,7 +46,15 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+      
+        
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
     
   
 
@@ -178,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Fluid配置使用">
+            <span class="h2" id="subtitle" title="Fluid主题配置">
               
             </span>
 
@@ -188,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-10 16:07" pubdate>
-        2021年12月10日 下午
+      <time datetime="2021-12-15 01:47" pubdate>
+        2021年12月15日 凌晨
       </time>
     </span>
   
@@ -199,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      3.3k 字
     </span>
   
 
@@ -208,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      10 分钟
     </span>
   
 
@@ -237,53 +235,146 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Fluid配置使用</h1>
+            <h1 style="display: none">Fluid主题配置</h1>
             
             <div class="markdown-body">
-              <h3 id="Fluid介绍"><a href="#Fluid介绍" class="headerlink" title="Fluid介绍"></a>Fluid介绍</h3><p><a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a> 是基于 Hexo 的一款 Material Design 风格的主题</p>
-<ul>
-<li><p>优势<br>1.设计遵循简洁至上，同时具有轻快的体验，和优雅的颜值；<br>2.提供大量定制化配置项，使每个用户使用该主题都能具有独特的样式；<br>3.响应式页面，适配手机、平板等设备；<br>4.为数不多内置支持 LaTeX 语法公式的主题。</p>
-</li>
-<li><p>特性<br>1.图片懒加载<br>2.自定义代码高亮方案<br>3.内置多语言<br>4.内置多款评论插件<br>5.外部覆盖配置<br>6.静态资源配置<br>7.文章搜索<br>8.页脚备案信息<br>9.网页访问统计<br>10.支持 LaTeX 数学公式<br>11.音乐播放器</p>
-<blockquote>
-<p><strong>Tips:</strong><br>  Fluid主题github仓库<a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">https://github.com/fluid-dev/hexo-theme-fluid</a><br>  hexo还有很多主题,具体可以查看<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
-</blockquote>
-<h3 id="配置流程"><a href="#配置流程" class="headerlink" title="配置流程"></a>配置流程</h3></li>
-<li><p>方法1(推荐): Hexo 5.0.0 版本以上，推荐通过 npm 直接安装，进入博客目录执行命令</p>
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><div class="code-wrapper"><pre><code>之前介绍了如何使用Fluid的主题,这篇将继续深入如何去使用Fluid。
+</code></pre></div>
+<h3 id="基础目录结构"><a href="#基础目录结构" class="headerlink" title="基础目录结构"></a>基础目录结构</h3><ol>
+<li>使用<code>hexo n 文件名称</code>创建一个md文档,用来创作博客文章,进入md文档后,基础结构展示如下: <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">---
+title: 使用Hexo搭建博客（基础版） # 博客文章标题
+date: 2021-12-15 01:47:44  # 文章编写日期
+index_img: https:&#x2F;&#x2F;gitee.com&#x2F;roily&#x2F;nano-piture-bed&#x2F;raw&#x2F;master&#x2F;img&#x2F;fluid-hexo.png # 缩略图
+categories:
+- hexo博客搭建 # 分类
+tags: # 标签
+- hexo
+- github
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+</ol>
+<h3 id="常用基础配置"><a href="#常用基础配置" class="headerlink" title="常用基础配置"></a>常用基础配置</h3><p>Flui主题自身内置了很多插件,当我们想美化自己的博客时,可以在<code>_config.fluid.yml</code>文件下,通过一些配置去实现,非常的简便。接下来就介绍一些常用配置的设置</p>
 <ol>
-<li><p>输入指令</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install <span class="hljs-comment">--save hexo-theme-fluid</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fuild-save.png" srcset="/img/loading.gif" lazyload alt="Fluid版本下载" title="Fluid版本下载"></p>
+<li><p>favicon<br> 通过设置<code>favicon</code>和<code>apple_touch_icon</code>来设置浏览器标签图标,可以使用连接资源,也可以使用本地资源路径</p>
+<p> <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-options-1.png" srcset="/img/loading.gif" lazyload alt="fluid主题设置" title="fluid主题设置"></p>
+<p> <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-options-2.png" srcset="/img/loading.gif" lazyload alt="fluid主题设置" title="fluid主题设置"></p>
 </li>
-<li><p>在与<code>_config.yml</code>文件平级的目录下,新建文件<code>_config.fluid.yml</code><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fuild-create-1.png" srcset="/img/loading.gif" lazyload alt="创建Fluid配置文件" title="创建Fluid配置文件"></p>
-</li>
-<li><p>创建文件后,打开Fluid的github仓库地址: <a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">https://github.com/fluid-dev/hexo-theme-fluid</a>,进入仓库后点击打开Fluid仓库中的<code>_config.yml</code>文件<br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-1.png" srcset="/img/loading.gif" lazyload alt="打开_config.yml文件" title="打开_config.yml文件"></p>
-</li>
-<li><p>打开后,复制全部代码,粘贴入刚才创建的<code>_config.fluid.yml</code>文件中<br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-2.png" srcset="/img/loading.gif" lazyload alt="复制_config.yml文件" title="复制config.yml文件"></p>
-</li>
-<li><p>粘贴成功后,点击<code>_config.yml</code>文件,点击搜索<code>theme</code>关键字,将之前的默认主题landscape换成<code>fluid</code><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-3.png" srcset="/img/loading.gif" lazyload alt="更换fluid主题" title="更换fluid主题"></p>
+<li><p>打字机效果</p>
+ <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">fun_features:
+# 为 subtitle 添加打字机效果
+# Typing animation for subtitle
+typing:
+    enable: true
+
+# 打印速度，数字越大越慢
+# Typing speed, the larger the number, the slower
+    typeSpeed: 70
+
+# 游标字符
+# Cursor character
+    cursorChar: &quot;_&quot;
+
+# 是否循环播放效果
+# If true, loop animation
+    loop: false
+
+# 为文章内容中的标题添加锚图标
+ # Add an anchor icon to the title on the post page<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>颜色的修改</p>
+ <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">color:
+    # body 背景色
+    # Color of body background
+    body_bg_color: &quot;#eee&quot;
+    # 暗色模式下的 body 背景色，下同
+    # Color in dark mode, the same below
+    body_bg_color_dark: &quot;#181c27&quot;
+
+    # 顶部菜单背景色
+    # Color of navigation bar background
+    navbar_bg_color: &quot;#2f4154&quot;
+    navbar_bg_color_dark: &quot;#1f3144&quot;
+
+    # 顶部菜单字体色
+    # Color of navigation bar text
+    navbar_text_color: &quot;#fff&quot;
+    navbar_text_color_dark: &quot;#d0d0d0&quot;
+
+    # 全局字体色
+    # Color of global text
+    text_color: &quot;#3c4858&quot;
+    text_color_dark: &quot;#c4c6c9&quot;
+
+    # 全局次级字体色（摘要、简介等位置）
+    # Color of global secondary text (excerpt, introduction, etc.)
+    sec_text_color: &quot;#718096&quot;
+    sec_text_color_dark: &quot;#a7a9ad&quot;
+
+    # 文章正文字体色
+    # Color of post text
+    post_text_color: &quot;#2c3e50&quot;
+    post_text_color_dark: &quot;#c4c6c9&quot;
+
+    # 文章正文字体色（h1 h2 h3...）
+    # Color of Article heading (h1 h2 h3...)
+    post_heading_color: &quot;#1a202c&quot;
+    post_heading_color_dark: &quot;#c4c6c9&quot;
+
+    # 文章超链接字体色
+    # Color of post link
+    post_link_color: &quot;#0366d6&quot;
+    post_link_color_dark: &quot;#1589e9&quot;
+
+    # 超链接悬浮时字体色
+    # Color of link when hovering
+    link_hover_color: &quot;#30a9de&quot;
+    link_hover_color_dark: &quot;#30a9de&quot;
+
+    # 超链接悬浮背景色
+    # Color of link background when hovering
+    link_hover_bg_color: &quot;#f8f9fa&quot;
+    link_hover_bg_color_dark: &quot;#364151&quot;
+
+    # 主面板背景色
+    # Color of main board
+    board_color: &quot;#fff&quot;
+    board_color_dark: &quot;#252d38&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>搜索功能</p>
+ <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none"># 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
+# Search feature, based on hexo-generator-search. If you have installed other search plugins, please disable this feature to avoid generating redundant index files
+search:
+    enable: true  # 将这个打开就可以实现站内搜索,默认自动打开
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>footer</p>
+ <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">footer:
+# 页脚第一行文字的 HTML，建议保留 Fluid 的链接，用于向更多人推广本主题
+# HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people
+content: &#39;&lt;div&gt;这里用来设置页面底部文字展示,支持HTML&lt;&#x2F;div&gt;&#39;
+
+
+# 展示网站的 PV、UV 统计数
+# Display website PV and UV statistics
+statistics:
+    enable: true
+
+# 统计数据来源，使用 leancloud 需要设置 &#96;web_analytics: leancloud&#96; 中的参数；使用 busuanzi 不需要额外设置，但是有时不稳定，另外本地运行时 busuanzi 显示统计数据很大属于正常现象，部署后会正常
+# Data source. If use leancloud, you need to set the parameter in &#96;web_analytics: leancloud&#96;
+# Options: busuanzi | leancloud
+source: &quot;busuanzi&quot;
+
+# 页面显示的文本，&#123;&#125;是数字的占位符（必须包含)，下同
+# Displayed text, &#123;&#125; is a placeholder for numbers (must be included), the same below
+pv_format: &quot;总访问量 &#123;&#125; 次&quot;
+uv_format: &quot;总访客数 &#123;&#125; 人&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="config-yml的一些设置"><a href="#config-yml的一些设置" class="headerlink" title="_config.yml的一些设置"></a>_config.yml的一些设置</h3> <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none"># Site
+title: 博客主题名称
+subtitle: &#39;副标题&#39;
+description: &#39;博客描述&#39;
+keywords: &#39;搜索关键词&#39;
+author: 作者名称
+language: zh-CN  # 语言
+timezone: &#39;Asia&#x2F;Shanghai&#39;   # 时区设置   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>如果需要更换banner图片却又找不到合适的图片该怎么办?<br>兄弟莫慌~<br>附上官方链接: <a target="_blank" rel="noopener" href="https://wallhaven.cc/">https://wallhaven.cc/</a></p>
 </li>
 </ol>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">最后执行:</span><br>    hexo g<br>    hexo s<br>    就可以本地运行打开查看已经配置好的fluid主题~<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-4.png" srcset="/img/loading.gif" lazyload alt="完成更换fluid主题" title="完成更换fluid主题"></p>
-</li>
-<li><p>方法2:</p>
-<ol>
-<li>进入github仓库下载最新 release 版本解压到themes目录并将解压出的文件夹重命名为 fluid，最后将整个fluid拷贝至脚手架的themes文件夹内</li>
-</ol>
-<p>  <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-1.png" srcset="/img/loading.gif" lazyload alt="下载最新release压缩包" title="下载最新release压缩包"></p>
-<p>  <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-2.png" srcset="/img/loading.gif" lazyload alt="重命名release压缩包" title="重命名release压缩包"></p>
-<p>  <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-3.png" srcset="/img/loading.gif" lazyload alt="放置release压缩包" title="放置release压缩包"></p>
-<ol start="2">
-<li>完成后同样需要将<code>_config.yml</code>文件的<code>theme</code>关键字,更换成<code>fluid</code><br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-3.png" srcset="/img/loading.gif" lazyload alt="更换fluid主题" title="更换fluid主题"><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">最后执行:</span><br>  hexo g<br>  hexo s<br>  同方法1一样可以本地运行打开查看已经配置好的fluid主题~<br></code></pre></td></tr></table></figure></li>
-</ol>
-<p>  <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/Fluid-Change-4.png" srcset="/img/loading.gif" lazyload alt="完成更换fluid主题" title="完成更换fluid主题"></p>
-</li>
-</ul>
-<h3 id="需要注意"><a href="#需要注意" class="headerlink" title="需要注意"></a>需要注意</h3><blockquote>
-<p>在使用方法2完成了主题更换的前提下,我们之后如果要在主题上进行修改,每次修改都需要到/themes/fluid下修改主题的<code>_config.yml</code>文件，这样特别麻烦，并且在版本更新时，都要注意怕被新的<code>_config.yml</code>文件替换掉，又回滚到了初始的代码，所以官方也建议将主题的<code>_config.yml</code>文件复制一份重命名为<code>_config.fluid.yml</code>文件到Hexo脚手架的根目录下，和<code>_config.yml</code>文件并列。这样，在官方更新版本时，直接覆盖.themes/fluid下的文件就可以了，不会影响到<code>_config.fluid.yml</code>文件</p>
-</blockquote>
-<p>  <img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-action2-4.png" srcset="/img/loading.gif" lazyload alt="备份fluid主题文件" title="备份fluid主题文件"></p>
 
             </div>
             <hr>
@@ -301,7 +392,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/hexo/">hexo</a>
+                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
                     
                       <a class="hover-with-bg" href="/tags/Fluid/">Fluid</a>
                     
@@ -322,9 +413,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/13/hexo/picGo/">
+                      <a href="/2021/12/15/hexo/hexoComment/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">基于gitee的PicGo的搭建</span>
+                        <span class="hidden-mobile">Fluid主题配置Valine评论系统</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -332,8 +423,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/11/18/JavaScript/jsNote/">
-                        <span class="hidden-mobile">jsNote</span>
+                      <a href="/2021/12/13/hexo/picGo/">
+                        <span class="hidden-mobile">基于gitee的PicGo的搭建</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -496,6 +587,8 @@
 
 
   
+    
+  
 
 
 
@@ -548,5 +641,5 @@
 <script  src="/js/boot.js" ></script>
 
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 </html>
