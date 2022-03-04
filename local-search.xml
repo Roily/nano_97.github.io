@@ -4,6 +4,206 @@
   
   
   <entry>
+    <title>微信小程序の一些踩坑点</title>
+    <link href="/2022/03/04/miniProgram/basic-08/"/>
+    <url>/2022/03/04/miniProgram/basic-08/</url>
+    
+    <content type="html"><![CDATA[<h2 id="WXS的使用"><a href="#WXS的使用" class="headerlink" title="WXS的使用"></a>WXS的使用</h2><ol><li>小程序如何使用在页面上使用类似于vue2的过滤器属性?<br>A: WXS</li><li>使用<ol><li>新建一个wxs文件,里面只支持js的es5语法,在里面写转换函数,通过module.exports = {方法名} 导出</li><li>在需要使用工具类函数的页面引入wxs标签<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; module 就是类似于整个模块名称,通过这个名称获取里面的方法&lt;wxs sr&#x3D;&quot;..&#x2F;文件.wxs&quot; module&#x3D;&quot;format&quot;&gt;&lt;&#x2F;wxs&gt;&lt;view&gt;&#123;&#123; format.moment(time) &#125;&#125;&lt;&#x2F;view&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li></ol></li></ol><h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ol><li>wx:for<ol><li>重命名item和index<br>Q:为什么要重命名?<br>A:当双重wx:for循环时必须得把内部wx:for循环的item和index做修改</li><li>示例:<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;!-- 通过 wx:for-item&#x2F;wx:for-index重命名 --&gt;  &lt;block wx:for&#x3D;&quot;&#123;&#123; arr &#125;&#125;&quot;&gt;    &lt;view&gt; &#123;&#123;item&#125;&#125; &lt;&#x2F;view&gt;    &lt;view&gt; &#123;&#123;index&#125;&#125; &lt;&#x2F;view&gt;    &lt;!-- 通过 wx:for-item&#x2F;wx:for-index重命名 --&gt;    &lt;view wx:for&#x3D;&quot;&#123;&#123; arr2 &#125;&#125;&quot; wx:for-item&#x3D;&quot;itm&quot; wx:for-index&#x3D;&quot;ind&quot; &gt;        &#123;&#123; itm &#125;&#125;-&#123;&#123; ind &#125;&#125;    &lt;&#x2F;view&gt;  &lt;&#x2F;block&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol></li><li>wx:if/wx:elif/wx:else<ol><li>与hide区别<blockquote><p>就像v-if和v-show的区别,wx:if是对元素节点进行操作,hide是对样式操作</p></blockquote></li></ol></li></ol><p>  <strong>值的注意:</strong></p><blockquote><p>hide的默认值是true</p></blockquote><h2 id="wxss的背景图引用"><a href="#wxss的背景图引用" class="headerlink" title="wxss的背景图引用"></a>wxss的背景图引用</h2><blockquote><p>不能使用本地资源引用,只能引用在线地址或者把图片转成base64</p></blockquote><h2 id="npm包依赖安装关于基础库的bug"><a href="#npm包依赖安装关于基础库的bug" class="headerlink" title="npm包依赖安装关于基础库的bug"></a>npm包依赖安装关于基础库的bug</h2><blockquote><p>有些Npm依赖只支持特定的小程序基础库版本或者压根不支持小程序,所以在安装依赖的时候需要查看一下是否支持小程序</p></blockquote><h2 id="npm包构建流程"><a href="#npm包构建流程" class="headerlink" title="npm包构建流程"></a>npm包构建流程</h2><ol><li>初始化项目包的npm<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">npm init --y<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li>npm安装对应依赖包</li><li>详情 -&gt; 勾选使用npm模块选项 </li><li>点击菜单栏 : 工具 -&gt; 构建npm (每次下载新的依赖都得重新构建)</li><li>通过require或者import方法引用模块<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const moment &#x3D; require(&#39;moment&#39;)const value &#x3D; moment(+new Date()).format(&#39;YYYY-MM-DD&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></li><li>构建后再project.config.json文件中进行配置<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#123;   &quot;setting&quot;: &#123;       &quot;packNpmManually&quot;: true,       &quot;packNpmRelationList&quot;: [        &#123;             &quot;packageJsonPath&quot;: &quot;.&#x2F;package.json&quot;,             &quot;miniprogramNpmDistDir&quot;: &quot;.&#x2F;&quot;         &#125;       ]   &#125; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><p><strong>注意：</strong> </p><blockquote><p>由于目前新版开发者工具创建的小程序目录文件结构问题，npm构建的文件目录为miniprogram_npm，并且开发工具会默认在当前目录下创建miniprogram_npm的文件名，所以新版本的miniprogramNpmDistDir配置为’./‘即可</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>微信小程序</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>微信小程序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>微信小程序の登录流程</title>
+    <link href="/2022/03/04/miniProgram/basic-07/"/>
+    <url>/2022/03/04/miniProgram/basic-07/</url>
+    
+    <content type="html"><![CDATA[<h2 id="登录流程"><a href="#登录流程" class="headerlink" title="登录流程"></a>登录流程</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">    小程序端:         (1) 在小程序通过wx.login API获取临时的code        (2) 调用接口将code传递给自己的服务器    自己服务器端:        (1) 获取小程序内传来的临时的code        (2) 将临时的code + appId + appsecret发送给微信小程序服务器,获取 openId 和 session_key [这个时候用户不知道自己已经登录成功]        (3) 自己服务器内将 openId和session_key 组合生成有期限的token,返回给小程序端    小程序端:        (1) 获取自己服务器端内传递的token,并存储到storeage中        (2) 将需要记录用户操作的接口中携带这个token发送给自己的服务器端        自己服务器端:        (1) 将接口传递的token进行解析,解析出openId和session_key,将操作保存在数据库内,避免向微信服务器多次请求获取openId        如果用户更换手机?        (1) 判断storage中是否存储了token,如果未存储则重复登录流程        (2) 如果存储了token,判断是否已经过期,如果过期了则重新登录,如果没有过期,继续判断session_key是否过期,如果没有过期,则继续使用这个token进行用户校验,反之则重新登录判断session_key是否过期:wx.checkSession(&#123;      success: (res) &#x3D;&gt; &#123;        resolve(true)      &#125;,      fail: () &#x3D;&gt; &#123;        reject(false)      &#125;    &#125;)  &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><ol><li>什么是openId?<blockquote><p>openId 用户身份的唯一标识,用openId去识别用户 [unionId用于第三方登录]</p></blockquote></li><li>什么是unionId?<blockquote><p>unionId也是唯一的标识,用于多平台(APP,公众号,网页)授权时进行标识识别,多个产品源进行数据共享<br> 多平台共享时需要同时绑定手机号(常用),因为可能某个平台不支持微信的登录,需要通过其它的方式进行信息绑定(最多的就是手机号)<br> 所以有些客户端在要求你微信登录之后需要绑定手机号</p></blockquote></li></ol><p>注意: 服务器端openID和unionID都是可以获取的,如果涉及到多端的数据共享,建议直接使用unionID进行校验</p><h2 id="获取用户信息"><a href="#获取用户信息" class="headerlink" title="获取用户信息"></a>获取用户信息</h2><ol><li>使用getUserProfile API<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">wx.getUserProfile(&#123;  desc: &#39;desc&#39;, &#x2F;&#x2F; 必填  success:(res)&#x3D;&gt;&#123;    console.log(res);    &#x2F;&#x2F; 成功回调  &#125;,  fail:()&#x3D;&gt;&#123;&#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><p><strong>值得注意:</strong></p><blockquote><p>不允许直接在生命周期方法里获取用户信息,只能通过事件触发获取<br>示例:<br>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 这里加不加open-type 也可以&lt;button bindtap&#x3D;&quot;getUserProfile&quot; open-type&#x3D;&quot;getUserInfo&quot;&gt;&lt;&#x2F;button&gt;getUserProfile()&#123;  wx.getUserProfile(&#123;      desc: &#39;你好&#39;, &#x2F;&#x2F; 必填      success:(userInfo)&#x3D;&gt;&#123;      &#x2F;&#x2F; 这里获取用户信息          console.log(userInfo);         &#125;,      fail:()&#x3D;&gt;&#123;&#125;  &#125;)&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p></blockquote><h2 id="获取手机号"><a href="#获取手机号" class="headerlink" title="获取手机号"></a>获取手机号</h2><ol><li>获取手机号<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;button open-type&#x3D;&quot;getPhoneNumber&quot;&gt;获取手机号&lt;&#x2F;button&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li></ol><p>  <strong>值得注意:</strong><br>  目前不能直接获取手机号,再调用这个button按钮时会传递一个code,将code传递给自己服务器端的一个接口,接口内部再访问微信的服务器,通过这个code获取手机号码信息</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微信小程序</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>微信小程序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>微信小程序の分包</title>
+    <link href="/2022/03/04/miniProgram/basic-06/"/>
+    <url>/2022/03/04/miniProgram/basic-06/</url>
+    
+    <content type="html"><![CDATA[<h2 id="使用场景-amp-限制"><a href="#使用场景-amp-限制" class="headerlink" title="使用场景&amp;限制"></a>使用场景&amp;限制</h2><ol><li>优化小程序启动时加载事件,协同开发进行解耦</li><li>限制:<br>(1) <strong>tabbar或者首屏使用的文件不能进行分包</strong><br>(2) 单个小程序打包大小不能超过2MB,使用分包总体小程序包体积不能大于20MB</li></ol><p>  <strong>值得注意:</strong></p><blockquote><p>如果需要分包,应该在小程序开发前期就规划好,定下基础模块,防止往后开发改造目录结构带来麻烦</p></blockquote><h2 id="使用分包"><a href="#使用分包" class="headerlink" title="使用分包"></a>使用分包</h2><ol><li><p>在根目录下简历packageModeName(模块名称)的文件夹</p><blockquote><p>每个文件夹其实都是一个小程序开发目录,可以在里面定义assets,pages等等(app.js这些不需要配置)<br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/wx-%E5%88%86%E5%8C%85.png" alt="小程序分包目录结构"></p></blockquote></li><li><p>配置路由</p><blockquote><p>分包后,将app.json文件中分包的文件路由进行相应的删除<br>将微信路由跳转api的路径也进行相应的更改<br>url: ‘/分包模块名称/pages/….’</p></blockquote></li><li><p>subPackage配置(分包配置属性)</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">app.json文件配置分包属性&quot;subPackages&quot;: [    &#x2F;&#x2F; 配置分包属性    &#123;        &quot;root&quot;:&quot;packageDetail&quot;,  &#x2F;&#x2F; 分包根目录名称(分包模块名称)        &quot;name&quot;:&quot;pDetail&quot;,        &#x2F;&#x2F; 分包根目录别名,可以不写        &quot;pages&quot;:[                &#x2F;&#x2F; 分包路由配置            &quot;pages&#x2F;detail-search&#x2F;index&quot;,            &quot;pages&#x2F;detail-songs&#x2F;index&quot;,            &quot;pages&#x2F;detail-video&#x2F;index&quot;        ]    &#125;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="独立分包"><a href="#独立分包" class="headerlink" title="独立分包"></a>独立分包</h2><blockquote><p> 定义: 所有功能(组件依赖,方法依赖)完全不依赖于主包,独立存在的一个包文件<br> 使用场景: 扫描二维码<br> 使用: 在分包配置的对象中设置”independent” : true 属性<br>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&quot;subPackage&quot;:[  &#123;    &quot;root&quot;: &quot;包模块根目录名称&quot;,    &quot;name&quot;: &quot;包模块别名&quot;,    &quot;pages&quot;:[ ],   &#x2F;&#x2F; 页面路由    &quot;independent&quot; : true &#x2F;&#x2F; 独立分包 属性  &#125;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><br>  <strong>值得注意:</strong><br>      (1) 独立分包时,app.wxss对独立分包的页面不起到作用<br>      (2) 独立分包完全不能依赖主包,相当于做一个独立的页面嵌进应用内<br>      (3) App只能在主包定义,独立分包不行(可以使用getApp方法,如果主包没有下载下来,则获取不到值)<br>      (4) 独立分包不支持插件</p></blockquote><h2 id="分包预下载"><a href="#分包预下载" class="headerlink" title="分包预下载"></a>分包预下载</h2><blockquote><p>定义: 类似于懒加载,优先把主包加载完成,之后在闲置时下载设置预下载的分包<br>使用: 设置<code>preloadRule</code>属性<br>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&quot;preloadRule&quot;:&#123;  &quot;需要分包预下载的页面路径&quot;:&#123;      &quot;newwork&quot;: &quot;wifi&#x2F;all&quot;, &#x2F;&#x2F; 设置在哪个网络环境下可以预下载    &quot; packages&quot;:[ root, name ] &#x2F;&#x2F; 设置预下载的包名,使用root&#x2F;name  &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>微信小程序</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>微信小程序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>微信小程序の数据共享</title>
+    <link href="/2022/03/04/miniProgram/basic-05/"/>
+    <url>/2022/03/04/miniProgram/basic-05/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>小程序目前没有像vue一样有一个契合性很好的全局状态管理库并且现有的全局状态共享并不是响应式的,但是可以下载相应的依赖包进行全局状态管理并且达到响应式的效果。这篇博文就是介绍一个比较不错的全局状态管理库和小程序本身全局共享数据的特点。</p></blockquote><h2 id="app-js全局共享数据"><a href="#app-js全局共享数据" class="headerlink" title="app.js全局共享数据"></a>app.js全局共享数据</h2><ol><li>在app.js中 声明变量 globalData</li><li>通过getApp( ) 获取app.js对象</li><li>getApp().globalData 获取共享变量<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">App(&#123;  globalData:&#123;    num : 1  &#125;&#125;)&#x2F;&#x2F; page页面(组件页面也是一样的用法)const app &#x3D; getApp()Page(&#123;  useGlobalData()&#123;    console.log( app.globalData ) --&gt; &#123; num:1 &#125;  &#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><p>  <strong>值的注意:</strong></p><blockquote><p>在app里共享的数据不是响应式的</p></blockquote><h2 id="module-模块-引入"><a href="#module-模块-引入" class="headerlink" title="module(模块)引入"></a>module(模块)引入</h2><ol><li>通过es6的模块化语法将数据封装在一个js文件,之后在需要的页面中引入</li></ol><p>  <strong>缺点:</strong> </p><blockquote><p>数据也不是响应式的</p></blockquote><h2 id="hy-event-store-依赖包"><a href="#hy-event-store-依赖包" class="headerlink" title="hy-event-store(依赖包)"></a>hy-event-store(依赖包)</h2><blockquote><p>定义: 是coderWhy老师开发的一个全局状态管理的开发库,语法风格类似于vuex,使用比较便捷,体积也比较小。<br>地址: <a href="https://github.com/coderwhy/hy-event-store">https://github.com/coderwhy/hy-event-store</a></p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>微信小程序</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>微信小程序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>小程序の异步api封装&amp;插槽/混入</title>
+    <link href="/2022/03/04/miniProgram/basic-04/"/>
+    <url>/2022/03/04/miniProgram/basic-04/</url>
+    
+    <content type="html"><![CDATA[<h3 id="异步API的封装"><a href="#异步API的封装" class="headerlink" title="异步API的封装"></a>异步API的封装</h3><ol><li>为什么要封装微信的异步API?<ol><li>因为异步的原因,可能会与我们代码逻辑有所冲突</li><li>因为微信提供的异步API很繁琐,我们通过你自己的进一步封装,可以更好的调用,减少代码的体积</li></ol></li><li>如何封装?<ol><li>使用<code>promise</code>封装</li><li>示例:<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 我们这里使用微信提供的请求API进行演示,封装逻辑都是一样的const baseUrl &#x3D; &#39;xxx&#39;const request &#x3D; (params,token) &#x3D;&gt; &#123;  return new Promise((resolve, reject) &#x3D;&gt; &#123;    wx.request(&#123;      ...params,      url: params.baseUrl ? params.baseUrl + params.url : baseUrl + params.url,      success: (result) &#x3D;&gt; &#123;        &#x2F;&#x2F; 注意: resolve只能传递一个参数,多个参数可以使用对象传递        resolve(result.data)      &#125;,      &#x2F;&#x2F; 因为fail这里一定返回的是错误信息并reject也是一个方法的调用,所以这里可以简写      fail: reject,      complete: (res) &#x3D;&gt; &#123;&#125;,    &#125;)  &#125;)&#125;export default request<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol></li></ol><p>  <strong>这样,我们在其它js文件引入后,可以进行async await的解析或者promise链式调用</strong></p><h2 id="slot-插槽"><a href="#slot-插槽" class="headerlink" title="slot(插槽)"></a>slot(插槽)</h2><ol><li><p>slot 用法和vue的默认插槽一样(也有具名插槽)</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 使用:&#x2F;&#x2F;子组件&lt;view&gt;  &lt;slot name&#x3D;&quot;name&quot;&gt;&lt;&#x2F;slot&gt;&lt;&#x2F;view&gt;Component(&#123;  options: &#123;    &#x2F;&#x2F; 设置属性开启具名插槽    multipleSlots: true  &#125;&#125;)&#x2F;&#x2F; 父组件中&lt;component&gt;  &lt;view slot&#x3D;&quot;name&quot;&gt;&lt;&#x2F;view&gt;&lt;&#x2F;component&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li><p>如何在封装包含插槽的组件时,如果不传递传参默认展示其它内容?</p><ol><li><p>通过传递属性控制(不推荐)<br>这里就不做展示了,因为比较容易想到思路且代码比较冗余</p></li><li><p>法1:通过css</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">wxml中:  &lt;view class&#x3D;&quot;slot-wrapper&quot;&gt;    &lt;view class&#x3D;&quot;slot&quot; &gt; &lt;slot&gt;&lt;&#x2F;slot&gt; &lt;&#x2F;view&gt;     &lt;view clas&#x3D;&quot;default&quot; &gt; 展示默认内容 &lt;&#x2F;view&gt;  &lt;&#x2F;view&gt;wxss中:  &#x2F;&#x2F; 思路: 通过非空选择器判断元素是否存在之后兄弟选择器进行配置显隐  &#x2F;&#x2F; 注意: 兄弟选择器只能选择同级下方的属性,所以要注意dom结构  .slot-wrapper .slot:empty+.default&#123;    display: flex;  &#125;   .slot-wrapper .slot&#123;     display: none;     justify-content:center;   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol></li></ol><h2 id="behaviors-混入"><a href="#behaviors-混入" class="headerlink" title="behaviors(混入)"></a>behaviors(混入)</h2><ol><li>用法类似于vue的Mixin<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const behaviorsOne &#x3D; require(&#39;behaviorsOne&#39;)Component(&#123;   behaviors:[ behaviorsOne ]&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><p>  <strong>值得注意:</strong><br>    (1) 这是组件专有的属性<br>    (2) 如果组件中有同名变量,组件中的变量会覆盖behaviors里的变量,如果变量是引用类型,则会进行合并<br>    (3) behaviors里的生命周期快于组件里的生命周期,如果一个behaviors文件被一个组件引用多次,那么只会执行一次该生命周期函数</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微信小程序</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>微信小程序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>小程序の页面App生命周期&amp;路由传参</title>
+    <link href="/2022/03/04/miniProgram/basic-03/"/>
+    <url>/2022/03/04/miniProgram/basic-03/</url>
+    
+    <content type="html"><![CDATA[<h2 id="App生命周期"><a href="#App生命周期" class="headerlink" title="App生命周期"></a>App生命周期</h2><table><thead><tr><th>属性</th><th>说明</th><th>用法</th></tr></thead><tbody><tr><td>onLaunch</td><td>监听小程序初始化</td><td>应用第一次启动就会触发的事件(一般用做程序启动获取用户的个人信息)[比onShow先触发]</td></tr><tr><td>onShow</td><td>监听小程序启动或切前台</td><td>应用被用户看到时触发,比onLaunch慢,会频繁触发[重置应用的数据和页面效果]</td></tr><tr><td>onHide</td><td>监听小程序切后台</td><td>应用被隐藏[暂停或清除定时器,减少内存]</td></tr><tr><td>onError</td><td>错误监听函数</td><td>应用代码发生报错会触[收集用户的错误信息,通过异步请求将错误的信息发送到后台]</td></tr><tr><td>onPageNotFound</td><td>页面不存在监听函数</td><td>应用第一次启动的时候,如果找不到第一个入口页面,才会触发[如果首页找不到了,重新跳到第二个首页]</td></tr></tbody></table><h2 id="Page生命周期"><a href="#Page生命周期" class="headerlink" title="Page生命周期"></a>Page生命周期</h2><table><thead><tr><th>属性</th><th>说明</th><th>用法</th></tr></thead><tbody><tr><td>onLoad</td><td>监听页面加载</td><td>发送异步请求来初始化页面数据(页面加载时第一个调用)</td></tr><tr><td>onShow</td><td>监听页面显示</td><td>页面加载时第二个调用</td></tr><tr><td>onReady</td><td>监听页面初次渲染完成</td><td>页面加载时第三个调用</td></tr><tr><td>onHide</td><td>监听页面隐藏</td><td></td></tr><tr><td>onUnload</td><td>监听页面卸载</td><td></td></tr><tr><td>onPullDownRefresh</td><td>监听用户下拉动作</td><td>页面数据和样式初始化,需要配置 “enablePullDownRefresh”: true</td></tr><tr><td>onReachBottom</td><td>页面上拉触底事件的处理函数</td><td>上拉加载下一页数据</td></tr><tr><td>onShareAppMessage</td><td>用户点击右上角转发</td><td></td></tr><tr><td>onPageScroll</td><td>页面滚动触发事件的处理函数</td><td>小程序横屏竖屏切换时触发 [需要在json文件中配置 “pageOrientation”:”auto”]开启横竖屏切换</td></tr><tr><td>onResize</td><td>页面尺寸改变时触发</td><td></td></tr><tr><td>onTabItemTap</td><td>当前是tab页,点击tab时触发</td><td></td></tr></tbody></table><h2 id="路由传参和参数获取"><a href="#路由传参和参数获取" class="headerlink" title="路由传参和参数获取"></a>路由传参和参数获取</h2><p>  场景: 微信小程序的路由跳转方式分为两种: 1) 组件跳转 2) API跳转</p><ol><li><p>组件跳转时传参</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 通过拼接url参数进行组件传参 target-&gt; 在小程序内跳转&#x2F;&#x2F; 注意点: 不能通过es6的模板字符串进行拼接,tabBar跳转无法传递参数&lt;navigator target&#x3D;&quot;self&quot; url&#x3D;&#39;&#x2F;packagePlayer&#x2F;pages&#x2F;music-player&#x2F;index?id&#x3D;&#123;&#123;id&#125;&#125;&#39; &gt;&lt;&#x2F;navigator&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li><li><p>API跳转</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;button catchtap&#x3D;&quot;onJumpUrl&quot;&gt;跳转&lt;&#x2F;button&gt;Page(&#123;  onJumpUrl(e)&#123;    &#x2F;&#x2F; API调用因为是写在js里的,可以使用ES6的模板字符串    wx.navigateTo(&#123;      url: &#96;&#x2F;packagePlayer&#x2F;pages&#x2F;music-player&#x2F;index?id&#x3D;$&#123;this.data.id&#125;&#96;,    &#125;);  &#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><p>  <strong>注意</strong>: 微信小程序是多种路由跳转方式的,但是传参基本一致,这里为了演示如何拼接参数只使用了部分API(组件跳转可以在<code>open-type</code>中设置跳转属性)</p><ol start="3"><li>路由参数获取<ol><li><p>生命周期获取<br>定义: 在Page的onLoad生命周期可以通过options参数获取</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Page(&#123;  onLoad(options)&#123;    const &#123; id &#125; &#x3D; options  &#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li><p>API获取</p><div class="code-wrapper"><pre><code>let pages = getCurrentPages();     // 获取跳转页面的信息数组let currentPages = pages[pages.length - 1]    // 每次都取上一个页面的信息let options = currentPages.options    // 通过options里获取参数const &#123; goods_id &#125; = optionsthis.getGoodsDetails(goods_id)</code></pre></div></li></ol></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>微信小程序</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>微信小程序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>小程序の组件使用</title>
+    <link href="/2022/03/03/miniProgram/basic-02/"/>
+    <url>/2022/03/03/miniProgram/basic-02/</url>
+    
+    <content type="html"><![CDATA[<h2 id="组件的使用"><a href="#组件的使用" class="headerlink" title="组件的使用"></a>组件的使用</h2><ol><li><p>注册自定义组件</p><ol><li>在微信开发者工具中,选择components文件夹鼠标右击选择新建component,输入名称后自动创建4个文件,基本与page页面结构相同</li><li>在需要使用组件的页面文件或者组件文件,选择.json结尾的配置文件</li><li>在json文件中的”usingCompoents”属性中进行配置<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#123;  &quot;usingComponents&quot;: &quot;需要引入的组件路径&quot;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li></ol></li><li><p>使用第三方组件库(vantUI)<br>详情见: <a href="https://vant-contrib.gitee.io/vant-weapp/#/quickstart">https://vant-contrib.gitee.io/vant-weapp/#/quickstart</a></p></li></ol><h2 id="父子组件通信"><a href="#父子组件通信" class="headerlink" title="父子组件通信"></a>父子组件通信</h2><ol><li><p>父组件通信子组件</p>   <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">父组件中:   &lt;child-comp value&#x3D;&quot;&#123;&#123; num &#125;&#125;&quot;&gt;&lt;&#x2F;child-comp&gt;  Page(&#123;    data:&#123;      num: 1    &#125;  &#125;)子组件中:  &lt;view&gt; &#123;&#123; value &#125;&#125; &lt;&#x2F;view&gt;  --&gt; 显示为1  Component(&#123;    properties:&#123;      value:&#123;       type: Number,       value: 0      &#125;    &#125;,    lifetimes:&#123;      ready()&#123;       console.log(  this.properties.value ) --&gt; 0      &#125;    &#125;  &#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>   <strong>注意</strong>: </p><div class="code-wrapper"><pre><code> (1) 也可以通过子组件的data获取在properties定义的值,因为在子组件接收父组件传递的参数后,data会拷贝一份properties的值,但是不推荐使用data里的值,容易造成代码混淆 (2) 不能直接使用setData去修改propertie中定义的参数,必须使用子组件通信父组件的方式改变值</code></pre></div></li><li><p>子组件通信父组件</p>   <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">父组件中:    &#x2F;&#x2F; 首先绑定自定义事件用来接收子组件传递的参数    &lt;view bindgetChildValue&#x3D;&quot;getValue&quot;&gt;&lt;&#x2F;view&gt;    Page(&#123;      getValue(e)&#123;        &#x2F;&#x2F; 在e.detail中接收子组件传递的参数,key名为value        console.log(e.detail.value)      &#125;    &#125;)子组件中:  &#x2F;&#x2F; 使用全局定义的方法 this.triggleEvent(&#39;父组件自定义事件名称&#39;, 子组件需要传递的参数)  &lt;button catchtap&#x3D;&quot;passValue&quot; data-item&#x3D;&quot;2&quot; &gt;点击传参&lt;&#x2F;button&gt;  Component(&#123;    data:&#123;      num : 2    &#125;,    methods:&#123;      passValue(e)&#123;        const &#123; item &#125; &#x3D; e.currentTarget.dataset        this.triggerEvent(&#39;getChildValue&#39;,&#123; num:this.data.num ,item  &#125;)      &#125;    &#125;  &#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h2><ol><li><p><strong>组件的生命周期最好定义在lifetimes属性中</strong></p>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Component(&#123;  lifetimes:&#123;    ready()&#123;&#125;  &#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li><p>组件生命周期</p><table><thead><tr><th>属性</th><th>描述</th></tr></thead><tbody><tr><td>created</td><td>组件刚刚被创建,不能使用setData</td></tr><tr><td>attached</td><td>组件实例进入页面节点树执行</td></tr><tr><td>ready（常用）</td><td>组件布局完成后执行</td></tr><tr><td>moved</td><td>组件实例被移动到节点树另一个位置时执行</td></tr><tr><td>detached</td><td>组件实例被从页面节点树移除时执行</td></tr></tbody></table></li></ol><h2 id="observers-监听属性"><a href="#observers-监听属性" class="headerlink" title="observers(监听属性)"></a>observers(监听属性)</h2><ol><li>定义:<br>小程序组件独有的属性。数据监听器支持监听属性(properties)或内部数据(data)的变化，可以同时监听多个。一次 setData 最多触发每个监听器一次。</li><li>使用: <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">(1) 对象&#x2F;数组单层监听  data:&#123;    arr:[1,2,3]    obj:&#123; a:1 , b:2&#125;  &#125;,  observers:&#123;    &#39;arr[1]&#39;(newval)&#123;&#125;,    &#39;obj.a&#39;(newval)&#123;&#125;  &#125;(2) 多个变量同时监听  data:&#123;    num1: 1,    num2: 2,    sum:0  &#125;  observers:&#123;    &#39;num1,num2&#39;(numbers1,numbers2)&#123;      this.setData(&#123;        sum &#x3D; numbers1 + numbers2      &#125;)    &#125;  &#125; (3) 监听所有子数据的变量变化 定义: 通过通配符** data:&#123;    obj:&#123;       child:&#123;          a:1,                          b:2      &#125;    &#125;  &#125;,  observers:&#123;    &#39;obj.child.**&#39;(newval)&#123;      newval &#x3D;&#x3D;&#x3D; this.data.obj.child    &#125;  &#125; (4) 可以直接监听**,即监听所有数据的变化  observers:&#123;    &#39;**&#39;(newval)&#123;      &#x2F;&#x2F; newval &#x3D; &#123;...this.data,...this.properties&#125;    &#125;  &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>微信小程序</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>微信小程序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>小程序の基础语法</title>
+    <link href="/2022/03/03/miniProgram/basic-01/"/>
+    <url>/2022/03/03/miniProgram/basic-01/</url>
+    
+    <content type="html"><![CDATA[<h2 id="插值语法"><a href="#插值语法" class="headerlink" title="插值语法"></a>插值语法</h2><ol><li>初识微信小程序插值语法<br>定义: 类似于vue的插值语法,也采用<code>&#123;&#123; &#125;&#125;</code>进行值的动态绑定<br>值的注意:  <div class="code-wrapper"><pre><code> (1) 无法像vue语法中可以进行函数调用 (2) 传递布尔值值必须使用&#123;&#123;&#125;&#125;传递,不使用&#123;&#123;&#125;&#125;默认都是字符串,false就会被编译成字符串false,显示为true</code></pre></div><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;view&gt;&#123;&#123; name &#125;&#125;&lt;&#x2F;view&gt; --&gt; 页面显示: Nano&lt;view&gt;&#123;&#123;change(name)&#125;&#125;&lt;&#x2F;view&gt; --&gt; 页面无法显示Page(&#123;  data:&#123;    name : &#39;Nano&#39;  &#125;,  change()&#123;&#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li>动态值的绑定<br>定义: 用于在样式、微信指令和传参时值的动态绑定<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">1) 样式的绑定   class:      &lt;view class&#x3D;&quot;bg-color &#123;&#123; isShow ?&#39;ft-color&#39;:&#39;&#39; &#125;&#125;&quot;&gt;&lt;&#x2F;view&gt;   style:      &lt;view style&#x3D;&quot;padding-top:&#123;&#123; pdTop &#125;&#125;px&quot;&gt;&lt;&#x2F;view&gt;          Page(&#123;      data:&#123;        isShow : true ,        pdTop :36      &#125;    &#125;)2) 微信指令的参数绑定    wx:if&#x2F;wx:elif&#x2F;wx:else&#x2F;wx:for :      &lt;view wx:if&#x3D;&quot;&#123;&#123; item &#x3D;&#x3D;&#x3D; 1&#125;&#125;&quot;&gt;1&lt;&#x2F;view&gt;      &lt;view wx:elif&#x3D;&quot;&#123;&#123; item &#x3D;&#x3D;&#x3D; 2&#125;&#125;&quot;&gt;2&lt;&#x2F;view&gt;      &lt;view wx:else&gt;3&lt;&#x2F;view&gt;      &lt;view wx:for&#x3D;&quot;&#123;&#123;arr&#125;&#125;&quot; :key&#x3D;&quot;ind&quot; wx:for-item&#x3D;&quot;itm&quot; wx:for-index&#x3D;&quot;ind&quot;&gt;&#123;&#123; itm &#125;&#125;&lt;&#x2F;view&gt;      Page(&#123;        data:&#123;          item : 1 ,          arr : [1, 2, 3]        &#125;      &#125;)3) 组件动态传参   父组件:    &lt;Child item&#x3D;&quot;&#123;&#123; type &#125;&#125;&quot;&gt;&lt;&#x2F;Child&gt;    Page(&#123;      data:&#123;        type : 1      &#125;    &#125;)   json文件:      &quot;usingComponents&quot; : &#123;        &quot;Child&quot; : 路径      &#125;   子组件:    &lt;view&gt; &#123;&#123; type &#125;&#125; &lt;&#x2F;view&gt;    Component(&#123;      properties:&#123;        type: Number,        value: 0      &#125;    &#125;)4) 配合方法传参:   前言: 配合方法动态传参一般在wx:for循环时出现比较多   &lt;block wx:for&#x3D;&quot;&#123;&#123; row &#125;&#125;&quot; wx:key&#x3D;&quot;index&quot; wx:for-item&#x3D;&quot;item&quot;&gt;      &lt;button catchtap&#x3D;&quot;handlePassRow&quot; data-row&#x3D;&quot;&#123;&#123;item&#125;&#125;&quot;&gt;打印数据&lt;&#x2F;button&gt;   &lt;&#x2F;block&gt;   Page(&#123;     data:&#123;       row:[         &#123; index:1 &#125;       ]     &#125;,     handlePassRow(e)&#123;       &#x2F;&#x2F; 小程序固定语法,从e.currentTarget.dataset 获取       const &#123; row &#125; &#x3D; e.currentTarget.dataset       console.log( row )  --&gt; &#123; index: 1 &#125;     &#125;   &#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="事件绑定语法"><a href="#事件绑定语法" class="headerlink" title="事件绑定语法"></a>事件绑定语法</h2><ol><li>小程序的方法绑定分为 bind 和catch<ol><li>区别:<br>前言: 在小程序中,不支持通过js原生的<code>e.stopProgaration</code>进行阻止事件冒泡<br><strong>bind无法阻止事件冒泡,而catch可以</strong></li><li>绑定示例:<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; bind&#x2F;catch:tap 和 bind&#x2F;catchtap 性质是一样的  &lt;button bind:tap&#x3D;&quot;tapClick&quot;&gt; bind点击事件 &lt;button&gt;&lt;button catch:tap&#x3D;&quot;catchClick&quot;&gt; catch点击事件 &lt;button&gt;&#x2F;&#x2F; 用于子组件与父组件通信使用&lt;button bindselfAtion&#x3D;&quot;selfAction&quot;&gt; 绑定自定义事件点击 &lt;button&gt;&#x2F;&#x2F; 在page页面和component中方法存放的位置略有不同page: 与data平级  data:&#123;&#125;,  tapClick(e)&#123;&#125;component: 存放在methods中  data:&#123;&#125;  methods:&#123;    tapClick(e)&#123;&#125;  &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol></li></ol><h2 id="事件event参数和setData"><a href="#事件event参数和setData" class="headerlink" title="事件event参数和setData()"></a>事件event参数和setData()</h2><ol><li><p>小程序通过bind/catch绑定的语法都通过event参数获取需要事件信息,类似于原生事件的event参数</p><ol><li><p>如何获取传递的参数?<br>表单元素获取</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;input bindinput&#x3D;&quot;onInput&quot; &#x2F;&gt;Page(&#123;  &#x2F;&#x2F; 表单元素获取是在e.currentTarget.detail中获取,固定key值为value  onInput(e)&#123;     const &#123; value &#125; &#x3D; e.currentTarget.detail  &#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>非表单元素获取</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;view bindtap&#x3D;&quot;onClick&quot; data-item&#x3D;&quot;1&quot;&gt;&lt;&#x2F;view&gt;Page(&#123;  &#x2F;&#x2F; 表单元素获取是在e.currentTarget.dataset中获取,固定key值为data-后面绑定的key值  onClick(e)&#123;     const &#123; item &#125; &#x3D; e.currentTarget.dataset --&gt; 1  &#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>值的注意:<br>  <strong>当子组件与父组件进行传参通信时,是通过e.currentTarget.detail获取的参数</strong>,也就是说dataset存储的一般都是自定义绑定的参数值,而detail里传递的参数是表单值或者子组件通信传递来的值</p></li></ol></li><li><p>e.currentTarget和e.target的区别<br> e.currentTarget 指向的是触发事件监听的对象<br> e.target 指向的是添加（注册）监听事件的对象<br> 如果没有发生元素嵌套,那么 e.currentTarget和e.target是一样的<br> <strong>一般我们在小程序里,一般都采用e.currentTarget防止不可控的错误发生</strong></p></li><li><p>setData()<br>定义: setData()是用来响应式更新页面绑定的data中的值的内置共用方法<br>执行时机:<br>   在执行赋值操作时是同步的<br>   在执行页面渲染时是异步的</p> <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;view&gt; &#123;&#123; num &#125;&#125; &lt;&#x2F;view&gt;&lt;button catchtap&#x3D;&quot;onAdd&quot;&gt; add &lt;&#x2F;button&gt;Page(&#123;  data:&#123;    num:0  &#125;,  onAdd(e)&#123;    let num &#x3D; this.data.num++    this.setData(&#123;      num    &#125;)  &#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>微信小程序</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>微信小程序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Fluid主题配置Valine评论系统</title>
     <link href="/2021/12/15/hexo/hexoComment/"/>
     <url>/2021/12/15/hexo/hexoComment/</url>

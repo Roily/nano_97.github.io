@@ -16,31 +16,20 @@
   <meta name="description" content="前端菜鸡的博客">
   <meta name="author" content="Nano">
   <meta name="keywords" content="">
-  <meta name="description" content="前言本文主要用来介绍如何在Fluid主题中博客添加Valine评论系统  Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine等等,选择valine的原因如下:  无后端实现  高速，使用国内后端云服务提供商 LeanCloud 提供的存储服务  开源，自定义程度高  支持邮件通知  支持验证码  支持 Markdown   开始配置 注册Leancloud">
+  <meta name="description" content="App生命周期   属性 说明 用法    onLaunch 监听小程序初始化 应用第一次启动就会触发的事件(一般用做程序启动获取用户的个人信息)[比onShow先触发]   onShow 监听小程序启动或切前台 应用被用户看到时触发,比onLaunch慢,会频繁触发[重置应用的数据和页面效果]   onHide 监听小程序切后台 应用被隐藏[暂停或清除定时器,减少内存]   onError 错误">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fluid主题配置Valine评论系统">
-<meta property="og:url" content="https://roily.github.io/2021/12/15/hexo/hexoComment/index.html">
+<meta property="og:title" content="小程序の页面App生命周期&amp;路由传参">
+<meta property="og:url" content="https://roily.github.io/2022/03/04/miniProgram/basic-03/index.html">
 <meta property="og:site_name" content="Nano-Block">
-<meta property="og:description" content="前言本文主要用来介绍如何在Fluid主题中博客添加Valine评论系统  Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine等等,选择valine的原因如下:  无后端实现  高速，使用国内后端云服务提供商 LeanCloud 提供的存储服务  开源，自定义程度高  支持邮件通知  支持验证码  支持 Markdown   开始配置 注册Leancloud">
+<meta property="og:description" content="App生命周期   属性 说明 用法    onLaunch 监听小程序初始化 应用第一次启动就会触发的事件(一般用做程序启动获取用户的个人信息)[比onShow先触发]   onShow 监听小程序启动或切前台 应用被用户看到时触发,比onLaunch慢,会频繁触发[重置应用的数据和页面效果]   onHide 监听小程序切后台 应用被隐藏[暂停或清除定时器,减少内存]   onError 错误">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-2.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-3.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-4.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-5.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-6.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-7.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-8.png">
-<meta property="article:published_time" content="2021-12-15T15:21:25.000Z">
-<meta property="article:modified_time" content="2021-12-15T16:42:10.971Z">
+<meta property="article:published_time" content="2022-03-04T06:22:10.000Z">
+<meta property="article:modified_time" content="2022-03-04T14:53:12.211Z">
 <meta property="article:author" content="Nano">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="Fluid">
-<meta property="article:tag" content="hexo主题">
+<meta property="article:tag" content="微信小程序">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment.png">
   
-  <title>Fluid主题配置Valine评论系统 - Nano-Block</title>
+  <title>小程序の页面App生命周期&amp;路由传参 - Nano-Block</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -182,7 +171,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Fluid主题配置Valine评论系统">
+            <span class="h2" id="subtitle" title="小程序の页面App生命周期&amp;路由传参">
               
             </span>
 
@@ -192,8 +181,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-15 23:21" pubdate>
-        2021年12月15日 晚上
+      <time datetime="2022-03-04 14:22" pubdate>
+        2022年3月4日 下午
       </time>
     </span>
   
@@ -203,7 +192,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1.7k 字
     </span>
   
 
@@ -212,7 +201,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      5 分钟
     </span>
   
 
@@ -241,74 +230,145 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Fluid主题配置Valine评论系统</h1>
+            <h1 style="display: none">小程序の页面App生命周期&amp;路由传参</h1>
             
             <div class="markdown-body">
-              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><div class="code-wrapper"><pre><code>本文主要用来介绍如何在Fluid主题中博客添加Valine评论系统
-</code></pre></div>
-<h3 id="Valine优点"><a href="#Valine优点" class="headerlink" title="Valine优点"></a>Valine优点</h3><p>其实Fluid主题内置了很多评论插件,比如<code>utterances</code>,<code>valine</code>等等,选择valine的原因如下:</p>
-<ul>
-<li><p>无后端实现</p>
-</li>
-<li><p>高速，使用国内后端云服务提供商 LeanCloud 提供的存储服务</p>
-</li>
-<li><p>开源，自定义程度高</p>
-</li>
-<li><p>支持邮件通知</p>
-</li>
-<li><p>支持验证码</p>
-</li>
-<li><p>支持 Markdown</p>
-</li>
-</ul>
-<h3 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h3><ol>
-<li>注册Leancloud</li>
-</ol>
-<p>Valine作为一款第三方的评论系统，评论数据都储存在Leancloud上，所以第一步我们要去 leancloud官网：<a target="_blank" rel="noopener" href="https://www.leancloud.cn/">https://www.leancloud.cn/</a> 注册一个账户，注册完成后现在需要实名认证后才可以创建应用<br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment.png" srcset="/img/loading.gif" lazyload alt="注册并实名Leancloud账号" title="注册并实名Leancloud账号"><br>2. 创建应用</p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-2.png" srcset="/img/loading.gif" lazyload alt="创建应用" title="创建应用"></p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-3.png" srcset="/img/loading.gif" lazyload alt="创建应用" title="创建应用"></p>
-<ol start="3">
-<li>配置应用</li>
-</ol>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-4.png" srcset="/img/loading.gif" lazyload alt="配置应用" title="配置应用"></p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-5.png" srcset="/img/loading.gif" lazyload alt="配置应用" title="配置应用"></p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-6.png" srcset="/img/loading.gif" lazyload alt="配置应用" title="配置应用"></p>
-<ol start="4">
-<li><p>配置_config.fluid.yml</p>
+              <h2 id="App生命周期"><a href="#App生命周期" class="headerlink" title="App生命周期"></a>App生命周期</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onLaunch</td>
+<td>监听小程序初始化</td>
+<td>应用第一次启动就会触发的事件(一般用做程序启动获取用户的个人信息)[比onShow先触发]</td>
+</tr>
+<tr>
+<td>onShow</td>
+<td>监听小程序启动或切前台</td>
+<td>应用被用户看到时触发,比onLaunch慢,会频繁触发[重置应用的数据和页面效果]</td>
+</tr>
+<tr>
+<td>onHide</td>
+<td>监听小程序切后台</td>
+<td>应用被隐藏[暂停或清除定时器,减少内存]</td>
+</tr>
+<tr>
+<td>onError</td>
+<td>错误监听函数</td>
+<td>应用代码发生报错会触[收集用户的错误信息,通过异步请求将错误的信息发送到后台]</td>
+</tr>
+<tr>
+<td>onPageNotFound</td>
+<td>页面不存在监听函数</td>
+<td>应用第一次启动的时候,如果找不到第一个入口页面,才会触发[如果首页找不到了,重新跳到第二个首页]</td>
+</tr>
+</tbody></table>
+<h2 id="Page生命周期"><a href="#Page生命周期" class="headerlink" title="Page生命周期"></a>Page生命周期</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onLoad</td>
+<td>监听页面加载</td>
+<td>发送异步请求来初始化页面数据(页面加载时第一个调用)</td>
+</tr>
+<tr>
+<td>onShow</td>
+<td>监听页面显示</td>
+<td>页面加载时第二个调用</td>
+</tr>
+<tr>
+<td>onReady</td>
+<td>监听页面初次渲染完成</td>
+<td>页面加载时第三个调用</td>
+</tr>
+<tr>
+<td>onHide</td>
+<td>监听页面隐藏</td>
+<td></td>
+</tr>
+<tr>
+<td>onUnload</td>
+<td>监听页面卸载</td>
+<td></td>
+</tr>
+<tr>
+<td>onPullDownRefresh</td>
+<td>监听用户下拉动作</td>
+<td>页面数据和样式初始化,需要配置 “enablePullDownRefresh”: true</td>
+</tr>
+<tr>
+<td>onReachBottom</td>
+<td>页面上拉触底事件的处理函数</td>
+<td>上拉加载下一页数据</td>
+</tr>
+<tr>
+<td>onShareAppMessage</td>
+<td>用户点击右上角转发</td>
+<td></td>
+</tr>
+<tr>
+<td>onPageScroll</td>
+<td>页面滚动触发事件的处理函数</td>
+<td>小程序横屏竖屏切换时触发 [需要在json文件中配置 “pageOrientation”:”auto”]开启横竖屏切换</td>
+</tr>
+<tr>
+<td>onResize</td>
+<td>页面尺寸改变时触发</td>
+<td></td>
+</tr>
+<tr>
+<td>onTabItemTap</td>
+<td>当前是tab页,点击tab时触发</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="路由传参和参数获取"><a href="#路由传参和参数获取" class="headerlink" title="路由传参和参数获取"></a>路由传参和参数获取</h2><p>  场景: 微信小程序的路由跳转方式分为两种: 1) 组件跳转 2) API跳转</p>
 <ol>
-<li><p>在文件中查找<code>Comments</code>关键字,进行下面配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none"># 评论插件
-# Comment plugin
-comments:
-    enable: true
-    # 指定的插件，需要同时设置对应插件的必要参数
-    # The specified plugin needs to set the necessary parameters at the same time
-    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
-    type: valine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
-<li><p>在文件中查找<code>valine</code>关键字,进行下面配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">valine:
-appId: 填写刚才在Leancloud创建的应用的appId
-appKey: 填写刚才在Leancloud创建的应用的appKey
-path: window.location.pathname # 当前文章页路径，用于区分不同的文章页，以保证正确读取该文章页下的评论列表
-placeholder:  吐槽一哈!!!! # 占位符
-avatar: &#39;retro&#39; # Gravatar 头像展示方式
-meta: [&#39;nick&#39;, &#39;mail&#39;, &#39;link&#39;]  # 评论者相关属性
-requiredFields: []
-pageSize: 10 # 评论列表分页，每页条数
-lang: &#39;zh-CN&#39; # zh-CN | zh-TW | en | ja
-highlight: false # 代码是否高亮
-recordIP: false # 是否记录评论者IP
-serverURLs: &#39;&#39; # REST API 服务器地址，国际版不填
-emojiCDN:
-emojiMaps:
-enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>组件跳转时传参</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 通过拼接url参数进行组件传参 target-&gt; 在小程序内跳转
+&#x2F;&#x2F; 注意点: 不能通过es6的模板字符串进行拼接,tabBar跳转无法传递参数
+&lt;navigator target&#x3D;&quot;self&quot; url&#x3D;&#39;&#x2F;packagePlayer&#x2F;pages&#x2F;music-player&#x2F;index?id&#x3D;&#123;&#123;id&#125;&#125;&#39; &gt;&lt;&#x2F;navigator&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>API跳转</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;button catchtap&#x3D;&quot;onJumpUrl&quot;&gt;跳转&lt;&#x2F;button&gt;
+
+Page(&#123;
+  onJumpUrl(e)&#123;
+    &#x2F;&#x2F; API调用因为是写在js里的,可以使用ES6的模板字符串
+    wx.navigateTo(&#123;
+      url: &#96;&#x2F;packagePlayer&#x2F;pages&#x2F;music-player&#x2F;index?id&#x3D;$&#123;this.data.id&#125;&#96;,
+    &#125;);
+  &#125;
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+</ol>
+<p>  <strong>注意</strong>: 微信小程序是多种路由跳转方式的,但是传参基本一致,这里为了演示如何拼接参数只使用了部分API(组件跳转可以在<code>open-type</code>中设置跳转属性)</p>
+<ol start="3">
+<li>路由参数获取<ol>
+<li><p>生命周期获取<br>定义: 在Page的onLoad生命周期可以通过options参数获取</p>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Page(&#123;
+  onLoad(options)&#123;
+    const &#123; id &#125; &#x3D; options
+  &#125;
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>API获取</p>
+<div class="code-wrapper"><pre><code>let pages = getCurrentPages();     // 获取跳转页面的信息数组
+let currentPages = pages[pages.length - 1]    // 每次都取上一个页面的信息
+let options = currentPages.options    // 通过options里获取参数
+const &#123; goods_id &#125; = options
+this.getGoodsDetails(goods_id)
+</code></pre></div>
+</li>
 </ol>
 </li>
 </ol>
-<h3 id="配置完成"><a href="#配置完成" class="headerlink" title="配置完成"></a>配置完成</h3><div class="code-wrapper"><pre><code>配置完成之后重启hexo,就可以看到效果~
-</code></pre></div>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-7.png" srcset="/img/loading.gif" lazyload alt="完成配置" title="完成配置"></p>
-<h3 id="删除评论数据"><a href="#删除评论数据" class="headerlink" title="删除评论数据"></a>删除评论数据</h3><p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-8.png" srcset="/img/loading.gif" lazyload alt="删除评论数据" title="删除评论数据"></p>
 
             </div>
             <hr>
@@ -318,7 +378,7 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/hexo/">hexo</a>
+                      <a class="hover-with-bg" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
                     
                   </div>
                 
@@ -326,11 +386,7 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Fluid/">Fluid</a>
-                    
-                      <a class="hover-with-bg" href="/tags/hexo%E4%B8%BB%E9%A2%98/">hexo主题</a>
+                      <a class="hover-with-bg" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
                     
                   </div>
                 
@@ -347,9 +403,9 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/03/miniProgram/basic-01/">
+                      <a href="/2022/03/04/miniProgram/basic-04/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">小程序の基础语法</span>
+                        <span class="hidden-mobile">小程序の异步api封装&插槽/混入</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -357,8 +413,8 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/15/hexo/fluidOptions/">
-                        <span class="hidden-mobile">Fluid主题配置</span>
+                      <a href="/2022/03/03/miniProgram/basic-02/">
+                        <span class="hidden-mobile">小程序の组件使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

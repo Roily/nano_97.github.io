@@ -16,31 +16,20 @@
   <meta name="description" content="前端菜鸡的博客">
   <meta name="author" content="Nano">
   <meta name="keywords" content="">
-  <meta name="description" content="前言本文主要用来介绍如何在Fluid主题中博客添加Valine评论系统  Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine等等,选择valine的原因如下:  无后端实现  高速，使用国内后端云服务提供商 LeanCloud 提供的存储服务  开源，自定义程度高  支持邮件通知  支持验证码  支持 Markdown   开始配置 注册Leancloud">
+  <meta name="description" content="登录流程    小程序端:          (1) 在小程序通过wx.login API获取临时的code         (2) 调用接口将code传递给自己的服务器      自己服务器端:         (1) 获取小程序内传来的临时的code         (2) 将临时的code + appId + appsecret发送给微信小程序服务器,获取 openId 和 session_">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fluid主题配置Valine评论系统">
-<meta property="og:url" content="https://roily.github.io/2021/12/15/hexo/hexoComment/index.html">
+<meta property="og:title" content="微信小程序の登录流程">
+<meta property="og:url" content="https://roily.github.io/2022/03/04/miniProgram/basic-07/index.html">
 <meta property="og:site_name" content="Nano-Block">
-<meta property="og:description" content="前言本文主要用来介绍如何在Fluid主题中博客添加Valine评论系统  Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine等等,选择valine的原因如下:  无后端实现  高速，使用国内后端云服务提供商 LeanCloud 提供的存储服务  开源，自定义程度高  支持邮件通知  支持验证码  支持 Markdown   开始配置 注册Leancloud">
+<meta property="og:description" content="登录流程    小程序端:          (1) 在小程序通过wx.login API获取临时的code         (2) 调用接口将code传递给自己的服务器      自己服务器端:         (1) 获取小程序内传来的临时的code         (2) 将临时的code + appId + appsecret发送给微信小程序服务器,获取 openId 和 session_">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-2.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-3.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-4.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-5.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-6.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-7.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-8.png">
-<meta property="article:published_time" content="2021-12-15T15:21:25.000Z">
-<meta property="article:modified_time" content="2021-12-15T16:42:10.971Z">
+<meta property="article:published_time" content="2022-03-04T10:53:09.000Z">
+<meta property="article:modified_time" content="2022-03-04T14:53:12.215Z">
 <meta property="article:author" content="Nano">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="Fluid">
-<meta property="article:tag" content="hexo主题">
+<meta property="article:tag" content="微信小程序">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment.png">
   
-  <title>Fluid主题配置Valine评论系统 - Nano-Block</title>
+  <title>微信小程序の登录流程 - Nano-Block</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -182,7 +171,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Fluid主题配置Valine评论系统">
+            <span class="h2" id="subtitle" title="微信小程序の登录流程">
               
             </span>
 
@@ -192,8 +181,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-15 23:21" pubdate>
-        2021年12月15日 晚上
+      <time datetime="2022-03-04 18:53" pubdate>
+        2022年3月4日 晚上
       </time>
     </span>
   
@@ -203,7 +192,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1.7k 字
     </span>
   
 
@@ -212,7 +201,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      5 分钟
     </span>
   
 
@@ -241,74 +230,79 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Fluid主题配置Valine评论系统</h1>
+            <h1 style="display: none">微信小程序の登录流程</h1>
             
             <div class="markdown-body">
-              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><div class="code-wrapper"><pre><code>本文主要用来介绍如何在Fluid主题中博客添加Valine评论系统
-</code></pre></div>
-<h3 id="Valine优点"><a href="#Valine优点" class="headerlink" title="Valine优点"></a>Valine优点</h3><p>其实Fluid主题内置了很多评论插件,比如<code>utterances</code>,<code>valine</code>等等,选择valine的原因如下:</p>
-<ul>
-<li><p>无后端实现</p>
-</li>
-<li><p>高速，使用国内后端云服务提供商 LeanCloud 提供的存储服务</p>
-</li>
-<li><p>开源，自定义程度高</p>
-</li>
-<li><p>支持邮件通知</p>
-</li>
-<li><p>支持验证码</p>
-</li>
-<li><p>支持 Markdown</p>
-</li>
-</ul>
-<h3 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h3><ol>
-<li>注册Leancloud</li>
-</ol>
-<p>Valine作为一款第三方的评论系统，评论数据都储存在Leancloud上，所以第一步我们要去 leancloud官网：<a target="_blank" rel="noopener" href="https://www.leancloud.cn/">https://www.leancloud.cn/</a> 注册一个账户，注册完成后现在需要实名认证后才可以创建应用<br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment.png" srcset="/img/loading.gif" lazyload alt="注册并实名Leancloud账号" title="注册并实名Leancloud账号"><br>2. 创建应用</p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-2.png" srcset="/img/loading.gif" lazyload alt="创建应用" title="创建应用"></p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-3.png" srcset="/img/loading.gif" lazyload alt="创建应用" title="创建应用"></p>
-<ol start="3">
-<li>配置应用</li>
-</ol>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-4.png" srcset="/img/loading.gif" lazyload alt="配置应用" title="配置应用"></p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-5.png" srcset="/img/loading.gif" lazyload alt="配置应用" title="配置应用"></p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-6.png" srcset="/img/loading.gif" lazyload alt="配置应用" title="配置应用"></p>
-<ol start="4">
-<li><p>配置_config.fluid.yml</p>
+              <h2 id="登录流程"><a href="#登录流程" class="headerlink" title="登录流程"></a>登录流程</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">    小程序端: 
+        (1) 在小程序通过wx.login API获取临时的code
+        (2) 调用接口将code传递给自己的服务器
+
+    自己服务器端:
+        (1) 获取小程序内传来的临时的code
+        (2) 将临时的code + appId + appsecret发送给微信小程序服务器,获取 openId 和 session_key [这个时候用户不知道自己已经登录成功]
+        (3) 自己服务器内将 openId和session_key 组合生成有期限的token,返回给小程序端
+
+    小程序端:
+        (1) 获取自己服务器端内传递的token,并存储到storeage中
+        (2) 将需要记录用户操作的接口中携带这个token发送给自己的服务器端
+    
+    自己服务器端:
+        (1) 将接口传递的token进行解析,解析出openId和session_key,将操作保存在数据库内,避免向微信服务器多次请求获取openId
+    
+    如果用户更换手机?
+        (1) 判断storage中是否存储了token,如果未存储则重复登录流程
+        (2) 如果存储了token,判断是否已经过期,如果过期了则重新登录,如果没有过期,继续判断session_key是否过期,如果没有过期,则继续使用这个token进行用户校验,反之则重新登录
+
+判断session_key是否过期:
+wx.checkSession(&#123;
+      success: (res) &#x3D;&gt; &#123;
+        resolve(true)
+      &#125;,
+      fail: () &#x3D;&gt; &#123;
+        reject(false)
+      &#125;
+    &#125;)
+  &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
 <ol>
-<li><p>在文件中查找<code>Comments</code>关键字,进行下面配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none"># 评论插件
-# Comment plugin
-comments:
-    enable: true
-    # 指定的插件，需要同时设置对应插件的必要参数
-    # The specified plugin needs to set the necessary parameters at the same time
-    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
-    type: valine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
-<li><p>在文件中查找<code>valine</code>关键字,进行下面配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">valine:
-appId: 填写刚才在Leancloud创建的应用的appId
-appKey: 填写刚才在Leancloud创建的应用的appKey
-path: window.location.pathname # 当前文章页路径，用于区分不同的文章页，以保证正确读取该文章页下的评论列表
-placeholder:  吐槽一哈!!!! # 占位符
-avatar: &#39;retro&#39; # Gravatar 头像展示方式
-meta: [&#39;nick&#39;, &#39;mail&#39;, &#39;link&#39;]  # 评论者相关属性
-requiredFields: []
-pageSize: 10 # 评论列表分页，每页条数
-lang: &#39;zh-CN&#39; # zh-CN | zh-TW | en | ja
-highlight: false # 代码是否高亮
-recordIP: false # 是否记录评论者IP
-serverURLs: &#39;&#39; # REST API 服务器地址，国际版不填
-emojiCDN:
-emojiMaps:
-enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
-</ol>
+<li>什么是openId?<blockquote>
+<p>openId 用户身份的唯一标识,用openId去识别用户 [unionId用于第三方登录]</p>
+</blockquote>
+</li>
+<li>什么是unionId?<blockquote>
+<p>unionId也是唯一的标识,用于多平台(APP,公众号,网页)授权时进行标识识别,多个产品源进行数据共享<br> 多平台共享时需要同时绑定手机号(常用),因为可能某个平台不支持微信的登录,需要通过其它的方式进行信息绑定(最多的就是手机号)<br> 所以有些客户端在要求你微信登录之后需要绑定手机号</p>
+</blockquote>
 </li>
 </ol>
-<h3 id="配置完成"><a href="#配置完成" class="headerlink" title="配置完成"></a>配置完成</h3><div class="code-wrapper"><pre><code>配置完成之后重启hexo,就可以看到效果~
-</code></pre></div>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-7.png" srcset="/img/loading.gif" lazyload alt="完成配置" title="完成配置"></p>
-<h3 id="删除评论数据"><a href="#删除评论数据" class="headerlink" title="删除评论数据"></a>删除评论数据</h3><p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-8.png" srcset="/img/loading.gif" lazyload alt="删除评论数据" title="删除评论数据"></p>
+<p>注意: 服务器端openID和unionID都是可以获取的,如果涉及到多端的数据共享,建议直接使用unionID进行校验</p>
+<h2 id="获取用户信息"><a href="#获取用户信息" class="headerlink" title="获取用户信息"></a>获取用户信息</h2><ol>
+<li>使用getUserProfile API<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">wx.getUserProfile(&#123;
+  desc: &#39;desc&#39;, &#x2F;&#x2F; 必填
+  success:(res)&#x3D;&gt;&#123;
+    console.log(res);    &#x2F;&#x2F; 成功回调
+  &#125;,
+  fail:()&#x3D;&gt;&#123;&#125;
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+</ol>
+<p><strong>值得注意:</strong></p>
+<blockquote>
+<p>不允许直接在生命周期方法里获取用户信息,只能通过事件触发获取<br>示例:<br>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 这里加不加open-type 也可以
+&lt;button bindtap&#x3D;&quot;getUserProfile&quot; open-type&#x3D;&quot;getUserInfo&quot;&gt;&lt;&#x2F;button&gt;
+
+getUserProfile()&#123;
+  wx.getUserProfile(&#123;
+      desc: &#39;你好&#39;, &#x2F;&#x2F; 必填
+      success:(userInfo)&#x3D;&gt;&#123;
+      &#x2F;&#x2F; 这里获取用户信息
+          console.log(userInfo);   
+      &#125;,
+      fail:()&#x3D;&gt;&#123;&#125;
+  &#125;)
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>
+</blockquote>
+<h2 id="获取手机号"><a href="#获取手机号" class="headerlink" title="获取手机号"></a>获取手机号</h2><ol>
+<li>获取手机号<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;button open-type&#x3D;&quot;getPhoneNumber&quot;&gt;获取手机号&lt;&#x2F;button&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li>
+</ol>
+<p>  <strong>值得注意:</strong><br>  目前不能直接获取手机号,再调用这个button按钮时会传递一个code,将code传递给自己服务器端的一个接口,接口内部再访问微信的服务器,通过这个code获取手机号码信息</p>
 
             </div>
             <hr>
@@ -318,7 +312,7 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/hexo/">hexo</a>
+                      <a class="hover-with-bg" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
                     
                   </div>
                 
@@ -326,11 +320,7 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Fluid/">Fluid</a>
-                    
-                      <a class="hover-with-bg" href="/tags/hexo%E4%B8%BB%E9%A2%98/">hexo主题</a>
+                      <a class="hover-with-bg" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
                     
                   </div>
                 
@@ -347,9 +337,9 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/03/miniProgram/basic-01/">
+                      <a href="/2022/03/04/miniProgram/basic-08/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">小程序の基础语法</span>
+                        <span class="hidden-mobile">微信小程序の一些踩坑点</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -357,8 +347,8 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/15/hexo/fluidOptions/">
-                        <span class="hidden-mobile">Fluid主题配置</span>
+                      <a href="/2022/03/04/miniProgram/basic-06/">
+                        <span class="hidden-mobile">微信小程序の分包</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

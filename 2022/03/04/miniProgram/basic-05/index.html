@@ -16,31 +16,20 @@
   <meta name="description" content="前端菜鸡的博客">
   <meta name="author" content="Nano">
   <meta name="keywords" content="">
-  <meta name="description" content="前言本文主要用来介绍如何在Fluid主题中博客添加Valine评论系统  Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine等等,选择valine的原因如下:  无后端实现  高速，使用国内后端云服务提供商 LeanCloud 提供的存储服务  开源，自定义程度高  支持邮件通知  支持验证码  支持 Markdown   开始配置 注册Leancloud">
+  <meta name="description" content="前言 小程序目前没有像vue一样有一个契合性很好的全局状态管理库并且现有的全局状态共享并不是响应式的,但是可以下载相应的依赖包进行全局状态管理并且达到响应式的效果。这篇博文就是介绍一个比较不错的全局状态管理库和小程序本身全局共享数据的特点。  app.js全局共享数据 在app.js中 声明变量 globalData 通过getApp( ) 获取app.js对象 getApp().globalDa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fluid主题配置Valine评论系统">
-<meta property="og:url" content="https://roily.github.io/2021/12/15/hexo/hexoComment/index.html">
+<meta property="og:title" content="微信小程序の数据共享">
+<meta property="og:url" content="https://roily.github.io/2022/03/04/miniProgram/basic-05/index.html">
 <meta property="og:site_name" content="Nano-Block">
-<meta property="og:description" content="前言本文主要用来介绍如何在Fluid主题中博客添加Valine评论系统  Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine等等,选择valine的原因如下:  无后端实现  高速，使用国内后端云服务提供商 LeanCloud 提供的存储服务  开源，自定义程度高  支持邮件通知  支持验证码  支持 Markdown   开始配置 注册Leancloud">
+<meta property="og:description" content="前言 小程序目前没有像vue一样有一个契合性很好的全局状态管理库并且现有的全局状态共享并不是响应式的,但是可以下载相应的依赖包进行全局状态管理并且达到响应式的效果。这篇博文就是介绍一个比较不错的全局状态管理库和小程序本身全局共享数据的特点。  app.js全局共享数据 在app.js中 声明变量 globalData 通过getApp( ) 获取app.js对象 getApp().globalDa">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-2.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-3.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-4.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-5.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-6.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-7.png">
-<meta property="og:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-8.png">
-<meta property="article:published_time" content="2021-12-15T15:21:25.000Z">
-<meta property="article:modified_time" content="2021-12-15T16:42:10.971Z">
+<meta property="article:published_time" content="2022-03-04T09:46:09.000Z">
+<meta property="article:modified_time" content="2022-03-04T14:55:47.051Z">
 <meta property="article:author" content="Nano">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="Fluid">
-<meta property="article:tag" content="hexo主题">
+<meta property="article:tag" content="微信小程序">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment.png">
   
-  <title>Fluid主题配置Valine评论系统 - Nano-Block</title>
+  <title>微信小程序の数据共享 - Nano-Block</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -182,7 +171,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Fluid主题配置Valine评论系统">
+            <span class="h2" id="subtitle" title="微信小程序の数据共享">
               
             </span>
 
@@ -192,8 +181,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-15 23:21" pubdate>
-        2021年12月15日 晚上
+      <time datetime="2022-03-04 17:46" pubdate>
+        2022年3月4日 下午
       </time>
     </span>
   
@@ -203,7 +192,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      591 字
     </span>
   
 
@@ -212,7 +201,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      2 分钟
     </span>
   
 
@@ -241,74 +230,43 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Fluid主题配置Valine评论系统</h1>
+            <h1 style="display: none">微信小程序の数据共享</h1>
             
             <div class="markdown-body">
-              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><div class="code-wrapper"><pre><code>本文主要用来介绍如何在Fluid主题中博客添加Valine评论系统
-</code></pre></div>
-<h3 id="Valine优点"><a href="#Valine优点" class="headerlink" title="Valine优点"></a>Valine优点</h3><p>其实Fluid主题内置了很多评论插件,比如<code>utterances</code>,<code>valine</code>等等,选择valine的原因如下:</p>
-<ul>
-<li><p>无后端实现</p>
-</li>
-<li><p>高速，使用国内后端云服务提供商 LeanCloud 提供的存储服务</p>
-</li>
-<li><p>开源，自定义程度高</p>
-</li>
-<li><p>支持邮件通知</p>
-</li>
-<li><p>支持验证码</p>
-</li>
-<li><p>支持 Markdown</p>
-</li>
-</ul>
-<h3 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h3><ol>
-<li>注册Leancloud</li>
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>小程序目前没有像vue一样有一个契合性很好的全局状态管理库并且现有的全局状态共享并不是响应式的,但是可以下载相应的依赖包进行全局状态管理并且达到响应式的效果。这篇博文就是介绍一个比较不错的全局状态管理库和小程序本身全局共享数据的特点。</p>
+</blockquote>
+<h2 id="app-js全局共享数据"><a href="#app-js全局共享数据" class="headerlink" title="app.js全局共享数据"></a>app.js全局共享数据</h2><ol>
+<li>在app.js中 声明变量 globalData</li>
+<li>通过getApp( ) 获取app.js对象</li>
+<li>getApp().globalData 获取共享变量<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">App(&#123;
+  globalData:&#123;
+    num : 1
+  &#125;
+&#125;)
+
+&#x2F;&#x2F; page页面(组件页面也是一样的用法)
+const app &#x3D; getApp()
+Page(&#123;
+  useGlobalData()&#123;
+    console.log( app.globalData ) --&gt; &#123; num:1 &#125;
+  &#125;
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
 </ol>
-<p>Valine作为一款第三方的评论系统，评论数据都储存在Leancloud上，所以第一步我们要去 leancloud官网：<a target="_blank" rel="noopener" href="https://www.leancloud.cn/">https://www.leancloud.cn/</a> 注册一个账户，注册完成后现在需要实名认证后才可以创建应用<br><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment.png" srcset="/img/loading.gif" lazyload alt="注册并实名Leancloud账号" title="注册并实名Leancloud账号"><br>2. 创建应用</p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-2.png" srcset="/img/loading.gif" lazyload alt="创建应用" title="创建应用"></p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-3.png" srcset="/img/loading.gif" lazyload alt="创建应用" title="创建应用"></p>
-<ol start="3">
-<li>配置应用</li>
+<p>  <strong>值的注意:</strong></p>
+<blockquote>
+<p>在app里共享的数据不是响应式的</p>
+</blockquote>
+<h2 id="module-模块-引入"><a href="#module-模块-引入" class="headerlink" title="module(模块)引入"></a>module(模块)引入</h2><ol>
+<li>通过es6的模块化语法将数据封装在一个js文件,之后在需要的页面中引入</li>
 </ol>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-4.png" srcset="/img/loading.gif" lazyload alt="配置应用" title="配置应用"></p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-5.png" srcset="/img/loading.gif" lazyload alt="配置应用" title="配置应用"></p>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-6.png" srcset="/img/loading.gif" lazyload alt="配置应用" title="配置应用"></p>
-<ol start="4">
-<li><p>配置_config.fluid.yml</p>
-<ol>
-<li><p>在文件中查找<code>Comments</code>关键字,进行下面配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none"># 评论插件
-# Comment plugin
-comments:
-    enable: true
-    # 指定的插件，需要同时设置对应插件的必要参数
-    # The specified plugin needs to set the necessary parameters at the same time
-    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
-    type: valine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
-<li><p>在文件中查找<code>valine</code>关键字,进行下面配置</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">valine:
-appId: 填写刚才在Leancloud创建的应用的appId
-appKey: 填写刚才在Leancloud创建的应用的appKey
-path: window.location.pathname # 当前文章页路径，用于区分不同的文章页，以保证正确读取该文章页下的评论列表
-placeholder:  吐槽一哈!!!! # 占位符
-avatar: &#39;retro&#39; # Gravatar 头像展示方式
-meta: [&#39;nick&#39;, &#39;mail&#39;, &#39;link&#39;]  # 评论者相关属性
-requiredFields: []
-pageSize: 10 # 评论列表分页，每页条数
-lang: &#39;zh-CN&#39; # zh-CN | zh-TW | en | ja
-highlight: false # 代码是否高亮
-recordIP: false # 是否记录评论者IP
-serverURLs: &#39;&#39; # REST API 服务器地址，国际版不填
-emojiCDN:
-emojiMaps:
-enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
-</ol>
-</li>
-</ol>
-<h3 id="配置完成"><a href="#配置完成" class="headerlink" title="配置完成"></a>配置完成</h3><div class="code-wrapper"><pre><code>配置完成之后重启hexo,就可以看到效果~
-</code></pre></div>
-<p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-7.png" srcset="/img/loading.gif" lazyload alt="完成配置" title="完成配置"></p>
-<h3 id="删除评论数据"><a href="#删除评论数据" class="headerlink" title="删除评论数据"></a>删除评论数据</h3><p><img src="https://gitee.com/roily/nano-piture-bed/raw/master/img/fluid-comment-8.png" srcset="/img/loading.gif" lazyload alt="删除评论数据" title="删除评论数据"></p>
+<p>  <strong>缺点:</strong> </p>
+<blockquote>
+<p>数据也不是响应式的</p>
+</blockquote>
+<h2 id="hy-event-store-依赖包"><a href="#hy-event-store-依赖包" class="headerlink" title="hy-event-store(依赖包)"></a>hy-event-store(依赖包)</h2><blockquote>
+<p>定义: 是coderWhy老师开发的一个全局状态管理的开发库,语法风格类似于vuex,使用比较便捷,体积也比较小。<br>地址: <a target="_blank" rel="noopener" href="https://github.com/coderwhy/hy-event-store">https://github.com/coderwhy/hy-event-store</a></p>
+</blockquote>
 
             </div>
             <hr>
@@ -318,7 +276,7 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/hexo/">hexo</a>
+                      <a class="hover-with-bg" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
                     
                   </div>
                 
@@ -326,11 +284,7 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Fluid/">Fluid</a>
-                    
-                      <a class="hover-with-bg" href="/tags/hexo%E4%B8%BB%E9%A2%98/">hexo主题</a>
+                      <a class="hover-with-bg" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
                     
                   </div>
                 
@@ -347,9 +301,9 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/03/miniProgram/basic-01/">
+                      <a href="/2022/03/04/miniProgram/basic-06/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">小程序の基础语法</span>
+                        <span class="hidden-mobile">微信小程序の分包</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -357,8 +311,8 @@ enableQQ: false<span aria-hidden="true" class="line-numbers-rows"><span></span><
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/15/hexo/fluidOptions/">
-                        <span class="hidden-mobile">Fluid主题配置</span>
+                      <a href="/2022/03/04/miniProgram/basic-04/">
+                        <span class="hidden-mobile">小程序の异步api封装&插槽/混入</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
