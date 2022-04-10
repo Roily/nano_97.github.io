@@ -16,20 +16,21 @@
   <meta name="description" content="前端菜鸡的博客">
   <meta name="author" content="Nano">
   <meta name="keywords" content="">
-  <meta name="description" content="WXS的使用 小程序如何使用在页面上使用类似于vue2的过滤器属性?A: WXS 使用 新建一个wxs文件,里面只支持js的es5语法,在里面写转换函数,通过module.exports &#x3D; {方法名} 导出 在需要使用工具类函数的页面引入wxs标签&#x2F;&#x2F; module 就是类似于整个模块名称,通过这个名称获取里面的方法 &lt;wxs sr&#x3D;&quot;..&amp;#x2F">
+  <meta name="description" content="JS代码是如何在浏览器中运行的? 浏览器通过DNS解析域名为IP地址,访问IP地址返回html文件 html文件下载完成后,解析html文件(1) 解析到script标签,就会去服务器下载对应的JS文件(2) 遇到link标签,就会去服务器下载对应的css文件 等到js文件下载完成后,浏览器就会通过浏览器内核,解析运行JS代码  浏览器渲染过程 将html解析形成DOM树,此时遇到JS标签则会体质">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微信小程序の一些踩坑点">
-<meta property="og:url" content="https://roily.github.io/2022/03/04/miniProgram/basic-08/index.html">
+<meta property="og:title" content="JS基础运行知识">
+<meta property="og:url" content="https://roily.github.io/2022/04/10/JavaScript/jsBasic/index.html">
 <meta property="og:site_name" content="Nano-Block">
-<meta property="og:description" content="WXS的使用 小程序如何使用在页面上使用类似于vue2的过滤器属性?A: WXS 使用 新建一个wxs文件,里面只支持js的es5语法,在里面写转换函数,通过module.exports &#x3D; {方法名} 导出 在需要使用工具类函数的页面引入wxs标签&#x2F;&#x2F; module 就是类似于整个模块名称,通过这个名称获取里面的方法 &lt;wxs sr&#x3D;&quot;..&amp;#x2F">
+<meta property="og:description" content="JS代码是如何在浏览器中运行的? 浏览器通过DNS解析域名为IP地址,访问IP地址返回html文件 html文件下载完成后,解析html文件(1) 解析到script标签,就会去服务器下载对应的JS文件(2) 遇到link标签,就会去服务器下载对应的css文件 等到js文件下载完成后,浏览器就会通过浏览器内核,解析运行JS代码  浏览器渲染过程 将html解析形成DOM树,此时遇到JS标签则会体质">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-04T11:04:06.000Z">
-<meta property="article:modified_time" content="2022-04-10T13:03:48.087Z">
+<meta property="article:published_time" content="2022-04-10T13:35:34.000Z">
+<meta property="article:modified_time" content="2022-04-10T14:25:10.499Z">
 <meta property="article:author" content="Nano">
-<meta property="article:tag" content="微信小程序">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="ES.x">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>微信小程序の一些踩坑点 - Nano-Block</title>
+  <title>JS基础运行知识 - Nano-Block</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -171,7 +172,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="微信小程序の一些踩坑点">
+            <span class="h2" id="subtitle" title="JS基础运行知识">
               
             </span>
 
@@ -181,8 +182,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-04 19:04" pubdate>
-        2022年3月4日 晚上
+      <time datetime="2022-04-10 21:35" pubdate>
+        2022年4月10日 晚上
       </time>
     </span>
   
@@ -192,7 +193,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      934 字
     </span>
   
 
@@ -201,7 +202,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      3 分钟
     </span>
   
 
@@ -230,74 +231,38 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">微信小程序の一些踩坑点</h1>
+            <h1 style="display: none">JS基础运行知识</h1>
             
             <div class="markdown-body">
-              <h2 id="WXS的使用"><a href="#WXS的使用" class="headerlink" title="WXS的使用"></a>WXS的使用</h2><ol>
-<li>小程序如何使用在页面上使用类似于vue2的过滤器属性?<br>A: WXS</li>
-<li>使用<ol>
-<li>新建一个wxs文件,里面只支持js的es5语法,在里面写转换函数,通过module.exports = {方法名} 导出</li>
-<li>在需要使用工具类函数的页面引入wxs标签<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; module 就是类似于整个模块名称,通过这个名称获取里面的方法
-&lt;wxs sr&#x3D;&quot;..&#x2F;文件.wxs&quot; module&#x3D;&quot;format&quot;&gt;&lt;&#x2F;wxs&gt;
-&lt;view&gt;&#123;&#123; format.moment(time) &#125;&#125;&lt;&#x2F;view&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li>
+              <h2 id="JS代码是如何在浏览器中运行的"><a href="#JS代码是如何在浏览器中运行的" class="headerlink" title="JS代码是如何在浏览器中运行的?"></a>JS代码是如何在浏览器中运行的?</h2><ol>
+<li>浏览器通过DNS解析域名为IP地址,访问IP地址返回html文件</li>
+<li>html文件下载完成后,解析html文件<br>(1) 解析到script标签,就会去服务器下载对应的JS文件<br>(2) 遇到link标签,就会去服务器下载对应的css文件</li>
+<li>等到js文件下载完成后,浏览器就会通过浏览器内核,解析运行JS代码</li>
 </ol>
-</li>
+<h2 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h2><ol>
+<li>将html解析形成DOM树,此时遇到JS标签则会体质解析html,优先通过JS引擎加载和执行JS代码(这里可能会执行DOM操作),最后形成DOM结构树</li>
+<li>将css层叠样式表解析成样式规则</li>
+<li>将DOM树和样式规则组合形成渲染树(RenderTree)并且布局引擎(Layout)进行布局操作</li>
+<li>绘制引擎(paint)将渲染树绘制并且展示在浏览器页面上</li>
 </ol>
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ol>
-<li>wx:for<ol>
-<li>重命名item和index<br>Q:为什么要重命名?<br>A:当双重wx:for循环时必须得把内部wx:for循环的item和index做修改</li>
-<li>示例:<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;!-- 通过 wx:for-item&#x2F;wx:for-index重命名 --&gt;
-  &lt;block wx:for&#x3D;&quot;&#123;&#123; arr &#125;&#125;&quot;&gt;
-    &lt;view&gt; &#123;&#123;item&#125;&#125; &lt;&#x2F;view&gt;
-    &lt;view&gt; &#123;&#123;index&#125;&#125; &lt;&#x2F;view&gt;
-    &lt;!-- 通过 wx:for-item&#x2F;wx:for-index重命名 --&gt;
-    &lt;view wx:for&#x3D;&quot;&#123;&#123; arr2 &#125;&#125;&quot; wx:for-item&#x3D;&quot;itm&quot; wx:for-index&#x3D;&quot;ind&quot; &gt;
-        &#123;&#123; itm &#125;&#125;-&#123;&#123; ind &#125;&#125;
-    &lt;&#x2F;view&gt;
-  &lt;&#x2F;block&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
-</ol>
-</li>
-<li>wx:if/wx:elif/wx:else<ol>
-<li>与hide区别<blockquote>
-<p>就像v-if和v-show的区别,wx:if是对元素节点进行操作,hide是对样式操作</p>
-</blockquote>
-</li>
-</ol>
-</li>
-</ol>
-<p>  <strong>值的注意:</strong></p>
 <blockquote>
-<p>hide的默认值是true</p>
+<p><strong>注意:</strong> 在html被浏览器解析过程中,如果遇到了JS标签,则会停止解析html,优先加载和执行JS代码</p>
 </blockquote>
-<h2 id="wxss的背景图引用"><a href="#wxss的背景图引用" class="headerlink" title="wxss的背景图引用"></a>wxss的背景图引用</h2><blockquote>
-<p>不能使用本地资源引用,只能引用在线地址或者把图片转成base64</p>
-</blockquote>
-<h2 id="npm包依赖安装关于基础库的bug"><a href="#npm包依赖安装关于基础库的bug" class="headerlink" title="npm包依赖安装关于基础库的bug"></a>npm包依赖安装关于基础库的bug</h2><blockquote>
-<p>有些Npm依赖只支持特定的小程序基础库版本或者压根不支持小程序,所以在安装依赖的时候需要查看一下是否支持小程序</p>
-</blockquote>
-<h2 id="npm包构建流程"><a href="#npm包构建流程" class="headerlink" title="npm包构建流程"></a>npm包构建流程</h2><ol>
-<li>初始化项目包的npm<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">npm init --y<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li>
-<li>npm安装对应依赖包</li>
-<li>详情 -&gt; 勾选使用npm模块选项 </li>
-<li>点击菜单栏 : 工具 -&gt; 构建npm (每次下载新的依赖都得重新构建)</li>
-<li>通过require或者import方法引用模块<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const moment &#x3D; require(&#39;moment&#39;)
-const value &#x3D; moment(+new Date()).format(&#39;YYYY-MM-DD&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></li>
-<li>构建后再project.config.json文件中进行配置<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#123; 
-  &quot;setting&quot;: &#123; 
-      &quot;packNpmManually&quot;: true, 
-      &quot;packNpmRelationList&quot;: [
-        &#123; 
-            &quot;packageJsonPath&quot;: &quot;.&#x2F;package.json&quot;, 
-            &quot;miniprogramNpmDistDir&quot;: &quot;.&#x2F;&quot; 
-        &#125; 
-      ] 
-  &#125; 
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
-</ol>
-<p><strong>注意：</strong> </p>
+<h2 id="JS引擎-V8引擎"><a href="#JS引擎-V8引擎" class="headerlink" title="JS引擎(V8引擎)"></a>JS引擎(V8引擎)</h2><ol>
+<li><p>浏览器内核与JS引擎的关系</p>
 <blockquote>
-<p>由于目前新版开发者工具创建的小程序目录文件结构问题，npm构建的文件目录为miniprogram_npm，并且开发工具会默认在当前目录下创建miniprogram_npm的文件名，所以新版本的miniprogramNpmDistDir配置为’./‘即可</p>
+<p>浏览器内核<strong>包含</strong>JS引擎,JS引擎只负责解析和JS代码</p>
 </blockquote>
+</li>
+<li><p>V8引擎工作原理<br>(1) 解析JS源代码(词法解析,语法解析)<br>(2) 解析后形成AST抽象语法树<br>(3) 通过Ignition库收集信息并编译成字节码,再把字节码编译成机器码执行运行结果</p>
+</li>
+<li><p>Q: 如果有一段JS代码频繁被使用,每次都把这部分代码转成字节码再编译成机器码会消耗很多性能,该如何解决?<br>A: Ignition库会将频繁调用的JS代码标记为<strong>hot</strong>,之后通过TurboFan库转换为优化后的机器码进行存储,下次再调用时直接调用存储的机器码运行</p>
+</li>
+<li><p>Q: 因为JS代码是弱类型语言,如果在一段频繁调用的JS代码使用逻辑运算时,更改了参数类型的值,导致计算方式不一致生成的机器码也不一致,该如何解决?<br>A: JS引擎会有逆优化(Deoptimization)的操作,反向转为字节码,再通过字节码转为机器码,当然这是一个比较消耗性能的操作<br>M: 这也是为什么在解析TypeScript转换的JS代码时效率更高的原因之一,TypeScript做了类型的强校验,省去了逆优化的操作</p>
+</li>
+<li><p>Q: JS引擎为什么先转为字节码,再转为机器码,而不是直接转为机器码?<br>A: 因为机器码比较占内存空间,字节码所占用的空间远远低于了机器码,总结就是<strong>牺牲时间来换取空间</strong></p>
+</li>
+</ol>
 
             </div>
             <hr>
@@ -307,7 +272,7 @@ const value &#x3D; moment(+new Date()).format(&#39;YYYY-MM-DD&#39;)<span aria-hi
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
                     
                   </div>
                 
@@ -315,7 +280,9 @@ const value &#x3D; moment(+new Date()).format(&#39;YYYY-MM-DD&#39;)<span aria-hi
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/ES-x/">ES.x</a>
                     
                   </div>
                 
@@ -332,9 +299,9 @@ const value &#x3D; moment(+new Date()).format(&#39;YYYY-MM-DD&#39;)<span aria-hi
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/10/JavaScript/jsBasic/">
+                      <a href="/2022/04/10/jsBasic/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JS基础运行知识</span>
+                        <span class="hidden-mobile">jsBasic</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -342,8 +309,8 @@ const value &#x3D; moment(+new Date()).format(&#39;YYYY-MM-DD&#39;)<span aria-hi
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/04/miniProgram/basic-07/">
-                        <span class="hidden-mobile">微信小程序の登录流程</span>
+                      <a href="/2022/03/04/miniProgram/basic-08/">
+                        <span class="hidden-mobile">微信小程序の一些踩坑点</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -4,6 +4,46 @@
   
   
   <entry>
+    <title>jsBasic</title>
+    <link href="/2022/04/10/jsBasic/"/>
+    <url>/2022/04/10/jsBasic/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JS基础运行知识</title>
+    <link href="/2022/04/10/JavaScript/jsBasic/"/>
+    <url>/2022/04/10/JavaScript/jsBasic/</url>
+    
+    <content type="html"><![CDATA[<h2 id="JS代码是如何在浏览器中运行的"><a href="#JS代码是如何在浏览器中运行的" class="headerlink" title="JS代码是如何在浏览器中运行的?"></a>JS代码是如何在浏览器中运行的?</h2><ol><li>浏览器通过DNS解析域名为IP地址,访问IP地址返回html文件</li><li>html文件下载完成后,解析html文件<br>(1) 解析到script标签,就会去服务器下载对应的JS文件<br>(2) 遇到link标签,就会去服务器下载对应的css文件</li><li>等到js文件下载完成后,浏览器就会通过浏览器内核,解析运行JS代码</li></ol><h2 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h2><ol><li>将html解析形成DOM树,此时遇到JS标签则会体质解析html,优先通过JS引擎加载和执行JS代码(这里可能会执行DOM操作),最后形成DOM结构树</li><li>将css层叠样式表解析成样式规则</li><li>将DOM树和样式规则组合形成渲染树(RenderTree)并且布局引擎(Layout)进行布局操作</li><li>绘制引擎(paint)将渲染树绘制并且展示在浏览器页面上</li></ol><blockquote><p><strong>注意:</strong> 在html被浏览器解析过程中,如果遇到了JS标签,则会停止解析html,优先加载和执行JS代码</p></blockquote><h2 id="JS引擎-V8引擎"><a href="#JS引擎-V8引擎" class="headerlink" title="JS引擎(V8引擎)"></a>JS引擎(V8引擎)</h2><ol><li><p>浏览器内核与JS引擎的关系</p><blockquote><p>浏览器内核<strong>包含</strong>JS引擎,JS引擎只负责解析和JS代码</p></blockquote></li><li><p>V8引擎工作原理<br>(1) 解析JS源代码(词法解析,语法解析)<br>(2) 解析后形成AST抽象语法树<br>(3) 通过Ignition库收集信息并编译成字节码,再把字节码编译成机器码执行运行结果</p></li><li><p>Q: 如果有一段JS代码频繁被使用,每次都把这部分代码转成字节码再编译成机器码会消耗很多性能,该如何解决?<br>A: Ignition库会将频繁调用的JS代码标记为<strong>hot</strong>,之后通过TurboFan库转换为优化后的机器码进行存储,下次再调用时直接调用存储的机器码运行</p></li><li><p>Q: 因为JS代码是弱类型语言,如果在一段频繁调用的JS代码使用逻辑运算时,更改了参数类型的值,导致计算方式不一致生成的机器码也不一致,该如何解决?<br>A: JS引擎会有逆优化(Deoptimization)的操作,反向转为字节码,再通过字节码转为机器码,当然这是一个比较消耗性能的操作<br>M: 这也是为什么在解析TypeScript转换的JS代码时效率更高的原因之一,TypeScript做了类型的强校验,省去了逆优化的操作</p></li><li><p>Q: JS引擎为什么先转为字节码,再转为机器码,而不是直接转为机器码?<br>A: 因为机器码比较占内存空间,字节码所占用的空间远远低于了机器码,总结就是<strong>牺牲时间来换取空间</strong></p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES.x</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>微信小程序の一些踩坑点</title>
     <link href="/2022/03/04/miniProgram/basic-08/"/>
     <url>/2022/03/04/miniProgram/basic-08/</url>
@@ -310,33 +350,6 @@
       <tag>hexo主题</tag>
       
       <tag>hexo</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>jsNotetest</title>
-    <link href="/2021/11/18/JavaScript/jsNote/"/>
-    <url>/2021/11/18/JavaScript/jsNote/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    <categories>
-      
-      <category>JavaScript</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>JavaScript</tag>
-      
-      <tag>ES.x</tag>
       
     </tags>
     
