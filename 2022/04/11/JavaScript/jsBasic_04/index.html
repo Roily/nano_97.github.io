@@ -16,20 +16,20 @@
   <meta name="description" content="前端菜鸡的博客">
   <meta name="author" content="Nano">
   <meta name="keywords" content="">
-  <meta name="description" content="全局函数的编译 在js引擎编译的时候,如果检测到是一个函数:(1) 会在Global Object先声明一个函数的变量(2) 之后在内存中创建一个新的空间存储函数对象(3) 函数对象里包含着(父级作用域、函数代码执行块和this),GO里的函数变量则引用着这个新地址   注意: foo()是执行代码,编译时是不会执行的  函数的执行 执行函数调用时( foo() ),会在全局调用栈中(GEC)创建">
+  <meta name="description" content="内存管理 生命周期(1) 分配申请所需要的内存(2) 使用分配的内存(存放对象等)(3) 不需要使用内存时,进行释放  JS分配内存(1) 在声明变量时自动分配内存(2) 基础数据类型和复杂(引用)数据类型内存的分配   i. 基础数据类型存放在栈内存里   ii.复杂数据类型会在内存中开辟一个空间,将数据存放在空间里并且返回这个空间的地址指针给变量进行引用  垃圾回收定义: 因为内存大小是有限的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="函数的编译和执行">
-<meta property="og:url" content="https://roily.github.io/2022/04/11/JavaScript/jsBasic_03/index.html">
+<meta property="og:title" content="内存管理">
+<meta property="og:url" content="https://roily.github.io/2022/04/11/JavaScript/jsBasic_04/index.html">
 <meta property="og:site_name" content="Nano-Block">
-<meta property="og:description" content="全局函数的编译 在js引擎编译的时候,如果检测到是一个函数:(1) 会在Global Object先声明一个函数的变量(2) 之后在内存中创建一个新的空间存储函数对象(3) 函数对象里包含着(父级作用域、函数代码执行块和this),GO里的函数变量则引用着这个新地址   注意: foo()是执行代码,编译时是不会执行的  函数的执行 执行函数调用时( foo() ),会在全局调用栈中(GEC)创建">
+<meta property="og:description" content="内存管理 生命周期(1) 分配申请所需要的内存(2) 使用分配的内存(存放对象等)(3) 不需要使用内存时,进行释放  JS分配内存(1) 在声明变量时自动分配内存(2) 基础数据类型和复杂(引用)数据类型内存的分配   i. 基础数据类型存放在栈内存里   ii.复杂数据类型会在内存中开辟一个空间,将数据存放在空间里并且返回这个空间的地址指针给变量进行引用  垃圾回收定义: 因为内存大小是有限的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-11T12:26:55.000Z">
-<meta property="article:modified_time" content="2022-04-11T13:56:58.452Z">
+<meta property="article:published_time" content="2022-04-11T14:00:35.000Z">
+<meta property="article:modified_time" content="2022-04-11T14:25:28.178Z">
 <meta property="article:author" content="Nano">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>函数的编译和执行 - Nano-Block</title>
+  <title>内存管理 - Nano-Block</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -171,7 +171,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="函数的编译和执行">
+            <span class="h2" id="subtitle" title="内存管理">
               
             </span>
 
@@ -181,7 +181,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-11 20:26" pubdate>
+      <time datetime="2022-04-11 22:00" pubdate>
         2022年4月11日 晚上
       </time>
     </span>
@@ -192,7 +192,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      837 字
+      782 字
     </span>
   
 
@@ -201,7 +201,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      2 分钟
     </span>
   
 
@@ -230,33 +230,31 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">函数的编译和执行</h1>
+            <h1 style="display: none">内存管理</h1>
             
             <div class="markdown-body">
-              <h2 id="全局函数的编译"><a href="#全局函数的编译" class="headerlink" title="全局函数的编译"></a>全局函数的编译</h2><ol>
-<li>在js引擎编译的时候,如果检测到是一个函数:<br>(1) 会在Global Object先声明一个函数的变量<br>(2) 之后在内存中创建一个新的空间存储函数对象<br>(3) 函数对象里包含着(<strong>父级作用域、函数代码执行块和this</strong>),<font color="red"><strong>GO里的函数变量则引用着这个新地址</strong></font></li>
-</ol>
-<blockquote>
-<p>注意: foo()是执行代码,编译时是不会执行的</p>
-</blockquote>
-<h2 id="函数的执行"><a href="#函数的执行" class="headerlink" title="函数的执行"></a>函数的执行</h2><ol>
-<li>执行函数调用时( foo() ),会在全局调用栈中(GEC)<font color="red"><strong>创建一个函数执行上下文(FEC)</strong></font><br>(1) 函数执行上下文和全局执行上下文一样,也会创建一个内部变量VO,指向每个函数的<font color="red"><strong>AO[Activation Object](活跃对象)</strong></font><br>(2) AO相当于函数内的GO,与GO相同的逻辑,将函数里的形参和声明的变量存放在一个对象里<br>(3) 之后开始调用函数内的执行代码<br>(4) <strong>当函数调用完成后,执行改函数的FEC会从调用栈释放,同时在GO创建的函数内存也会被释放</strong></li>
-</ol>
-<blockquote>
-<p>注意: <font color="red"><strong>函数的作用域跟它定义的位置有关系,跟它调用的位置没关系</strong></font><br>备注: 一个函数多次调用互相不受影响的原因就是因为每次GO在调用函数上下文执行栈时,都会创建一个新的AO存储函数里的形参和声明的变量/函数</p>
-</blockquote>
-<h2 id="作用域链-scope-chain"><a href="#作用域链-scope-chain" class="headerlink" title="作用域链(scope chain)"></a>作用域链(scope chain)</h2><ol>
-<li>Q:什么是作用域链?<br>A:<font color="red"><strong>scopechain = VO + ParentScope (VO和父级作用域)</strong></font><br>父级作用域在JS代码编译时就被确定了,就是函数地址中存放的parentscope<br>函数执行时,当定义的变量在VO中查找不到,会根据scope chain中的parent scope向上查找,直到全局作作用域</li>
-</ol>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><ol>
-<li><p>ECMA最新标准中,将VO的概念重新解释为<font color="red"><strong>VE(Variable Environment)</strong></font>[环境变量],是将变量作为<font color="red"><strong>一条环境记录</strong></font>绑定在环境中,不一定非要是一个对象做数据集合(也可以是HashMap或其它)</p>
+              <h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><ol>
+<li><p>生命周期<br>(1) 分配申请所需要的内存<br>(2) 使用分配的内存(存放对象等)<br>(3) 不需要使用内存时,进行释放</p>
 </li>
-<li><p>JS在编译时,会将没用关键字声明的变量放到GO里</p>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">var a &#x3D; b &#x3D;10
-&#x2F;&#x2F; 解析为
-var a &#x3D; 10
-    b &#x3D; 10
-&#x2F;&#x2F; 先执行b的赋值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+<li><p>JS分配内存<br>(1) 在声明变量时自动分配内存<br>(2) 基础数据类型和复杂(引用)数据类型内存的分配<br>   i. 基础数据类型存放在栈内存里<br>   ii.复杂数据类型会在内存中开辟一个空间,将数据存放在空间里并且返回这个空间的<font color="red"><strong>地址指针</strong></font>给变量进行引用</p>
+</li>
+<li><p>垃圾回收<br>定义: 因为内存大小是有限的,所以当内存不再需要的时候需要将其进行释放,用来减少内存空间的占用<br>   JS内置了垃圾回收机制:<font color="red"><strong>垃圾回收器(GC [Garbage Collection])</strong></font><br>   GC不是释放一个内存空间就销毁一次而是会在某个时间段内统计不需要的内存集中销毁</p>
+</li>
+<li><p>Q: 垃圾回收器如何去筛选不用的内存进行回收?<br>A: GC算法</p>
+<ol>
+<li>常见的GC算法<br><strong>引用计数</strong>: 声明一个变量,当任意其它变量引用了该变量,则会在<font color="red"><strong>retain count</strong></font>进行计数,当引用指针不指向该内存是,<font color="red"><strong>retain count</strong></font>就会进行相应数量的减少,当计数为0时就会被人为是垃圾进行回收<blockquote>
+<p>弊端:容易造成循环引用,相互之间一直引用着,造成内存泄露</p>
+</blockquote>
+<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">var obj1 &#x3D; &#123; name:&#39;nano&#39;,obj:obj2 &#125;
+var obj2 &#x3D; &#123; name:&#39;roily&#39;,obj:obj1 &#125;
+这样两个对象就一直在循环引用着对方
+当然可以直接 obj1 &#x3D; null 进行释放,但是如果忘记就会造成内存泄漏<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li>
+</ol>
+<p> <strong>标记算法[JS的主导GC算法]</strong>: 设置一个根对象(root object),垃圾回收器会定期从这个根开始,查找所有从根开始引用到的对象,对于那些没有引用的对象则会人为 是不可用对象,进行垃圾回收</p>
+<blockquote>
+<p>优势: 解决了对象之间的循环引用问题。如果从根开始查找标记一直到最后，无法查找到这几个对象在根线路中，那么这几个循环对象就会被视为不可用对象</p>
+</blockquote>
+</li>
 </ol>
 
             </div>
@@ -292,9 +290,9 @@ var a &#x3D; 10
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/11/JavaScript/jsBasic_04/">
+                      <a href="/2022/04/12/JavaScript/jsBasic_05/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">内存管理</span>
+                        <span class="hidden-mobile">浅谈JavaScript中的函数</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -302,8 +300,8 @@ var a &#x3D; 10
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/11/JavaScript/jsBasic_02/">
-                        <span class="hidden-mobile">JavaScript的运行</span>
+                      <a href="/2022/04/11/JavaScript/jsBasic_03/">
+                        <span class="hidden-mobile">函数的编译和执行</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

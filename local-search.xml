@@ -4,9 +4,47 @@
   
   
   <entry>
+    <title>jsBasic_05</title>
+    <link href="/2022/04/12/jsBasic_05/"/>
+    <url>/2022/04/12/jsBasic_05/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>浅谈JavaScript中的函数</title>
+    <link href="/2022/04/12/JavaScript/jsBasic_05/"/>
+    <url>/2022/04/12/JavaScript/jsBasic_05/</url>
+    
+    <content type="html"><![CDATA[<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ol><li>JavaScript中,函数是<font color="red"><strong>一等公民</strong></font>,可以作为一个<strong>参数传递</strong>,也可以作为一个<strong>函数的返回结果</strong></li></ol><h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><ol><li>当一个函数的返回值是另一个函数或者接收的参数是另一个函数,这时候我们将这个函数称之为高阶函数<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">funciton foo()&#123;  return function()&#123;&#125;&#125;function foo(callback)&#123; callback() &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="什么是函数-什么是方法"><a href="#什么是函数-什么是方法" class="headerlink" title="什么是函数?什么是方法?"></a>什么是函数?什么是方法?</h2><ol><li>函数就是一个单独的function,方法则是在某个对象里定义的function<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">函数:   function foo()&#123;&#125;方法:  const obj &#x3D; &#123;    foo:function()&#123;&#125;  &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>内存管理</title>
-    <link href="/2022/04/11/JavaScript/jsBasic-04/"/>
-    <url>/2022/04/11/JavaScript/jsBasic-04/</url>
+    <link href="/2022/04/11/JavaScript/jsBasic_04/"/>
+    <url>/2022/04/11/JavaScript/jsBasic_04/</url>
     
     <content type="html"><![CDATA[<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><ol><li><p>生命周期<br>(1) 分配申请所需要的内存<br>(2) 使用分配的内存(存放对象等)<br>(3) 不需要使用内存时,进行释放</p></li><li><p>JS分配内存<br>(1) 在声明变量时自动分配内存<br>(2) 基础数据类型和复杂(引用)数据类型内存的分配<br>   i. 基础数据类型存放在栈内存里<br>   ii.复杂数据类型会在内存中开辟一个空间,将数据存放在空间里并且返回这个空间的<font color="red"><strong>地址指针</strong></font>给变量进行引用</p></li><li><p>垃圾回收<br>定义: 因为内存大小是有限的,所以当内存不再需要的时候需要将其进行释放,用来减少内存空间的占用<br>   JS内置了垃圾回收机制:<font color="red"><strong>垃圾回收器(GC [Garbage Collection])</strong></font><br>   GC不是释放一个内存空间就销毁一次而是会在某个时间段内统计不需要的内存集中销毁</p></li><li><p>Q: 垃圾回收器如何去筛选不用的内存进行回收?<br>A: GC算法</p><ol><li>常见的GC算法<br><strong>引用计数</strong>: 声明一个变量,当任意其它变量引用了该变量,则会在<font color="red"><strong>retain count</strong></font>进行计数,当引用指针不指向该内存是,<font color="red"><strong>retain count</strong></font>就会进行相应数量的减少,当计数为0时就会被人为是垃圾进行回收<blockquote><p>弊端:容易造成循环引用,相互之间一直引用着,造成内存泄露</p></blockquote><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">var obj1 &#x3D; &#123; name:&#39;nano&#39;,obj:obj2 &#125;var obj2 &#x3D; &#123; name:&#39;roily&#39;,obj:obj1 &#125;这样两个对象就一直在循环引用着对方当然可以直接 obj1 &#x3D; null 进行释放,但是如果忘记就会造成内存泄漏<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><p> <strong>标记算法[JS的主导GC算法]</strong>: 设置一个根对象(root object),垃圾回收器会定期从这个根开始,查找所有从根开始引用到的对象,对于那些没有引用的对象则会人为 是不可用对象,进行垃圾回收</p><blockquote><p>优势: 解决了对象之间的循环引用问题。如果从根开始查找标记一直到最后，无法查找到这几个对象在根线路中，那么这几个循环对象就会被视为不可用对象</p></blockquote></li></ol>]]></content>
     

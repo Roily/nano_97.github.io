@@ -16,20 +16,19 @@
   <meta name="description" content="前端菜鸡的博客">
   <meta name="author" content="Nano">
   <meta name="keywords" content="">
-  <meta name="description" content="内存管理 生命周期(1) 分配申请所需要的内存(2) 使用分配的内存(存放对象等)(3) 不需要使用内存时,进行释放  JS分配内存(1) 在声明变量时自动分配内存(2) 基础数据类型和复杂(引用)数据类型内存的分配   i. 基础数据类型存放在栈内存里   ii.复杂数据类型会在内存中开辟一个空间,将数据存放在空间里并且返回这个空间的地址指针给变量进行引用  垃圾回收定义: 因为内存大小是有限的">
+  <meta name="description" content="前端菜鸡的博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="内存管理">
-<meta property="og:url" content="https://roily.github.io/2022/04/11/JavaScript/jsBasic-04/index.html">
+<meta property="og:title" content="jsBasic_05">
+<meta property="og:url" content="https://roily.github.io/2022/04/12/jsBasic_05/index.html">
 <meta property="og:site_name" content="Nano-Block">
-<meta property="og:description" content="内存管理 生命周期(1) 分配申请所需要的内存(2) 使用分配的内存(存放对象等)(3) 不需要使用内存时,进行释放  JS分配内存(1) 在声明变量时自动分配内存(2) 基础数据类型和复杂(引用)数据类型内存的分配   i. 基础数据类型存放在栈内存里   ii.复杂数据类型会在内存中开辟一个空间,将数据存放在空间里并且返回这个空间的地址指针给变量进行引用  垃圾回收定义: 因为内存大小是有限的">
+<meta property="og:description" content="前端菜鸡的博客">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-11T14:00:35.000Z">
-<meta property="article:modified_time" content="2022-04-11T14:25:28.178Z">
+<meta property="article:published_time" content="2022-04-11T16:49:55.000Z">
+<meta property="article:modified_time" content="2022-04-11T16:49:55.410Z">
 <meta property="article:author" content="Nano">
-<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>内存管理 - Nano-Block</title>
+  <title>jsBasic_05 - Nano-Block</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -171,7 +170,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="内存管理">
+            <span class="h2" id="subtitle" title="jsBasic_05">
               
             </span>
 
@@ -181,8 +180,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-11 22:00" pubdate>
-        2022年4月11日 晚上
+      <time datetime="2022-04-12 00:49" pubdate>
+        2022年4月12日 凌晨
       </time>
     </span>
   
@@ -192,7 +191,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      782 字
+      0 字
     </span>
   
 
@@ -201,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      1 分钟
     </span>
   
 
@@ -230,52 +229,15 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">内存管理</h1>
+            <h1 style="display: none">jsBasic_05</h1>
             
             <div class="markdown-body">
-              <h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><ol>
-<li><p>生命周期<br>(1) 分配申请所需要的内存<br>(2) 使用分配的内存(存放对象等)<br>(3) 不需要使用内存时,进行释放</p>
-</li>
-<li><p>JS分配内存<br>(1) 在声明变量时自动分配内存<br>(2) 基础数据类型和复杂(引用)数据类型内存的分配<br>   i. 基础数据类型存放在栈内存里<br>   ii.复杂数据类型会在内存中开辟一个空间,将数据存放在空间里并且返回这个空间的<font color="red"><strong>地址指针</strong></font>给变量进行引用</p>
-</li>
-<li><p>垃圾回收<br>定义: 因为内存大小是有限的,所以当内存不再需要的时候需要将其进行释放,用来减少内存空间的占用<br>   JS内置了垃圾回收机制:<font color="red"><strong>垃圾回收器(GC [Garbage Collection])</strong></font><br>   GC不是释放一个内存空间就销毁一次而是会在某个时间段内统计不需要的内存集中销毁</p>
-</li>
-<li><p>Q: 垃圾回收器如何去筛选不用的内存进行回收?<br>A: GC算法</p>
-<ol>
-<li>常见的GC算法<br><strong>引用计数</strong>: 声明一个变量,当任意其它变量引用了该变量,则会在<font color="red"><strong>retain count</strong></font>进行计数,当引用指针不指向该内存是,<font color="red"><strong>retain count</strong></font>就会进行相应数量的减少,当计数为0时就会被人为是垃圾进行回收<blockquote>
-<p>弊端:容易造成循环引用,相互之间一直引用着,造成内存泄露</p>
-</blockquote>
-<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">var obj1 &#x3D; &#123; name:&#39;nano&#39;,obj:obj2 &#125;
-var obj2 &#x3D; &#123; name:&#39;roily&#39;,obj:obj1 &#125;
-这样两个对象就一直在循环引用着对方
-当然可以直接 obj1 &#x3D; null 进行释放,但是如果忘记就会造成内存泄漏<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li>
-</ol>
-<p> <strong>标记算法[JS的主导GC算法]</strong>: 设置一个根对象(root object),垃圾回收器会定期从这个根开始,查找所有从根开始引用到的对象,对于那些没有引用的对象则会人为 是不可用对象,进行垃圾回收</p>
-<blockquote>
-<p>优势: 解决了对象之间的循环引用问题。如果从根开始查找标记一直到最后，无法查找到这几个对象在根线路中，那么这几个循环对象就会被视为不可用对象</p>
-</blockquote>
-</li>
-</ol>
-
+              
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
-                    
-                  </div>
                 
               </div>
               
@@ -294,8 +256,8 @@ var obj2 &#x3D; &#123; name:&#39;roily&#39;,obj:obj1 &#125;
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/11/JavaScript/jsBasic_03/">
-                        <span class="hidden-mobile">函数的编译和执行</span>
+                      <a href="/2022/04/12/JavaScript/jsBasic_05/">
+                        <span class="hidden-mobile">浅谈JavaScript中的函数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
