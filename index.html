@@ -177,21 +177,32 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/11/JavaScript/jsBasic-04/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="内存管理">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/10/jsBasic/" target="_self">
-          jsBasic
+        <a href="/2022/04/11/JavaScript/jsBasic-04/" target="_self">
+          内存管理
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/10/jsBasic/" target="_self">
+        <a href="/2022/04/11/JavaScript/jsBasic-04/" target="_self">
           
           
             
           
-          
+          内存管理
+生命周期(1) 分配申请所需要的内存(2) 使用分配的内存(存放对象等)(3) 不需要使用内存时,进行释放
+
+JS分配内存(1) 在声明变量时自动分配内存(2) 基础数据类型和复杂(引用)数据类型内存的分配   i. 基础数据类型存放在栈内存里   ii.复杂数据类型会在内存中开辟一个空间,将数据存放在空间里并且返回这个空间的地址指针给变量进行引用
+
+垃圾回收定义: 因为内存大小是有限的
         </a>
       </p>
 
@@ -199,12 +210,26 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-10 21:35" pubdate>
-              2022-04-10
+            <time datetime="2022-04-11 22:00" pubdate>
+              2022-04-11
             </time>
           </div>
         
         
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+          </div>
         
       </div>
     </article>
@@ -214,7 +239,131 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/10/JavaScript/jsBasic/" target="_self">
+        <a href="/2022/04/11/JavaScript/jsBasic_03/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="函数的编译和执行">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/11/JavaScript/jsBasic_03/" target="_self">
+          函数的编译和执行
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/11/JavaScript/jsBasic_03/" target="_self">
+          
+          
+            
+          
+          全局函数的编译
+在js引擎编译的时候,如果检测到是一个函数:(1) 会在Global Object先声明一个函数的变量(2) 之后在内存中创建一个新的空间存储函数对象(3) 函数对象里包含着(父级作用域、函数代码执行块和this),GO里的函数变量则引用着这个新地址
+
+
+注意: foo()是执行代码,编译时是不会执行的
+
+函数的执行
+执行函数调用时( foo() ),会在全局调用栈中(GEC)创建
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-11 20:26" pubdate>
+              2022-04-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/11/JavaScript/jsBasic_02/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="JavaScript的运行">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/11/JavaScript/jsBasic_02/" target="_self">
+          JavaScript的运行
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/11/JavaScript/jsBasic_02/" target="_self">
+          
+          
+            
+          
+          代码解析
+在JS引擎解析时,会形成一个Global Object(全局对象),里面内置了String,Math等类,window:this(指向Global Object),全局声明的变量在解析时也会放置在这里,但是默认值为undefined,因为解析时不执行代码(赋值、函数调用等)
+
+代码执行
+JS引擎通过执行上下文栈（调用栈）调用代码
+Q：全局变量没有调用栈该如何执行调用？A：需要创建全局执行
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-11 20:06" pubdate>
+              2022-04-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/10/JavaScript/jsBasic_01/" target="_self">
           <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="JS基础运行知识">
         </a>
       </div>
@@ -222,13 +371,13 @@
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/10/JavaScript/jsBasic/" target="_self">
+        <a href="/2022/04/10/JavaScript/jsBasic_01/" target="_self">
           JS基础运行知识
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/10/JavaScript/jsBasic/" target="_self">
+        <a href="/2022/04/10/JavaScript/jsBasic_01/" target="_self">
           
           
             
@@ -650,126 +799,6 @@ onError
             <i class="iconfont icon-date"></i>
             <time datetime="2022-03-04 14:22" pubdate>
               2022-03-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/03/03/miniProgram/basic-02/" target="_self">
-          <img src="/img/wx2.jpg" srcset="/img/loading.gif" lazyload alt="小程序の组件使用">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/03/miniProgram/basic-02/" target="_self">
-          小程序の组件使用
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/03/miniProgram/basic-02/" target="_self">
-          
-          
-            
-          
-          组件的使用
-注册自定义组件
-
-在微信开发者工具中,选择components文件夹鼠标右击选择新建component,输入名称后自动创建4个文件,基本与page页面结构相同
-在需要使用组件的页面文件或者组件文件,选择.json结尾的配置文件
-在json文件中的”usingCompoents”属性中进行配置&#123;
-  &quot;usingComponents&quot;: &quot;需要引入
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-03 15:24" pubdate>
-              2022-03-03
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/03/03/miniProgram/basic-01/" target="_self">
-          <img src="/img/wx2.jpg" srcset="/img/loading.gif" lazyload alt="小程序の基础语法">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/03/miniProgram/basic-01/" target="_self">
-          小程序の基础语法
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/03/miniProgram/basic-01/" target="_self">
-          
-          
-            
-          
-          插值语法
-初识微信小程序插值语法定义: 类似于vue的插值语法,也采用&#123;&#123; &#125;&#125;进行值的动态绑定值的注意:   (1) 无法像vue语法中可以进行函数调用
- (2) 传递布尔值值必须使用&#123;&#123;&#125;&#125;传递,不使用&#123;&#123;&#125;&#125;默认都是字符串,false就会被编译成字符串false,显示为tr
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-03 10:45" pubdate>
-              2022-03-03
             </time>
           </div>
         
