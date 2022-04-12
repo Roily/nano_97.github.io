@@ -177,21 +177,35 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/12/JavaScript/jsBasic_24/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES7语法">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/jsBasic_05/" target="_self">
-          jsBasic_05
+        <a href="/2022/04/12/JavaScript/jsBasic_24/" target="_self">
+          ES7语法
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/jsBasic_05/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_24/" target="_self">
           
           
             
           
-          
+          includes(value,index)
+判断数组内是否包含某个值,返回布尔值(判断元素为引用类型的值时需要注意指针地址,一般不用来做元素为引用类型的判断)
+值得注意: 可以判断是否包含NaN
+
+
+参数(1) value: 是否包含的值(2) index: 从第几个索引开始判断(可以不传)
+使用const arr &#x3D; [ 1,2,3, NaN ]
+
+arr.includes(NaN,1
         </a>
       </p>
 
@@ -199,12 +213,28 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 00:49" pubdate>
+            <time datetime="2022-04-12 22:14" pubdate>
               2022-04-12
             </time>
           </div>
         
         
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES7/">ES7</a>
+            
+          </div>
         
       </div>
     </article>
@@ -214,34 +244,359 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_05/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="浅谈JavaScript中的函数">
+        <a href="/2022/04/12/JavaScript/jsBasic_23/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(5)">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_05/" target="_self">
-          浅谈JavaScript中的函数
+        <a href="/2022/04/12/JavaScript/jsBasic_23/" target="_self">
+          ES6语法(5)
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_05/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_23/" target="_self">
           
           
             
           
-          函数
-JavaScript中,函数是一等公民,可以作为一个参数传递,也可以作为一个函数的返回结果
+          Map
+前提:普通对象的key无论写什么类型最后都会转为字符串[除了symbol],而对象类型转为字符串则是’[object Object]’,变成相同key值,后一个会覆盖前一个
+定义:与对象的区别是可以用任意数据类型做为key值且不会转成字符串类型
+注意: 如果是数组作为key存值,那么需要传递entires格式
 
-高阶函数
-当一个函数的返回值是另一个函数或者接收的参数是另一个函数,这时候我们将这个函数称之为高阶函数funciton foo()&#123;
-  return function()&#123;&#125;
+
+
+    const map &#x3D; new Map()
+
+&#x2F
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-12 22:08" pubdate>
+              2022-04-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+              <a href="/tags/ES9/">ES9</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/12/JavaScript/jsBasic_22/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(4)">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/12/JavaScript/jsBasic_22/" target="_self">
+          ES6语法(4)
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/12/JavaScript/jsBasic_22/" target="_self">
+          
+          
+            
+          
+          Set
+定义: 类似于数组,但是元素不能重复
+创建Set结构let set &#x3D; new Set()
+set.add(10)
+set.add(20)
+set.add(20)
+set.add(&#123;&#125;)
+set.add(&#123;&#125;)
+
+console.log(set)     --&gt; Set(4) &#123; 10, 20, &#123;&#125;, 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-12 21:29" pubdate>
+              2022-04-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+              <a href="/tags/ES9/">ES9</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/12/JavaScript/jsBasic_21/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(3)">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/12/JavaScript/jsBasic_21/" target="_self">
+          ES6语法(3)
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/12/JavaScript/jsBasic_21/" target="_self">
+          
+          
+            
+          
+          模板字符串
+基本语法let name &#x3D; &#39;nano&#39;
+let str &#x3D; &#96;你好$&#123;name&#125;&#96;
+console.log(str) --&gt; &#39;你好nano&#39;
+拓展语法(1) 标签模板字符串定义:将模板字符串设置为一种调用函数的方式,第一个参数为数组,里面是模板字符串中的字符串,会根据${}分割,如果没有
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-12 20:50" pubdate>
+              2022-04-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+              <a href="/tags/ES9/">ES9</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/12/JavaScript/jsBasic_17/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="class的基本使用">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/12/JavaScript/jsBasic_17/" target="_self">
+          class的基本使用
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/12/JavaScript/jsBasic_17/" target="_self">
+          
+          
+            
+          
+          类的声明  class Person&#123;&#125;
+类的表达式(不常用)  const Person &#x3D; class &#123;&#125;
+class的构造函数  class Person&#123;
+  &#x2F;*
+    1. 创建一个新对象
+    2. 将构造函数的prototype赋值给新对象的[[prototype]]
+    3. 将函数的this指向新对
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-12 20:48" pubdate>
+              2022-04-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/12/JavaScript/jsBasic_20/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(2)">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/12/JavaScript/jsBasic_20/" target="_self">
+          ES6语法(2)
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/12/JavaScript/jsBasic_20/" target="_self">
+          
+          
+            
+          
+          let&amp;const
+let&amp;const 共同点:(1) 不允许重复声明变量(2) 没有变量提升(其实在执行上下文阶段被创建出来了,但是不能被访问,从而达到没有变量提升的效果)(3) 设置块级作用域(变量,方法只能在块级作用域内部访问,不能在外部访问)(4) 形成暂时性死区(在块级作用域中,即使外层区域声明过该变量,只要在块级作用域内用let/const声明同名变量,就无法提前访问,
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-12 18:09" pubdate>
+              2022-04-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/12/JavaScript/jsBasic_19/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(1)">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/12/JavaScript/jsBasic_19/" target="_self">
+          ES6语法(1)
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/12/JavaScript/jsBasic_19/" target="_self">
+          
+          
+            
+          
+          对象字面量增强写法
+属性简写定义: 与key值同名的属性变量,在被对象引用时可以简写为一个keylet age &#x3D; 18
+let perston &#x3D; &#123;
+  age
 &#125;
-
-function foo(callback)&#123; callback(
+方法简写let person &#x3D; &#123;
+  say()&#123;&#125; --&gt; say:function()&#123;&#125;
+&#125;
+计算属性名
         </a>
       </p>
 
@@ -249,7 +604,135 @@ function foo(callback)&#123; callback(
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 00:49" pubdate>
+            <time datetime="2022-04-12 18:02" pubdate>
+              2022-04-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/12/JavaScript/jsBasic_18/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="类的继承">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/12/JavaScript/jsBasic_18/" target="_self">
+          类的继承
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/12/JavaScript/jsBasic_18/" target="_self">
+          
+          
+            
+          
+          类的继承
+定义: 使用extends和super关键字实现继承    class Person &#123;
+  constructor(name, age) &#123;
+    this.name &#x3D; name
+    this.age &#x3D; age
+  &#125;
+  eating(params) &#123;
+    console.log(this.name + &#
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-12 17:47" pubdate>
+              2022-04-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/12/JavaScript/jsBasic_16/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="对象上的一些方法">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/12/JavaScript/jsBasic_16/" target="_self">
+          对象上的一些方法
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/12/JavaScript/jsBasic_16/" target="_self">
+          
+          
+            
+          
+          hasOwnProperty
+定义: 判断某个属性是否在自身对象上(不包含原型) 返回布尔值const obj &#x3D; &#123; name:&#39;nano&#39; &#125;
+&#x2F;&#x2F; 在原型对象上设置属性
+Object.setPrototypeOf( obj, &#123; age:19 &#125;)
+
+const res1 &#x3D; obj.hasOwn
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-12 17:12" pubdate>
               2022-04-12
             </time>
           </div>
@@ -278,31 +761,33 @@ function foo(callback)&#123; callback(
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/11/JavaScript/jsBasic_04/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="内存管理">
+        <a href="/2022/04/12/JavaScript/jsBasic_15/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="继承">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/11/JavaScript/jsBasic_04/" target="_self">
-          内存管理
+        <a href="/2022/04/12/JavaScript/jsBasic_15/" target="_self">
+          继承
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/11/JavaScript/jsBasic_04/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_15/" target="_self">
           
           
             
           
-          内存管理
-生命周期(1) 分配申请所需要的内存(2) 使用分配的内存(存放对象等)(3) 不需要使用内存时,进行释放
+          前言JavaScript是单继承的,只能继承一个父类
+原型链继承
+定义: 子类构造函数的prototype指向父类创建出来的对象
 
-JS分配内存(1) 在声明变量时自动分配内存(2) 基础数据类型和复杂(引用)数据类型内存的分配   i. 基础数据类型存放在栈内存里   ii.复杂数据类型会在内存中开辟一个空间,将数据存放在空间里并且返回这个空间的地址指针给变量进行引用
-
-垃圾回收定义: 因为内存大小是有限的
+  function Person(name,age)&#123;
+  this.name &#x3D; name
+  this.age &#x3D; age
+  this.run &#x3D; function()&#123; return &#39;run&#39
         </a>
       </p>
 
@@ -310,8 +795,8 @@ JS分配内存(1) 在声明变量时自动分配内存(2) 基础数据类型和�
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-11 22:00" pubdate>
-              2022-04-11
+            <time datetime="2022-04-12 15:58" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -328,446 +813,6 @@ JS分配内存(1) 在声明变量时自动分配内存(2) 基础数据类型和�
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/11/JavaScript/jsBasic_03/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="函数的编译和执行">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/11/JavaScript/jsBasic_03/" target="_self">
-          函数的编译和执行
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/04/11/JavaScript/jsBasic_03/" target="_self">
-          
-          
-            
-          
-          全局函数的编译
-在js引擎编译的时候,如果检测到是一个函数:(1) 会在Global Object先声明一个函数的变量(2) 之后在内存中创建一个新的空间存储函数对象(3) 函数对象里包含着(父级作用域、函数代码执行块和this),GO里的函数变量则引用着这个新地址
-
-
-注意: foo()是执行代码,编译时是不会执行的
-
-函数的执行
-执行函数调用时( foo() ),会在全局调用栈中(GEC)创建
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-11 20:26" pubdate>
-              2022-04-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/11/JavaScript/jsBasic_02/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="JavaScript的运行">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/11/JavaScript/jsBasic_02/" target="_self">
-          JavaScript的运行
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/04/11/JavaScript/jsBasic_02/" target="_self">
-          
-          
-            
-          
-          代码解析
-在JS引擎解析时,会形成一个Global Object(全局对象),里面内置了String,Math等类,window:this(指向Global Object),全局声明的变量在解析时也会放置在这里,但是默认值为undefined,因为解析时不执行代码(赋值、函数调用等)
-
-代码执行
-JS引擎通过执行上下文栈（调用栈）调用代码
-Q：全局变量没有调用栈该如何执行调用？A：需要创建全局执行
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-11 20:06" pubdate>
-              2022-04-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/10/JavaScript/jsBasic_01/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="JS基础运行知识">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/10/JavaScript/jsBasic_01/" target="_self">
-          JS基础运行知识
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/04/10/JavaScript/jsBasic_01/" target="_self">
-          
-          
-            
-          
-          JS代码是如何在浏览器中运行的?
-浏览器通过DNS解析域名为IP地址,访问IP地址返回html文件
-html文件下载完成后,解析html文件(1) 解析到script标签,就会去服务器下载对应的JS文件(2) 遇到link标签,就会去服务器下载对应的css文件
-等到js文件下载完成后,浏览器就会通过浏览器内核,解析运行JS代码
-
-浏览器渲染过程
-将html解析形成DOM树,此时遇到JS标签则会体质
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-10 21:35" pubdate>
-              2022-04-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-              <a href="/tags/Http/">Http</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/03/04/miniProgram/basic-08/" target="_self">
-          <img src="/img/wx2.jpg" srcset="/img/loading.gif" lazyload alt="微信小程序の一些踩坑点">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/04/miniProgram/basic-08/" target="_self">
-          微信小程序の一些踩坑点
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/04/miniProgram/basic-08/" target="_self">
-          
-          
-            
-          
-          WXS的使用
-小程序如何使用在页面上使用类似于vue2的过滤器属性?A: WXS
-使用
-新建一个wxs文件,里面只支持js的es5语法,在里面写转换函数,通过module.exports = {方法名} 导出
-在需要使用工具类函数的页面引入wxs标签&#x2F;&#x2F; module 就是类似于整个模块名称,通过这个名称获取里面的方法
-&lt;wxs sr&#x3D;&quot;..&#x2F
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-04 19:04" pubdate>
-              2022-03-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/03/04/miniProgram/basic-07/" target="_self">
-          <img src="/img/wx2.jpg" srcset="/img/loading.gif" lazyload alt="微信小程序の登录流程">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/04/miniProgram/basic-07/" target="_self">
-          微信小程序の登录流程
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/04/miniProgram/basic-07/" target="_self">
-          
-          
-            
-          
-          登录流程    小程序端: 
-        (1) 在小程序通过wx.login API获取临时的code
-        (2) 调用接口将code传递给自己的服务器
-
-    自己服务器端:
-        (1) 获取小程序内传来的临时的code
-        (2) 将临时的code + appId + appsecret发送给微信小程序服务器,获取 openId 和 session_
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-04 18:53" pubdate>
-              2022-03-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/03/04/miniProgram/basic-06/" target="_self">
-          <img src="/img/wx2.jpg" srcset="/img/loading.gif" lazyload alt="微信小程序の分包">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/04/miniProgram/basic-06/" target="_self">
-          微信小程序の分包
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/04/miniProgram/basic-06/" target="_self">
-          
-          
-            
-          
-          使用场景&amp;限制
-优化小程序启动时加载事件,协同开发进行解耦
-限制:(1) tabbar或者首屏使用的文件不能进行分包(2) 单个小程序打包大小不能超过2MB,使用分包总体小程序包体积不能大于20MB
-
-  值得注意:
-
-如果需要分包,应该在小程序开发前期就规划好,定下基础模块,防止往后开发改造目录结构带来麻烦
-
-使用分包
-在根目录下简历packageModeName(模块名称)的文件夹
-
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-04 18:08" pubdate>
-              2022-03-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/03/04/miniProgram/basic-05/" target="_self">
-          <img src="/img/wx2.jpg" srcset="/img/loading.gif" lazyload alt="微信小程序の数据共享">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/04/miniProgram/basic-05/" target="_self">
-          微信小程序の数据共享
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/03/04/miniProgram/basic-05/" target="_self">
-          
-          
-            
-          
-          前言
-小程序目前没有像vue一样有一个契合性很好的全局状态管理库并且现有的全局状态共享并不是响应式的,但是可以下载相应的依赖包进行全局状态管理并且达到响应式的效果。这篇博文就是介绍一个比较不错的全局状态管理库和小程序本身全局共享数据的特点。
-
-app.js全局共享数据
-在app.js中 声明变量 globalData
-通过getApp( ) 获取app.js对象
-getApp().globalDa
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-04 17:46" pubdate>
-              2022-03-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
             
           </div>
         
@@ -779,7 +824,7 @@ getApp().globalDa
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

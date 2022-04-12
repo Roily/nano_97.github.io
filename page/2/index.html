@@ -178,36 +178,32 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/03/04/miniProgram/basic-04/" target="_self">
-          <img src="/img/wx2.jpg" srcset="/img/loading.gif" lazyload alt="小程序の异步api封装&amp;插槽/混入">
+        <a href="/2022/04/12/JavaScript/jsBasic_14/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="原型链">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/03/04/miniProgram/basic-04/" target="_self">
-          小程序の异步api封装&amp;插槽/混入
+        <a href="/2022/04/12/JavaScript/jsBasic_14/" target="_self">
+          原型链
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/03/04/miniProgram/basic-04/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_14/" target="_self">
           
           
             
           
-          异步API的封装
-为什么要封装微信的异步API?
-因为异步的原因,可能会与我们代码逻辑有所冲突
-因为微信提供的异步API很繁琐,我们通过你自己的进一步封装,可以更好的调用,减少代码的体积
+          原型链
+什么是原型链?当在一个对象上找不到某个属性或者方法时,会去该对象的原型对象中([[prototype]])查找,如果该对象的原型对象也没有该属性,那么会在原型对象的原型对象中查找,这样逐层查找原型对象直到查到顶层对象,这样的链式查找就是原型链。
 
 
-如何封装?
-使用promise封装
-示例:&#x2F;&#x2F; 我们这里使用微信提供的请求API进行演示,封装逻辑都是一样的
-const baseUrl &#x3D; &#39;xxx&#39;
-cons
+注意: Object是所有类的父类,他的[[prototype]]是null
+
+
         </a>
       </p>
 
@@ -215,8 +211,8 @@ cons
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-04 15:35" pubdate>
-              2022-03-04
+            <time datetime="2022-04-12 15:30" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -224,7 +220,7 @@ cons
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+              <a href="/categories/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -232,7 +228,7 @@ cons
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -244,51 +240,30 @@ cons
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/03/04/miniProgram/basic-03/" target="_self">
-          <img src="/img/wx2.jpg" srcset="/img/loading.gif" lazyload alt="小程序の页面App生命周期&amp;路由传参">
+        <a href="/2022/04/12/JavaScript/jsBasic_13/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="隐式原型和显示原型">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/03/04/miniProgram/basic-03/" target="_self">
-          小程序の页面App生命周期&amp;路由传参
+        <a href="/2022/04/12/JavaScript/jsBasic_13/" target="_self">
+          隐式原型和显示原型
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/03/04/miniProgram/basic-03/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_13/" target="_self">
           
           
             
           
-          App生命周期
-
-
-属性
-说明
-用法
-
-
-
-onLaunch
-监听小程序初始化
-应用第一次启动就会触发的事件(一般用做程序启动获取用户的个人信息)[比onShow先触发]
-
-
-onShow
-监听小程序启动或切前台
-应用被用户看到时触发,比onLaunch慢,会频繁触发[重置应用的数据和页面效果]
-
-
-onHide
-监听小程序切后台
-应用被隐藏[暂停或清除定时器,减少内存]
-
-
-onError
-错误
+          隐式原型
+什么是隐式原型?定义: 每一个对象都有一个隐式原型([[prototype]])
+作用用来继承构造函数中的prototype(显示原型)指针
+如何获取这个隐式原型?(1) 绝大部分浏览器都给对象内置了__proto__属性,可以通过__proto__获取对象的原型const obj  &#x3D; &#123; name: &#39;nano&#39; &#125;
+const objP
         </a>
       </p>
 
@@ -296,8 +271,8 @@ onError
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-04 14:22" pubdate>
-              2022-03-04
+            <time datetime="2022-04-12 15:01" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -305,7 +280,7 @@ onError
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+              <a href="/categories/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -313,7 +288,7 @@ onError
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -325,32 +300,33 @@ onError
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/03/03/miniProgram/basic-02/" target="_self">
-          <img src="/img/wx2.jpg" srcset="/img/loading.gif" lazyload alt="小程序の组件使用">
+        <a href="/2022/04/12/JavaScript/jsBasic_12/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="批量创建对象的方法">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/03/03/miniProgram/basic-02/" target="_self">
-          小程序の组件使用
+        <a href="/2022/04/12/JavaScript/jsBasic_12/" target="_self">
+          批量创建对象的方法
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/03/03/miniProgram/basic-02/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_12/" target="_self">
           
           
             
           
-          组件的使用
-注册自定义组件
-
-在微信开发者工具中,选择components文件夹鼠标右击选择新建component,输入名称后自动创建4个文件,基本与page页面结构相同
-在需要使用组件的页面文件或者组件文件,选择.json结尾的配置文件
-在json文件中的”usingCompoents”属性中进行配置&#123;
-  &quot;usingComponents&quot;: &quot;需要引入
+          工厂模式
+什么是工厂模式?定义: 封装一个方法调用即可创建多个对象
+function createObj( name,age,height )&#123;
+  let obj &#x3D; new Object( )
+  obj.name &#x3D; name
+  obj.age &#x3D; age
+  obj.height &#x3D; height
+  obj.say( ) &#x3D; 
         </a>
       </p>
 
@@ -358,8 +334,8 @@ onError
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-03 15:24" pubdate>
-              2022-03-03
+            <time datetime="2022-04-12 14:36" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -367,7 +343,7 @@ onError
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+              <a href="/categories/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -375,7 +351,7 @@ onError
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -387,28 +363,31 @@ onError
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/03/03/miniProgram/basic-01/" target="_self">
-          <img src="/img/wx2.jpg" srcset="/img/loading.gif" lazyload alt="小程序の基础语法">
+        <a href="/2022/04/12/JavaScript/jsBasic_11/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="Object.defineProperty解析">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/03/03/miniProgram/basic-01/" target="_self">
-          小程序の基础语法
+        <a href="/2022/04/12/JavaScript/jsBasic_11/" target="_self">
+          Object.defineProperty解析
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/03/03/miniProgram/basic-01/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_11/" target="_self">
           
           
             
           
-          插值语法
-初识微信小程序插值语法定义: 类似于vue的插值语法,也采用&#123;&#123; &#125;&#125;进行值的动态绑定值的注意:   (1) 无法像vue语法中可以进行函数调用
- (2) 传递布尔值值必须使用&#123;&#123;&#125;&#125;传递,不使用&#123;&#123;&#125;&#125;默认都是字符串,false就会被编译成字符串false,显示为tr
+          定义
+直接定义一个对象上的新属性或者修改一个对象上的现有属性,并返回此对象
+
+接收的参数(1) target 目标对象(2) key 新的属性名或者需要修改的属性名(字符串)(3) desc 属性描述符[ 数据属性描述符(默认都为false ),访问器属性描述符 ](对象)
+const obj &#x3D; &#123; name: &#39;nano&#39; &#125;
+Object.def
         </a>
       </p>
 
@@ -416,8 +395,8 @@ onError
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-03 10:45" pubdate>
-              2022-03-03
+            <time datetime="2022-04-12 13:49" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -425,7 +404,7 @@ onError
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+              <a href="/categories/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -433,7 +412,7 @@ onError
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -445,44 +424,35 @@ onError
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/12/15/hexo/hexoComment/" target="_self">
-          <img src="/img/fluid-hexo.png" srcset="/img/loading.gif" lazyload alt="Fluid主题配置Valine评论系统">
+        <a href="/2022/04/12/JavaScript/jsBasic_10/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="组合函数">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/15/hexo/hexoComment/" target="_self">
-          Fluid主题配置Valine评论系统
+        <a href="/2022/04/12/JavaScript/jsBasic_10/" target="_self">
+          组合函数
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/15/hexo/hexoComment/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_10/" target="_self">
           
           
             
           
-          前言本文主要用来介绍如何在Fluid主题中博客添加Valine评论系统
-
-Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine等等,选择valine的原因如下:
-
-无后端实现
-
-高速，使用国内后端云服务提供商 LeanCloud 提供的存储服务
-
-开源，自定义程度高
-
-支持邮件通知
-
-支持验证码
-
-支持 Markdown
-
-
-开始配置
-注册Leancloud
+          组合函数
+定义: 多个函数组合成一个新的函数(需要注意函数的调用顺序)&lt;script&gt;
+  function add(a) &#123;
+    return a+&#x3D;5
+  &#125;
+  function mul(b) &#123;
+    return b-&#x3D;5
+  &#125;
+  function comp(add,mul) &#123;
+    retu
         </a>
       </p>
 
@@ -490,8 +460,8 @@ Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-15 23:21" pubdate>
-              2021-12-15
+            <time datetime="2022-04-12 13:39" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -499,7 +469,7 @@ Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/hexo/">hexo</a>
+              <a href="/categories/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -507,11 +477,7 @@ Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Hexo/">Hexo</a>
-            
-              <a href="/tags/Fluid/">Fluid</a>
-            
-              <a href="/tags/hexo%E4%B8%BB%E9%A2%98/">hexo主题</a>
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -523,32 +489,37 @@ Valine优点其实Fluid主题内置了很多评论插件,比如utterances,valine
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/12/15/hexo/fluidOptions/" target="_self">
-          <img src="/img/fluid-hexo.png" srcset="/img/loading.gif" lazyload alt="Fluid主题配置">
+        <a href="/2022/04/12/JavaScript/jsBasic_09/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="函数式编程">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/15/hexo/fluidOptions/" target="_self">
-          Fluid主题配置
+        <a href="/2022/04/12/JavaScript/jsBasic_09/" target="_self">
+          函数式编程
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/15/hexo/fluidOptions/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_09/" target="_self">
           
           
             
           
-          前言之前介绍了如何使用Fluid的主题,这篇将继续深入如何去使用Fluid。
+          纯函数(pure function)
+定义:(1) 相同的输入产生相同的结果
 
-基础目录结构
-使用hexo n 文件名称创建一个md文档,用来创作博客文章,进入md文档后,基础结构展示如下: ---
-title: 使用Hexo搭建博客（基础版） # 博客文章标题
-date: 2021-12-15 01:47:44  # 文章编写日期
-index_img: &#x2F;img&#x2F;fluid-
+详解:入参类型相同且 return 的值格式相同,如果给定相同的参数，则得到相同的结果 ,有输入就一定有输出
+
+ (2) 不会产生副作用  
+
+详解:不会影响其它作用域的变量的值,不会更改页面的显示,不会对内存存储进行改变等等 
+
+ (3) 只通过return返回输出的值,不会在其它地方打印
+
+优势只需要关注函数内部的
         </a>
       </p>
 
@@ -556,8 +527,8 @@ index_img: &#x2F;img&#x2F;fluid-
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-15 01:47" pubdate>
-              2021-12-15
+            <time datetime="2022-04-12 12:57" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -565,7 +536,7 @@ index_img: &#x2F;img&#x2F;fluid-
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/hexo/">hexo</a>
+              <a href="/categories/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -573,11 +544,7 @@ index_img: &#x2F;img&#x2F;fluid-
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Hexo/">Hexo</a>
-            
-              <a href="/tags/Fluid/">Fluid</a>
-            
-              <a href="/tags/hexo%E4%B8%BB%E9%A2%98/">hexo主题</a>
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -589,36 +556,39 @@ index_img: &#x2F;img&#x2F;fluid-
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/12/13/hexo/picGo/" target="_self">
-          <img src="/img/picGo-new.jpg" srcset="/img/loading.gif" lazyload alt="基于gitee的PicGo的搭建">
+        <a href="/2022/04/12/JavaScript/jsBasic_08/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="函数的arguments">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/13/hexo/picGo/" target="_self">
-          基于gitee的PicGo的搭建
+        <a href="/2022/04/12/JavaScript/jsBasic_08/" target="_self">
+          函数的arguments
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/13/hexo/picGo/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_08/" target="_self">
           
           
             
           
-          前言  想着做一个图床,方便博客的图片管理以及减少静态资源的占用量
-PicGo介绍
-一个用于快速上传图片并获取图片 URL 链接的工具
+          什么是函数的arguments?
+定义: 是函数内置的函数参数的一个集合,是一个类数组对象,每一个函数都有该属性
+注意: 箭头函数是没有arguments的,与ES6的剩余参数做搭配
 
 
-支持拖拽图片上传
-支持快捷键上传剪贴板里第一张图片
-Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+)
-上传图片后自动复制链接到剪贴板
-支持自定义复制到剪贴板的链接格式
-支持修改快捷键，默认快速上传快捷键：command+shif
+
+常用用法
+获取参数长度
+ function foo()&#123;
+  console.log( arguments.length )
+&#125;
+foo(1,2,3,4) --&gt; 4
+
+备注: 通过函
         </a>
       </p>
 
@@ -626,8 +596,8 @@ Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+)
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-13 16:24" pubdate>
-              2021-12-13
+            <time datetime="2022-04-12 12:43" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -635,7 +605,7 @@ Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+)
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/hexo/">hexo</a>
+              <a href="/categories/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -643,9 +613,7 @@ Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+)
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/picGo/">picGo</a>
-            
-              <a href="/tags/gitee/">gitee</a>
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -657,30 +625,34 @@ Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+)
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/12/10/hexo/hexoFluid/" target="_self">
-          <img src="/img/fluid-hexo.png" srcset="/img/loading.gif" lazyload alt="Fluid配置使用">
+        <a href="/2022/04/12/JavaScript/jsBasic_07/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="this">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/10/hexo/hexoFluid/" target="_self">
-          Fluid配置使用
+        <a href="/2022/04/12/JavaScript/jsBasic_07/" target="_self">
+          this
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/10/hexo/hexoFluid/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_07/" target="_self">
           
           
             
           
-          Fluid介绍Fluid 是基于 Hexo 的一款 Material Design 风格的主题
+          不同环境下的全局this指向
+在浏览器环境下,this指向了window
+在node的环境下,this指向了global({})
 
-优势1.设计遵循简洁至上，同时具有轻快的体验，和优雅的颜值；2.提供大量定制化配置项，使每个用户使用该主题都能具有独特的样式；3.响应式页面，适配手机、平板等设备；4.为数不多内置支持 LaTeX 语法公式的主题。
 
-特性1.图片懒加载2.自定义代码高亮方案3.内置多语言4.内置多款评论插件5.外部覆
+因为不同环境this的指向不一致,所以在ES11的时候新增了一个属性:GlobalThis,根据不同环境动态指向对应的全局this
+
+函数this的指向
+在执行函数执行栈(FEC)时,会创建VO,scope chain和this这时的this是动态绑定的,不是创建时
         </a>
       </p>
 
@@ -688,8 +660,8 @@ Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+)
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-10 16:07" pubdate>
-              2021-12-10
+            <time datetime="2022-04-12 11:38" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -697,7 +669,7 @@ Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+)
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/hexo/">hexo</a>
+              <a href="/categories/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -705,11 +677,7 @@ Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+)
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Fluid/">Fluid</a>
-            
-              <a href="/tags/hexo%E4%B8%BB%E9%A2%98/">hexo主题</a>
-            
-              <a href="/tags/hexo/">hexo</a>
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -721,36 +689,36 @@ Windows 和 macOS 支持右键图片文件通过菜单上传 (v2.1.0+)
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/11/18/Vue/keyModifier/" target="_self">
-          <img src="/img/vue-logo.jpg" srcset="/img/loading.gif" lazyload alt="Vueの修饰符">
+        <a href="/2022/04/12/JavaScript/jsBasic_06/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="闭包">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/11/18/Vue/keyModifier/" target="_self">
-          Vueの修饰符
+        <a href="/2022/04/12/JavaScript/jsBasic_06/" target="_self">
+          闭包
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/11/18/Vue/keyModifier/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_06/" target="_self">
           
           
             
           
-          前言
-本篇文章是专门用来介绍vue的修饰符
-包括了指令的修饰符,事件修饰符,按键修饰符,其它修饰符
-了解常用的修饰符,使某些场景的开发变得更加简便
+          什么是闭包?
+一个普通的函数,如果可以访问外层作用域的变量,那么这就是一个闭包
 
-指令的修饰符简介: 指令的修饰符包括了v-model的修饰符和v-bind的修饰符,这些都是一些比较常用的修饰符,有便于我们平常的开发
+广义的角度上: JS的函数都是闭包狭义的角度上: JS中的一个函数,内部引用了外部作用域的变量,那就是闭包
 
-v-model的修饰符  v-model的修饰符分为3种.lazy,.trim,.number
 
-.lazy
-v
+  function foo( param &#x3D; 1 )&#123;
+  return function()&#123;
+    return param +&#x3D; 1
+  &#125;
+&#
         </a>
       </p>
 
@@ -758,8 +726,8 @@ v
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-18 23:13" pubdate>
-              2021-11-18
+            <time datetime="2022-04-12 11:23" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -767,7 +735,7 @@ v
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Vue/">Vue</a>
+              <a href="/categories/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -775,9 +743,7 @@ v
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Vue2/">Vue2</a>
-            
-              <a href="/tags/Vue3/">Vue3</a>
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -789,30 +755,34 @@ v
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/11/18/hexo/hexoCreate/" target="_self">
-          <img src="/img/hexo.jpg" srcset="/img/loading.gif" lazyload alt="hexo的基础搭建">
+        <a href="/2022/04/12/JavaScript/jsBasic_05/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="浅谈JavaScript中的函数">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/11/18/hexo/hexoCreate/" target="_self">
-          hexo的基础搭建
+        <a href="/2022/04/12/JavaScript/jsBasic_05/" target="_self">
+          浅谈JavaScript中的函数
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/11/18/hexo/hexoCreate/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_05/" target="_self">
           
           
             
           
-          Hexo介绍Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
+          函数
+JavaScript中,函数是一等公民,可以作为一个参数传递,也可以作为一个函数的返回结果
 
-风一般的速度Hexo基于Node.js，支持多进程，几百篇文章也可以秒生成。 
-流畅的撰写支持GitHub Flavored Markdown和所有Octopress的插件。 
-扩展性Hexo支持EJS、Swig和Stylus。通过插件支
+高阶函数
+当一个函数的返回值是另一个函数或者接收的参数是另一个函数,这时候我们将这个函数称之为高阶函数funciton foo()&#123;
+  return function()&#123;&#125;
+&#125;
+
+function foo(callback)&#123; callback(
         </a>
       </p>
 
@@ -820,8 +790,8 @@ v
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-18 23:03" pubdate>
-              2021-11-18
+            <time datetime="2022-04-12 00:49" pubdate>
+              2022-04-12
             </time>
           </div>
         
@@ -829,7 +799,7 @@ v
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/hexo/">hexo</a>
+              <a href="/categories/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -837,9 +807,7 @@ v
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/hexo/">hexo</a>
-            
-              <a href="/tags/github/">github</a>
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -851,7 +819,7 @@ v
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
