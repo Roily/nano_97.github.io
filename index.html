@@ -178,34 +178,29 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_24/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES7语法">
+        <a href="/2022/04/13/JavaScript/jsBasic_42/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="模块化">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_24/" target="_self">
-          ES7语法
+        <a href="/2022/04/13/JavaScript/jsBasic_42/" target="_self">
+          模块化
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_24/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_42/" target="_self">
           
           
             
           
-          includes(value,index)
-判断数组内是否包含某个值,返回布尔值(判断元素为引用类型的值时需要注意指针地址,一般不用来做元素为引用类型的判断)
-值得注意: 可以判断是否包含NaN
+          模块化
+定义: 将程序分成一个个小的模块,在这个模块中编写属于自己的逻辑代码,有自己的作用域,不会影响到其他的结构。整个模块可以将自己希望暴露的变量、函数、对象等导出给其它模块使用；也可以通过某种方式，导入另外模块中的变量、函数、对象等。
 
-
-参数(1) value: 是否包含的值(2) index: 从第几个索引开始判断(可以不传)
-使用const arr &#x3D; [ 1,2,3, NaN ]
-
-arr.includes(NaN,1
+CommonJS [Node/WebPack](1) 在Node中每一个js文件都是一个单独的模块(2) CommonJS规范的核心变量: exports、m
         </a>
       </p>
 
@@ -213,8 +208,8 @@ arr.includes(NaN,1
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 22:14" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 22:27" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -232,7 +227,7 @@ arr.includes(NaN,1
             
               <a href="/tags/JavaScript/">JavaScript</a>
             
-              <a href="/tags/ES7/">ES7</a>
+              <a href="/tags/NodeJs/">NodeJs</a>
             
           </div>
         
@@ -244,35 +239,39 @@ arr.includes(NaN,1
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_23/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(5)">
+        <a href="/2022/04/13/JavaScript/jsBasic_41/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="错误处理方案">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_23/" target="_self">
-          ES6语法(5)
+        <a href="/2022/04/13/JavaScript/jsBasic_41/" target="_self">
+          错误处理方案
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_23/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_41/" target="_self">
           
           
             
           
-          Map
-前提:普通对象的key无论写什么类型最后都会转为字符串[除了symbol],而对象类型转为字符串则是’[object Object]’,变成相同key值,后一个会覆盖前一个
-定义:与对象的区别是可以用任意数据类型做为key值且不会转成字符串类型
-注意: 如果是数组作为key存值,那么需要传递entires格式
+          错误处理方案
+throw 抛出异常,阻止后续代码执行 &#x2F;&#x2F; 抛出异常
+throw new Error(  )  
 
+&#x2F;&#x2F; 抛出类型异常
+throw new TypeError( )
 
+&#x2F;&#x2F; 抛出语法异常
+throw SyntaxError( )
 
-    const map &#x3D; new Map()
+&#x2F;&#x2F; 抛出下标值越界异常
+throw RangeError( )
 
-&#x2F
+异常
         </a>
       </p>
 
@@ -280,8 +279,8 @@ arr.includes(NaN,1
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 22:08" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 18:24" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -299,10 +298,6 @@ arr.includes(NaN,1
             
               <a href="/tags/JavaScript/">JavaScript</a>
             
-              <a href="/tags/ES6/">ES6</a>
-            
-              <a href="/tags/ES9/">ES9</a>
-            
           </div>
         
       </div>
@@ -313,35 +308,33 @@ arr.includes(NaN,1
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_22/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(4)">
+        <a href="/2022/04/13/JavaScript/jsBasic_40/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="进程&amp;线程&amp;事件循环">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_22/" target="_self">
-          ES6语法(4)
+        <a href="/2022/04/13/JavaScript/jsBasic_40/" target="_self">
+          进程&amp;线程&amp;事件循环
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_22/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_40/" target="_self">
           
           
             
           
-          Set
-定义: 类似于数组,但是元素不能重复
-创建Set结构let set &#x3D; new Set()
-set.add(10)
-set.add(20)
-set.add(20)
-set.add(&#123;&#125;)
-set.add(&#123;&#125;)
+          进程和线程的关系
+Q:什么是进程和线程?A: 进程( process ): 计算机已经运行的程序,是操作系统管理程序的一种方式 线程( thread ): 操作系统能够运行运算调度的最小单位,通常情况下包含在进程中,每个进程至少会有一个线程用来执行程序中的代码,一般称这个线程为主线程
+所以说 进程是线程的容器
 
-console.log(set)     --&gt; Set(4) &#123; 10, 20, &#123;&#125;, 
+
+
+JavaScript线程
+定义: JavaScript是单线程的,进程容器就是: 
         </a>
       </p>
 
@@ -349,8 +342,8 @@ console.log(set)     --&gt; Set(4) &#123; 10, 20, &#123;&#125;,
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 21:29" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 18:11" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -368,10 +361,6 @@ console.log(set)     --&gt; Set(4) &#123; 10, 20, &#123;&#125;,
             
               <a href="/tags/JavaScript/">JavaScript</a>
             
-              <a href="/tags/ES6/">ES6</a>
-            
-              <a href="/tags/ES9/">ES9</a>
-            
           </div>
         
       </div>
@@ -382,221 +371,415 @@ console.log(set)     --&gt; Set(4) &#123; 10, 20, &#123;&#125;,
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_21/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(3)">
+        <a href="/2022/04/13/JavaScript/jsBasic_39/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="async await">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_21/" target="_self">
-          ES6语法(3)
+        <a href="/2022/04/13/JavaScript/jsBasic_39/" target="_self">
+          async await
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_21/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_39/" target="_self">
           
           
             
           
-          模板字符串
-基本语法let name &#x3D; &#39;nano&#39;
-let str &#x3D; &#96;你好$&#123;name&#125;&#96;
-console.log(str) --&gt; &#39;你好nano&#39;
-拓展语法(1) 标签模板字符串定义:将模板字符串设置为一种调用函数的方式,第一个参数为数组,里面是模板字符串中的字符串,会根据${}分割,如果没有
-        </a>
-      </p>
+          定义
+本质是Generator函数和Promise的语法糖(源码类似于上面的代码)
+解释:(1) async(异步的) : 用于声明一个异步函数(2) await : 必须与async搭配使用
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 20:50" pubdate>
-              2022-04-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-              <a href="/tags/ES6/">ES6</a>
-            
-              <a href="/tags/ES9/">ES9</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
+async(异步函数)
+使用 
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_17/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="class的基本使用">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/12/JavaScript/jsBasic_17/" target="_self">
-          class的基本使用
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_17/" target="_self">
-          
-          
-            
-          
-          类的声明  class Person&#123;&#125;
-类的表达式(不常用)  const Person &#x3D; class &#123;&#125;
-class的构造函数  class Person&#123;
-  &#x2F;*
-    1. 创建一个新对象
-    2. 将构造函数的prototype赋值给新对象的[[prototype]]
-    3. 将函数的this指向新对
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 20:48" pubdate>
-              2022-04-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-              <a href="/tags/ES6/">ES6</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_20/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(2)">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/12/JavaScript/jsBasic_20/" target="_self">
-          ES6语法(2)
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_20/" target="_self">
-          
-          
-            
-          
-          let&amp;const
-let&amp;const 共同点:(1) 不允许重复声明变量(2) 没有变量提升(其实在执行上下文阶段被创建出来了,但是不能被访问,从而达到没有变量提升的效果)(3) 设置块级作用域(变量,方法只能在块级作用域内部访问,不能在外部访问)(4) 形成暂时性死区(在块级作用域中,即使外层区域声明过该变量,只要在块级作用域内用let/const声明同名变量,就无法提前访问,
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 18:09" pubdate>
-              2022-04-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-              <a href="/tags/ES6/">ES6</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_19/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(1)">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/12/JavaScript/jsBasic_19/" target="_self">
-          ES6语法(1)
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_19/" target="_self">
-          
-          
-            
-          
-          对象字面量增强写法
-属性简写定义: 与key值同名的属性变量,在被对象引用时可以简写为一个keylet age &#x3D; 18
-let perston &#x3D; &#123;
-  age
+  async function foo ()&#123;
+  console.log(1)
 &#125;
-方法简写let person &#x3D; &#123;
-  say()&#123;&#125; --&gt; say:function()&#123;&#125;
+console.log(0)
+foo()
+console.lo
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-13 18:01" pubdate>
+              2022-04-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES8/">ES8</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/13/JavaScript/jsBasic_38/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="Generator 解决异步方案">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/13/JavaScript/jsBasic_38/" target="_self">
+          Generator 解决异步方案
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/13/JavaScript/jsBasic_38/" target="_self">
+          
+          
+            
+          
+          示例代码        &#x2F;* 封装promise异步函数 *&#x2F;
+   let requestData&#x3D;(param) &#x3D;&gt; &#123;
+      return new Promise((resolve,reject) &#x3D;&gt; &#123;
+        setTimeout(() &#x3D;&gt; &#123;
+        
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-13 17:59" pubdate>
+              2022-04-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/13/JavaScript/jsBasic_37/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="Generator[生成器]">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/13/JavaScript/jsBasic_37/" target="_self">
+          Generator[生成器]
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/13/JavaScript/jsBasic_37/" target="_self">
+          
+          
+            
+          
+          定义
+是一个特殊的迭代器,是一种函数控制、使用的方案,它可以让我们更加灵活的 控制函数什么时候执行、暂停执行
+生成器函数(1) 定义: function 之后 添加 * 号就是生成器函数,可以搭配 yield 控制代码的执行流程,返回一个生成器(对象)(2) 关键字: yield [控制代码的执行流程] 每一个yield就是一个暂停,yield可以用来返回值(3) 与return 区别 : ret
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-13 17:14" pubdate>
+              2022-04-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/13/JavaScript/jsBasic_36/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="迭代器">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/13/JavaScript/jsBasic_36/" target="_self">
+          迭代器
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/13/JavaScript/jsBasic_36/" target="_self">
+          
+          
+            
+          
+          Iterator(迭代器)
+定义: 是一个对象,用来帮助我们遍历某一个数据结构
+标准[迭代器协议(iterator protocol)]:(1) 必须有一个next函数,并且该函数没有参数或者只有一个参数(2) next函数必须返回一个对象,并且该对象里包含done和value属性   done 属性: 遍历的每一个属性,赋值为false,遍历完成全部属性后,最后会再访问一次,赋值为true,对应
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-13 16:51" pubdate>
+              2022-04-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/13/JavaScript/jsBasic_35/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="Promise(五)">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/13/JavaScript/jsBasic_35/" target="_self">
+          Promise(五)
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/13/JavaScript/jsBasic_35/" target="_self">
+          
+          
+            
+          
+          Promise的类方法
+定义:可以直接通过Promise类直接调用的方法
+
+Promise.resolve()
+使用: 将现有结果直接转变成一个fulfilled状态的promise对象返回const fulPromise &#x3D; Promise.resolve(&#123;name:&#39;nano&#39;&#125;)
+fulPromise.then( res &#x3D;&gt; 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-13 16:19" pubdate>
+              2022-04-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+              <a href="/tags/ES11/">ES11</a>
+            
+              <a href="/tags/ES12/">ES12</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/13/JavaScript/jsBasic_34/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="Promise(四)">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/13/JavaScript/jsBasic_34/" target="_self">
+          Promise(四)
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/13/JavaScript/jsBasic_34/" target="_self">
+          
+          
+            
+          
+          catch方法
+当executor抛出异常时,catch方法也会捕获异常(throw new Error( ))
+
+catch的链式调用默认捕获第一个promise的异常,如果第一个promise没有抛出异常并且.then函数中直接返回promise的对象且该对象抛出了异常,则捕获.then函数返回的promise对象异常
+let promiseFn&#x3D;() &#x3D;&gt; &#12
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-13 15:57" pubdate>
+              2022-04-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+              <a href="/tags/ES9/">ES9</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/13/JavaScript/jsBasic_33/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="Promise(三)">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/13/JavaScript/jsBasic_33/" target="_self">
+          Promise(三)
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/13/JavaScript/jsBasic_33/" target="_self">
+          
+          
+            
+          
+          then方法
+同一个promise的then方法可以调用多次  
+let fnPromise&#x3D;() &#x3D;&gt; &#123;
+  return new Promise((resolve,reject) &#x3D;&gt; &#123;resolve(&#39;被调用&#39;)&#125;)
 &#125;
-计算属性名
+
+fnPromise().then(res &#x3D;&gt; &#
         </a>
       </p>
 
@@ -604,8 +787,8 @@ let perston &#x3D; &#123;
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 18:02" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 15:40" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -624,195 +807,6 @@ let perston &#x3D; &#123;
               <a href="/tags/JavaScript/">JavaScript</a>
             
               <a href="/tags/ES6/">ES6</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_18/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="类的继承">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/12/JavaScript/jsBasic_18/" target="_self">
-          类的继承
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_18/" target="_self">
-          
-          
-            
-          
-          类的继承
-定义: 使用extends和super关键字实现继承    class Person &#123;
-  constructor(name, age) &#123;
-    this.name &#x3D; name
-    this.age &#x3D; age
-  &#125;
-  eating(params) &#123;
-    console.log(this.name + &#
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 17:47" pubdate>
-              2022-04-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-              <a href="/tags/ES6/">ES6</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_16/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="对象上的一些方法">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/12/JavaScript/jsBasic_16/" target="_self">
-          对象上的一些方法
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_16/" target="_self">
-          
-          
-            
-          
-          hasOwnProperty
-定义: 判断某个属性是否在自身对象上(不包含原型) 返回布尔值const obj &#x3D; &#123; name:&#39;nano&#39; &#125;
-&#x2F;&#x2F; 在原型对象上设置属性
-Object.setPrototypeOf( obj, &#123; age:19 &#125;)
-
-const res1 &#x3D; obj.hasOwn
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 17:12" pubdate>
-              2022-04-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_15/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="继承">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/12/JavaScript/jsBasic_15/" target="_self">
-          继承
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_15/" target="_self">
-          
-          
-            
-          
-          前言JavaScript是单继承的,只能继承一个父类
-原型链继承
-定义: 子类构造函数的prototype指向父类创建出来的对象
-
-  function Person(name,age)&#123;
-  this.name &#x3D; name
-  this.age &#x3D; age
-  this.run &#x3D; function()&#123; return &#39;run&#39
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 15:58" pubdate>
-              2022-04-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -824,7 +818,7 @@ const res1 &#x3D; obj.hasOwn
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

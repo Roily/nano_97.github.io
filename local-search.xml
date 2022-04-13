@@ -4,7 +4,495 @@
   
   
   <entry>
-    <title>ES7语法</title>
+    <title>模块化</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_42/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_42/</url>
+    
+    <content type="html"><![CDATA[<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><ol><li><p>定义: 将程序分成一个个小的模块,在这个模块中编写属于自己的逻辑代码,有自己的作用域,不会影响到其他的结构。整个模块可以将自己希望暴露的变量、函数、对象等导出给其它模块使用；也可以通过某种方式，导入另外模块中的变量、函数、对象等。</p></li><li><p>CommonJS [Node/WebPack]<br>(1) 在Node中每一个js文件都是一个单独的模块<br>(2) CommonJS规范的核心变量: exports、module.exports、require</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">exports.name &#x3D; &#39;nano&#39;module.exports &#x3D; &#123; name: &#39; nano&#39; &#125;const foo &#x3D; require(&#39;文件名&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li><p>变量分析<br>(1) exports &amp; module.exports<br>定义: 负责对模块中的内容进行导出</p></li></ol><p>  (2) require<br>    定义: <strong><font color="red">是一个函数</font></strong>,可以帮助我们导入其它模块(自定义模块、系统模块、第三方库模块)中的内容<br>  i. module.exports &amp; require<br>    <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;* a.js *&#x2F;let name &#x3D; &#39;nano&#39;let foo &#x3D; function()&#123;&#125;&#x2F;* 直接导出 *&#x2F;module.exports &#x3D; &#123;  name, foo&#125;&#x2F;* 导出集合对象  *&#x2F;let obj &#x3D; &#123; name,foo &#125;module.exports &#x3D; obj&#x2F;* b.js *&#x2F;const modeulA &#x3D; require(&#39;.&#x2F;a.js&#39;)console.log( moduleA ) --&gt; &#123; name: &#39;nano&#39;,foo:function()&#123;&#125; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p><blockquote><p><strong>注意: 最终导出都是以module.exports对象的形式被导出,所以一般都是用module.exports进行导出</strong></p></blockquote><p>ii. exports(不推荐)<br> <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">a.jslet name  &#x3D; &#39;nano&#39;exports.name &#x3D; nameb.jsconst res &#x3D; reuiqre( &#39;.&#x2F;a.js&#39; )cosnole.log(  res ) --&gt; &#123; name: nano &#125;&#x2F;* 源码解析 *&#x2F;module.export &#x3D; &#123;&#125;&#x2F;&#x2F; 因为将module.export的地址赋值给exports,所以可以用exports导出,实际还是导出module.exports对象exports &#x3D; module.exportexports.name &#x3D; name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p><h2 id="require"><a href="#require" class="headerlink" title="require"></a>require</h2><ol><li>定义: require是一个函数,用来导入其他模块或者依赖包(核心模块)</li><li>查找规则:<br>(1) 如果是核心模块:<br>  直接引入后使用<br>(2) 如果是路径:<br>  没有写文件后缀,则按照 x.js -&gt; x.json -&gt; x.node<br>  写了文件后缀: 直接查找文件<br>(3) 如果既不是核心模块也不是路径:<br>  逐层向上查找每层的node_modules中是否有同名文件夹,找到之后自动寻找index.js文件作为引入</li></ol><h2 id="CommonJS的原理"><a href="#CommonJS的原理" class="headerlink" title="CommonJS的原理"></a>CommonJS的原理</h2><ol><li>声明的需要导出的对象、exports导出的对象、module.exports 导出的对象 与 require导入的对象都指向同一个地址</li></ol><h2 id="模块的加载过程-Common-js"><a href="#模块的加载过程-Common-js" class="headerlink" title="模块的加载过程(Common.js)"></a>模块的加载过程(Common.js)</h2><ol><li>模块在被<font color="red"><strong>第一次</strong></font>引入时,模块中的js代码<font color="red"><strong>会被运行一次</strong></font></li><li>模块被<font color="red"><strong>多次引入</strong></font>时,会被缓存,最终<font color="red"><strong>只加载(运行)一次</strong></font><br>(1) 每个模块对象都有一个属性loaded,false表示未加载,true表示已加载<br>(2) 重复引用的模块指针都是指向同一个地址,所以只会加载一次</li><li>循环引入的加载顺序(图结构):<br>(1) 按顺序执行require函数,如果里面还有require函数则继续执行 [深度优先搜索]<br>(2) 如果有不同模块引用了相同的模块,则执行优先引入的那个模块,后续因为缓存不执行引入 [广度优先搜索]</li></ol><h2 id="CommonJS缺点"><a href="#CommonJS缺点" class="headerlink" title="CommonJS缺点"></a>CommonJS缺点</h2><ol><li>加载模块是<font color="red"><strong>同步的</strong></font>,意味着只有将模块资源全部加载完成后才能执行下一步的代码，不适用于浏览器。</li><li>浏览器的js文件需要先从服务器下载再进行加载,这意味着后面的js代码都无法继续执行,是无法接受的,而服务器是读取本地资源,速度很快,所以没有影响。</li></ol><h2 id="AMD-了解"><a href="#AMD-了解" class="headerlink" title="AMD (了解)"></a>AMD (了解)</h2><ol><li>定义: 异步加载模块</li></ol><h2 id="CMD-了解"><a href="#CMD-了解" class="headerlink" title="CMD (了解)"></a>CMD (了解)</h2><ol><li>定义: 异步加载模块和CommnonJS的优点</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>NodeJs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>错误处理方案</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_41/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_41/</url>
+    
+    <content type="html"><![CDATA[<h2 id="错误处理方案"><a href="#错误处理方案" class="headerlink" title="错误处理方案"></a>错误处理方案</h2><ol><li>throw 抛出异常,阻止后续代码执行 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 抛出异常throw new Error(  )  &#x2F;&#x2F; 抛出类型异常throw new TypeError( )&#x2F;&#x2F; 抛出语法异常throw SyntaxError( )&#x2F;&#x2F; 抛出下标值越界异常throw RangeError( )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><ol><li>如果对异常不处理,那么会一直向外抛出,一直到最顶层调用,如果最顶层也没有对异常处理,那么整个程序就会终止执行</li><li>try{ }catch(err){ }finally{ } 异常捕获</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>进程&amp;线程&amp;事件循环</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_40/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_40/</url>
+    
+    <content type="html"><![CDATA[<h2 id="进程和线程的关系"><a href="#进程和线程的关系" class="headerlink" title="进程和线程的关系"></a>进程和线程的关系</h2><ol><li>Q:什么是进程和线程?<br>A:<br> 进程( process ): 计算机已经运行的程序,是操作系统管理程序的一种方式<br> 线程( thread ): 操作系统能够运行运算调度的最小单位,通常情况下包含在进程中,每个进程至少会有一个线程用来执行程序中的代码,一般称这个线程为主线程<blockquote><p>所以说 进程是线程的容器</p></blockquote></li></ol><h2 id="JavaScript线程"><a href="#JavaScript线程" class="headerlink" title="JavaScript线程"></a>JavaScript线程</h2><ol><li>定义: JavaScript是单线程的,进程容器就是: Node或者浏览器<br> 这就意味着js的代码在同一时刻只能做一件事情,如果这件事非常耗时,就意味着当前的线程会被阻塞<br> 所以真正耗时的操作（网络请求，定时器），不应该由js线程执行，而是通过浏览器的其它线程执行，js只需要在获取浏览器通知（事件循环）执行回调获取结果即可</li></ol><blockquote><p>注意: 浏览器是多进程的,当我们打开一个tab页就是一个新的进程,防止一个页面无响应需要重启这个浏览器,每个进程又有多个线程,其中包括了JavaScript代码的线程</p></blockquote><h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><ol><li>定义: JavaScript线程在执行时,遇到异步任务的代码,会将异步任务放入浏览器其它线程, 该线程会在某一时间将异步任务放入任务队列,js引擎会在任务队列中获取对应的函数并进行执行,执行完成后该事件就结束,整个闭环的就是事件循环</li></ol><h2 id="宏任务-amp-微任务"><a href="#宏任务-amp-微任务" class="headerlink" title="宏任务&amp;微任务"></a>宏任务&amp;微任务</h2>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">宏任务:  script标签, 定时器,ajax, DOM操作, UI Rendering(UI渲染), I&#x2F;O操作(读取文件之类)[node]微任务:  queueMicrotask函数, Promise.then方法, process.nextTick [node]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p><strong><font color="red">规范: 在执行任何的宏任务之前,都需要先保证微任务队列已被清空</font></strong></p></blockquote><h2 id="队列优先级"><a href="#队列优先级" class="headerlink" title="队列优先级"></a>队列优先级</h2><ol><li>main script中的代码优先执行(编写的顶层script代码)</li><li>在执行任何一个宏任务之前,都会先查看微任务队列中是否有任务需要执行<br>(1) 在宏任务执行之前,必须保证微任务队列是空的<br>(2) 如果微任务队列不为空,那么就优先执行微任务队列中的任务</li><li>node中的process.nextTick()在同级微任务中是先执行的</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>async await</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_39/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_39/</url>
+    
+    <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ol><li>本质是Generator函数和Promise的语法糖(源码类似于上面的代码)</li><li>解释:<br>(1) async(异步的) : 用于声明一个异步函数<br>(2) await : 必须与async搭配使用</li></ol><h2 id="async-异步函数"><a href="#async-异步函数" class="headerlink" title="async(异步函数)"></a>async(异步函数)</h2><ol><li>使用 </li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">async function foo ()&#123;  console.log(1)&#125;console.log(0)foo()console.log(2)--&gt;  0,1,2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><ol start="2"><li>与普通函数区别<br>(1) 异步函数的返回值一定是一个promise, resolve的值就是异步函数return的值,不return默认返回undefined<br>(2) 异步函数的异常结果会作为返回的promise的rejected状态的值,需要通过catch捕获<blockquote><p>注意: 默认情况下,如果不写一些特殊代码,执行顺序和普通函数无异</p></blockquote></li></ol><h2 id="await"><a href="#await" class="headerlink" title="await"></a>await</h2><ol><li>使用: 专门用来解析promise,返回promise的resolve结果,如果reject则将reject结果作为异步函数返回值的promise的rejected状态<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">(async () &#x3D;&gt; &#123;  const res&#x3D;await &#123;then(resolve) &#123;resolve(111)&#125; &#125;  console.log(res)&#125;)()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><blockquote><p>注意:await会阻止后续代码执行,必须等到解析的promise对象resolve之后才会正确执行接下来的代码,reject则抛出异常</p></blockquote><blockquote><p><strong>值的注意:</strong> 由于await需要解析完promise的结果才会继续执行接下来的代码,所以await之后的代码相等于一起和.then进入了微任务队列</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES8</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Generator 解决异步方案</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_38/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_38/</url>
+    
+    <content type="html"><![CDATA[<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2>   <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">     &#x2F;* 封装promise异步函数 *&#x2F;   let requestData&#x3D;(param) &#x3D;&gt; &#123;      return new Promise((resolve,reject) &#x3D;&gt; &#123;        setTimeout(() &#x3D;&gt; &#123;          resolve(param)        &#125;,2000);      &#125;)    &#125; &#x2F;* 封装一个生成器 *&#x2F;    let genFn&#x3D;function*() &#123;      &#x2F;* 将promise对象作为结果通过yield返回         调用next函数传递的参数,必须通过上一个yield去接收     *&#x2F;      const value1&#x3D;yield requestData(&#39;aaa&#39;)      const value2&#x3D;yield requestData(value1+&#39;bbb&#39;)      const value3&#x3D;yield requestData(value2+&#39;ccc&#39;)      console.log(value3)    &#125;&#x2F;* 封装生成器递归next函数 *&#x2F;    let deepNext&#x3D;function(genFn) &#123;     &#x2F;&#x2F; 获取生成器对象      let genObj&#x3D;genFn()    &#x2F;&#x2F; 创建递归函数,并接受参数,参数为上一次next函数调用的结果      let deepGen&#x3D;function(res) &#123;        &#x2F;&#x2F; 执行生成器next函数并获得返回的结果  &#123; done:false&#x2F;true, value: promise&#x2F;undefined &#125;        let result&#x3D;genObj.next(res)        &#x2F;&#x2F; 对结果状态进行判断,判断是否已经全部执行完毕,如果全部执行完毕则结束递归        if(result.done) return result.value        &#x2F;&#x2F; 如果没有执行完毕,则调用promise对象,并将回调结果作为参数传递,进行递归调用        result.value.then(res1 &#x3D;&gt; &#123;          deepGen(res1)        &#125;)      &#125;      deepGen()    &#125;&#x2F;* 调用生成器递归函数 *&#x2F;    deepNext(genFn)res  --&gt;  &#39;aaabbbccc&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Generator[生成器]</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_37/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_37/</url>
+    
+    <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ol><li>是一个特殊的迭代器,是一种函数控制、使用的方案,它可以让我们更加灵活的 控制函数什么时候执行、暂停执行</li><li>生成器函数<br>(1) 定义: function 之后 添加 * 号就是生成器函数,可以搭配 yield 控制代码的执行流程,返回一个生成器(对象)<br>(2) 关键字: yield [控制代码的执行流程] 每一个yield就是一个暂停,yield可以用来返回值<br>(3) 与return 区别 : return 不执行后面的代码,结束执行,yield只是暂停</li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let foo&#x3D;function*() &#123;  console.log(1)  yield 2  console.log(3)&#125;let genObj&#x3D;foo()let value&#x3D;genObj.next() --&gt;1console.log(value) --&gt; &#123; done:false, vlaue: 2 &#125;genObj.next() --&gt;3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>注意: 如果需要在某个yield代码块中获取next函数传递的参数,需要用上一个yield去接收</p></blockquote>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let foo&#x3D;function*() &#123;  let value&#x3D;yield 2  console.log(value**3)  yield 2&#125;let genObj&#x3D;foo()genObj.next()genObj.next(2)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h2 id="return方法"><a href="#return方法" class="headerlink" title="return方法"></a>return方法</h2><ol><li>定义: 终止生成器函数,返回传递的参数,并阻止接下来的next( )方法<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let add&#x3D;function*() &#123;  console.log(11)  let value&#x3D;yield 222 &#x2F;&#x2F; 接收第二个next函数传递的参数  yield 222*value  console.log(3333)&#125;let genAdd&#x3D;add()let value &#x3D; genAdd().return(2) --&gt; &#123; done:true, value: 2 &#125;&#x2F;&#x2F; 不执行genAdd.next()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="throw方法"><a href="#throw方法" class="headerlink" title="throw方法"></a>throw方法</h2><ol><li>定义: 终止生成器函数,抛出异常,如果不捕获异常会阻止接下来的next( )方法,捕获则会继续执行接下来的生成器对象方法<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let add&#x3D;function*() &#123;  console.log(11)  yield  try &#123;      console.log(22)      yield  &#125; catch(err) &#123;      console.log(err)  &#125;  yield  console.log(33)&#125;let genAdd&#x3D;add()genAdd.next()genAdd.next()genAdd.throw(&#39;error&#39;)genAdd.next()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="yield"><a href="#yield" class="headerlink" title="yield*"></a>yield*</h2><ol><li>定义: 迭代可迭代对象<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">function* genArr(arr)&#123;  yeild* arr    &#x2F;* 等价于 *&#x2F;  for( item of arr )&#123;      yield item  &#125;&#125; let arr &#x3D; genArr( [1,2,3] )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>迭代器</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_36/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_36/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Iterator-迭代器"><a href="#Iterator-迭代器" class="headerlink" title="Iterator(迭代器)"></a>Iterator(迭代器)</h2><ol><li>定义: 是一个对象,用来帮助我们遍历某一个数据结构</li><li>标准[迭代器协议(iterator protocol)]:<br>(1) 必须有一个next函数,并且该函数没有参数或者只有一个参数<br>(2) next函数必须返回一个对象,并且该对象里包含done和value属性<br>   done 属性: 遍历的每一个属性,赋值为false,遍历完成全部属性后,最后会再访问一次,赋值为true,对应value属性的undefined<br>   value属性: 遍历的每项的值,全部的值遍历完成后,最后会再访问一次,生成一个undefined的值对应 done:true<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none"> const arr&#x3D;[1,2,3,4,5]let index&#x3D;0const iterObj&#x3D;&#123;  next() &#123;    if(index&gt;&#x3D;arr.length) &#123;      return &#123;done: true,value: undefiend&#125;    &#125; else &#123;      return &#123;done: false,value: arr[index++]&#125;    &#125;  &#125;&#125;console.log(iterObj.next()) --&gt; &#123;done: false, value: 1&#125;console.log(iterObj.next()) --&gt; &#123;done: false, value: 2&#125;console.log(iterObj.next()) --&gt; &#123;done: false, value: 3&#125;console.log(iterObj.next()) --&gt; &#123;done: false, value: 4&#125;console.log(iterObj.next()) --&gt; &#123;done: false, value: 5&#125;console.log(iterObj.next()) --&gt; &#123;done: true, value: undefined&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>备注:如果done一直不为true,那么这个迭代器就是无限迭代器(使用较少)</p></blockquote></li></ol><h2 id="可迭代对象"><a href="#可迭代对象" class="headerlink" title="可迭代对象"></a>可迭代对象</h2><ol><li>定义: 当一个对象实现了iterable protocol(可迭代协议)时,它就是一个可迭代对象</li><li>标准[ 可迭代协议]:<br>(1) 必须实现一个[Symbol.iterator]函数<br>(2) 该函数必须返回一个迭代器</li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const interableObj&#x3D;&#123;  names: [1,3,5],  [Symbol.iterator]() &#123;    let index&#x3D;0    return &#123;      next: () &#x3D;&gt; &#123;        if(index&lt;this.names.length) &#123;          return &#123;done: false,value: this.names[index++]&#125;        &#125; else &#123;          return &#123;done: true,value: undefined&#125;        &#125;      &#125;    &#125;  &#125;&#125;console.log(interableObj[Symbol.iterator]().next())--&gt;&#123;done: false,value: 1&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p><strong>注意</strong>: for..of..就是调用next函数循环调用的语法糖</p></blockquote><h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ol><li>for..of..语法糖</li><li>展开运算符(对象的展开不是迭代器,而是新的一个语法,因为对象不是可迭代对象)</li><li>解构(对象的解构不是迭代器,而是新的一个语法,因为对象不是可迭代对象)</li><li>new Set( ),Array.from( ),promise.All( )传递的参数都得是可迭代对象</li></ol><h2 id="自定义类可迭代对象"><a href="#自定义类可迭代对象" class="headerlink" title="自定义类可迭代对象"></a>自定义类可迭代对象</h2><ol><li>可以在类里面直接创建[Symbol.iterator]函数<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">class ClassRom&#123;  constructor()&#123;&#125;    [Symbol.iterator]()&#123;      return &#123;          next:() &#x3D;&gt;&#123;              return &#123; done:false, value:&#39;a&#39; &#125;          &#125;,          &#x2F;* 迭代终止时的提示 *&#x2F;          return: ()&#x3D;&gt;&#123;              console.log( &#39;迭代器终止了~&#39; )              return &#123; done:true, value: undefined &#125;          &#125;      &#125;  &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Promise(五)</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_35/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_35/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Promise的类方法"><a href="#Promise的类方法" class="headerlink" title="Promise的类方法"></a>Promise的类方法</h2><ol><li>定义:可以直接通过Promise类直接调用的方法</li></ol><h2 id="Promise-resolve"><a href="#Promise-resolve" class="headerlink" title="Promise.resolve()"></a>Promise.resolve()</h2><ol><li>使用: 将现有结果直接转变成一个fulfilled状态的promise对象返回<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const fulPromise &#x3D; Promise.resolve(&#123;name:&#39;nano&#39;&#125;)fulPromise.then( res &#x3D;&gt; console.log(res)  ) --&gt; &#123; name:&#39;nano&#39; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="Promise-reject"><a href="#Promise-reject" class="headerlink" title="Promise.reject()"></a>Promise.reject()</h2><ol><li>使用: 将现有结果直接转变成一个rejected状态的promise对象返回<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let obj&#x3D;&#123;name: 11&#125;let promiseFn&#x3D;Promise.reject(obj)promiseFn.then(res &#x3D;&gt; &#123;  console.log(res);  &#125;,err &#x3D;&gt; &#123;  console.log(err);   --&gt;   &#123; name: 11 &#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>注意: reject方法无论传入的promise对象还是普通的值,都是直接进入rejected状态阶段,直接返回传入的值,不会因为传入了一个promise对象而继续向下判断</p></blockquote></li></ol><h2 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a>Promise.all()</h2><ol><li>定义: 传入一个数组promise,等所有数组中的所有promise参数都执行成功之后进入fulfilled状态,返回值是一个结果对应的数组,如果数组中任意一个promise参数执行失败,则直接进入rejected状态</li><li>使用场景: 多个接口并发<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Promise.all([promise1,promise2,promise3])  .then(res &#x3D;&gt; &#123;console.log(res)&#125;,err &#x3D;&gt; &#123;&#125;)  --&gt;[res1,res2,res3]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><blockquote><p>注意: 进入rejected状态不意味着promise全部执行结束并且拿不到成功调用的promise的结果</p></blockquote></li></ol><h2 id="Promise-allSettled-ES11"><a href="#Promise-allSettled-ES11" class="headerlink" title="Promise.allSettled [ES11]"></a>Promise.allSettled [ES11]</h2><ol><li>定义: 必须等到所有promise对象有结果才会返回,无论是fulfilled状态还是rejected,都会进入fulfilled状态,该方法最终只有fulfilled状态</li><li>使用场景:解决多个接口并发且其中某个接口报错也不会影响其它结果执行</li><li>使用: 如果promise对象返回的是fulfilled状态,结果则是 { status: ‘fulfilled’, value: resolve的结果 };如果是rejected状态,结果则是 { status:’rejected’, reason: reject的结果 }</li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let obj&#x3D;&#123;name: 11&#125;let promiseFn&#x3D;Promise.resolve(obj)let promiseFn2&#x3D;Promise.reject(obj)let promiseFn3&#x3D;Promise.reject(obj)Promise.allSettled([promiseFn,promiseFn2,promiseFn3]).then(res &#x3D;&gt; &#123;console.log(res)&#125;,err &#x3D;&gt; &#123;console.log(err)&#125;)res --&gt; [  &#123; status: &#39;fulfilled&#39;, value: &#123; name:11 &#125; &#125;,  &#123; status: &#39;rejected&#39;, reason: &#123; name:11 &#125; &#125;,  &#123; status: &#39;rejected&#39;, reason: &#123; name:11 &#125; &#125;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h2 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race()"></a>Promise.race()</h2><ol><li>定义: 传入一个数组promise,哪一个promise对象先有结果那么就直接返回该promise对象结果,无论是fulfilled状态还是rejected状态</li><li>使用场景: 图片限时加载,如果超过定时器设置的加载时间,就抛出异常</li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Promise.race( [ p1,p2] ).then( res &#x3D;&gt;&#123;&#125;,err &#x3D;&gt; &#123;&#125; )<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><blockquote><p>注意: 即使返回了结果,也并不意味着其它的promise对象终止执行</p></blockquote><h2 id="Promise-any-ES12"><a href="#Promise-any-ES12" class="headerlink" title="Promise.any() [ES12]"></a>Promise.any() [ES12]</h2><ol><li>定义: 传入一个数组promise,只要有一个promise对象返回fulfilled状态,那么整个Promise类返回fulfilled状态,必须全部promise对象都是rejected状态才会返回rejected状态</li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Promise.any( [ p1,p2] ).then( res &#x3D;&gt; &#123;&#125;,err &#x3D;&gt; &#123;&#125; )<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div><blockquote><p>注意: 即使返回了结果,也并不意味着其它的promise对象终止执行</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+      <tag>ES11</tag>
+      
+      <tag>ES12</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Promise(四)</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_34/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_34/</url>
+    
+    <content type="html"><![CDATA[<h2 id="catch方法"><a href="#catch方法" class="headerlink" title="catch方法"></a>catch方法</h2><ol><li><p>当executor抛出异常时,catch方法也会捕获异常(throw new Error( ))</p></li><li><p>catch的链式调用默认捕获第一个promise的异常,如果第一个promise没有抛出异常并且.then函数中直接返回promise的对象且该对象抛出了异常,则捕获.then函数返回的promise对象异常</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let promiseFn&#x3D;() &#x3D;&gt; &#123;    return new Promise((resolve,reject) &#x3D;&gt; &#123;resolve()&#125;)&#125;promiseFn().then(  res &#x3D;&gt; new Promise((resolve,reject) &#x3D;&gt; &#123;reject(&#39;errr&#39;)&#125;)).catch(err &#x3D;&gt; &#123;console.log(err)&#125;) --&gt; &#39;errr&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li><p>catch方法返回值<br>定义: 也是返回一个新的promise对象,return的值通过resolve传递,所以.catch return的值 需要通过.then获取</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let promiseFn&#x3D;() &#x3D;&gt; &#123;  return new Promise((resolve,reject) &#x3D;&gt; &#123;    reject()  &#125;)&#125;&#x2F;*   promiseFn().catch(res &#x3D;&gt; 3) 这个返回值就是 new Promise( (resolve,reject)&#x3D;&gt;&#123; resolve(3) &#125; )*&#x2F;promiseFn().catch(res &#x3D;&gt; 3).then(res &#x3D;&gt; &#123;console.log(res)&#125;) --&gt; 3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="catch方法补充"><a href="#catch方法补充" class="headerlink" title="catch方法补充"></a>catch方法补充</h2><ol><li>(1) Q: Promise.then( ) 和 Promise.catch( ) 分开调用时为什么会报错?<br>   A: 因为这两个为独立函数,调用时互不影响。promise每次只会返回一个结果, 这样,如果返回的是reject状态,那么.then函数无法处理,就会报错反之也是一样</li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let promiseFn&#x3D;() &#x3D;&gt; &#123; reject(&#39;err&#39;)&#125;&#x2F;* 无法处理reject的结果,就会报错 *&#x2F;promiseFn.then( res &#x3D;&gt; &#123;&#125; ) --&gt; 报错promiseFn.catch( res &#x3D;&gt; &#123;&#125; )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>  (2) 解决<br>    i. then时,传递成功和失败的两个回调函数<br>    ii. catch的链式调用<br>    <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">promiseFn.then( res &#x3D;&gt; &#123;&#125;, err &#x3D;&gt; &#123;&#125; )promiseFn.then( res &#x3D;&gt; &#123;&#125; ).catch( err &#x3D;&gt; &#123;&#125;) <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></p><h2 id="finally方法-ES9"><a href="#finally方法-ES9" class="headerlink" title="finally方法(ES9)"></a>finally方法(ES9)</h2><ol><li>定义: 调用promise对象后最终都会调用这个方法</li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let promiseFn&#x3D;() &#x3D;&gt; &#123;  return new Promise((resolve,reject) &#x3D;&gt; &#123;    reject(22)  &#125;)&#125;&#x2F;*   promiseFn().catch(res &#x3D;&gt; 3) 这个返回值就是 new Promise( (resolve,reject)&#x3D;&gt;&#123; resolve(3) &#125; )*&#x2F;promiseFn().catch(err &#x3D;&gt;&#123;&#125;).finally(()&#x3D;&gt;&#123;  console.log(&#39;结束&#39;)&#125;)--&gt; &#39;结束&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+      <tag>ES9</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Promise(三)</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_33/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_33/</url>
+    
+    <content type="html"><![CDATA[<h2 id="then方法"><a href="#then方法" class="headerlink" title="then方法"></a>then方法</h2><ol><li><p>同一个promise的then方法可以调用多次  </p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let fnPromise&#x3D;() &#x3D;&gt; &#123;  return new Promise((resolve,reject) &#x3D;&gt; &#123;resolve(&#39;被调用&#39;)&#125;)&#125;fnPromise().then(res &#x3D;&gt; &#123;console.log(&#96;第一次$&#123;res&#125;&#96;)&#125;)    --&gt; 第一次被调用fnPromise().then(res &#x3D;&gt; &#123;console.log(&#96;第二次$&#123;res&#125;&#96;)&#125;)    --&gt; 第二次被调用fnPromise().then(res &#x3D;&gt; &#123;console.log(&#96;第三次$&#123;res&#125;&#96;)&#125;)    --&gt; 第三次被调用<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>备注: 只要resolve方法被调用,那么该promise的.then方法都会被调用</p></blockquote></li><li><p>then方法的返回值<br>(1) then方法的返回值是一个promise对象<br>(2) 如果then函数return的是一个普通值(基础/引用类型),那么整个then函数的返回值是一个新的promise对象,里面的resolve传递的是then函数中return的值,所以可以链式调用</p></li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let promiseFn&#x3D;() &#x3D;&gt; &#123;  return new Promise( (resolve,reject)&#x3D;&gt;&#123;    resolve()  &#125; )&#125;&#x2F;*   promiseFn().then(res &#x3D;&gt; 3) 这个返回值就是 new Promise( (resolve,reject)&#x3D;&gt;&#123; resolve(3) &#125; )*&#x2F;promiseFn().then(res &#x3D;&gt; 3).then(res &#x3D;&gt; &#123;console.log(res)&#125;) --&gt; 3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><p>  (3) 如果then函数return的是一个promise对象,依然返回一个新的promise对象,但是resolve中的参数变成了return的promise对象,那么下一个then方法的时机就与return的promise对象有关( 最终变成了resolve中的传参是promise对象的形式 )<br>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let promiseFn&#x3D;() &#x3D;&gt; &#123;  return new Promise( ()&#x3D;&gt;&#123;      resolve()  &#125; )&#125;&#x2F;*  promiseFn().then(res &#x3D;&gt; new Promise((resolve)&#x3D;&gt;&#123; resolve() &#125;)) 这个返回值就是 new Promise( (resolve,reject)&#x3D;&gt;&#123; resolve( new Promise((resolve)&#x3D;&gt;&#123;resolve()&#125;))&#125; )  当resolve的参数是promise对象时,则接下来的操作时机就与resolve中的promise对象有关*&#x2F;let value&#x3D;promiseFn().then(res &#x3D;&gt; new Promise((resolve)&#x3D;&gt;&#123; resolve() &#125;)).then(res &#x3D;&gt; &#123;console.log(res)&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p><blockquote><p>备注: 如果返回值是一个对象并且该对象实现了thenable,那么也是相同的理论</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Promise(二)</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_32/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_32/</url>
+    
+    <content type="html"><![CDATA[<h2 id="resolve参数"><a href="#resolve参数" class="headerlink" title="resolve参数"></a>resolve参数</h2><ol><li><p>普通参数传递</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let promiseFn &#x3D; ()&#x3D;&gt;&#123;  return new Promise((resolve,reject)&#x3D;&gt;&#123;    resolve( &#123; name: &#39;nano&#39; &#125; )  &#125;)&#125;promiseFn().then( res &#x3D;&gt; &#123; console.log(res) &#125; ) --&gt; &#123; name: &#39;nano&#39; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p><strong><font color="red">注意: 一次只能传递一个参数</font></strong></p></blockquote></li><li><p>传递promise</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let promiseFn&#x3D;() &#x3D;&gt; &#123;return new Promise((resolve,reject) &#x3D;&gt; &#123;    resolve(new Promise((resolve,reject) &#x3D;&gt; &#123;        resolve(111)        reject(222)    &#125;))  &#125;)&#125;&#x2F;* 如果是fulfilled状态 *&#x2F;promiseFn().then(res &#x3D;&gt; &#123;console.log(res)&#125;)  --&gt; 111* 如果是rejected状态 *&#x2F;promiseFn().catch(err &#x3D;&gt; &#123;console.log(err)&#125;)  --&gt; 222&#x2F;* 如果是pending状态则.then或者.catch什么都不打印 *&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p><strong><font color="red">值得注意:</font></strong> 如果resolve传递的是promise函数,那么当前promise函数状态由resolve中传递的promise函数决定</p></blockquote></li><li><p>传入一个对象并且对象中有then方法,那么当前promise函数的状态由对象中的then方法决定,并且该then函数自动创建resolve,reject两个参数</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none"> let promiseFn&#x3D;() &#x3D;&gt; &#123;     return new Promise((resolve,reject) &#x3D;&gt; &#123;       resolve(&#123;         &#x2F;* thenable *&#x2F;         then(resolve,reject) &#123;           resolve(22)           reject(33)         &#125;       &#125;)   &#125;)&#125;promiseFn().then(res &#x3D;&gt; &#123;console.log(res)&#125;) --&gt; 22promiseFn().catch(res &#x3D;&gt; &#123;console.log(res)&#125;) --&gt; 33<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Promise(一)</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_31/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_31/</url>
+    
+    <content type="html"><![CDATA[<h2 id="什么是Promise"><a href="#什么是Promise" class="headerlink" title="什么是Promise?"></a>什么是Promise?</h2><ol><li>是一种解决异步调用的解决方案</li></ol><h2 id="基础调用"><a href="#基础调用" class="headerlink" title="基础调用"></a>基础调用</h2><ol><li>声明Promise<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let promiseFn&#x3D;() &#x3D;&gt; &#123;  return new Promise((resolve,reject) &#x3D;&gt; &#123;      setTimeout(() &#x3D;&gt; &#123;          let num&#x3D;Math.floor(Math.random()*10+1)          console.log(num,&#39;num&#39;)          num&gt;Math.floor(Math.random()*10+1)&#x2F;2? resolve(&#39;suc&#39;):reject(&#39;err&#39;)      &#125;,1000)    &#125;)  &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li>可以在.then函数中传递两个回调函数,第一个接收resolve的值,第二个接收reject的值 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">promiseFn().then((res) &#x3D;&gt; &#123;console.log(res,&#39;res&#39;)&#125;,(err) &#x3D;&gt; &#123;console.log(err,&#39;err&#39;)&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li></ol><ol start="3"><li>链式调用 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">promiseFn().then((res) &#x3D;&gt; &#123;console.log(res,&#39;res&#39;)&#125;).catch((err) &#x3D;&gt; &#123;console.log(err,&#39;err&#39;)&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li></ol><ol start="4"><li>当做独立函数调用 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">promiseFn().then((res) &#x3D;&gt; &#123;console.log(res,&#39;res&#39;)&#125;)promiseFn().catch((err) &#x3D;&gt; &#123;console.log(err,&#39;err&#39;)&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div></li></ol><h2 id="promise的3种状态"><a href="#promise的3种状态" class="headerlink" title="promise的3种状态"></a>promise的3种状态</h2><ol><li>定义:pending(加载) fulfilled(已完成 操作成功) rejected(已拒绝 操作失败)<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let promiseFn&#x3D;() &#x3D;&gt; &#123;   return new Promise((resolve,reject) &#x3D;&gt; &#123;       &#x2F;* 加载状态 *&#x2F;           ...       &#x2F;* fulfilled状态 *&#x2F;           resolve()       &#x2F;* rejected状态 *&#x2F;           reject()    &#125;) &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p><font color="red"><strong>注意:</strong></font>状态一旦确定,不能更改</p></blockquote></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Reflect</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_30/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_30/</url>
+    
+    <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ol><li>它是一个对象,主要提供了很多操作js对象的方法,像Object中操作对象的方法,一般都通过内置的方法进行操作</li></ol><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景:"></a>使用场景:</h2><ol><li>和Proxy搭配使用</li><li>Q: 那为什么要用Reflect而不是Object?<br>A: Object为构造函数,这些操作不合适,并且还包含了in、delete操作符,让JS看起来会有一些奇怪<blockquote><p>注意: 如果可以使用Reflect那么尽量使用Reflect</p></blockquote></li></ol><h2 id="Reflect常见方法"><a href="#Reflect常见方法" class="headerlink" title="Reflect常见方法"></a>Reflect常见方法</h2><ol><li>定义: 和proxy的13种捕获方法一一对应<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const obj &#x3D; &#123; name:&#39;nano&#39;, age: 18 &#125;const objProx &#x3D; new Proxy(obj,&#123;  set(target,key,value,receiver)&#123;    return Reflect.set(target,key,value,receiver)  &#125;&#125;)objProx.age &#x3D; 20console.log(obj) --&gt; &#123; name:&#39;nano&#39;, age: 18 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="receiver参数的作用以及与Proxy中的receiver区别"><a href="#receiver参数的作用以及与Proxy中的receiver区别" class="headerlink" title="receiver参数的作用以及与Proxy中的receiver区别"></a>receiver参数的作用以及与Proxy中的receiver区别</h2><ol><li>定义: Reflect中的receiver是改变原对象中的函数的this指向 </li><li>区别: proxy中的receiver是创建出来的代理对象,Reflect中的receiver是改变原对象中的函数的this指向 <blockquote><p>注意:只有get和set函数有receiver参数 </p></blockquote></li></ol><h2 id="Reflect的construct方法-用的较少"><a href="#Reflect的construct方法-用的较少" class="headerlink" title="Reflect的construct方法(用的较少)"></a>Reflect的construct方法(用的较少)</h2><ol><li>定义: 更改构造函数的类型</li><li>使用: Reflect.construct( 需要转变类型的构造函数, 构造函数参数(数组形式), 目标类型的构造函数 )<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">function Student( name,age )&#123;  this.name &#x3D; name  this.age &#x3D; age&#125;function Teacher()&#123; &#125;let teacher &#x3D; Reflect.construct( Student,[&#39;nano&#39;,18], Teacher )console.log(teacher) --&gt; 就变成了Teacher类型<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>监听对象的方式</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_29/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_29/</url>
+    
+    <content type="html"><![CDATA[<h2 id="监听对象的操作"><a href="#监听对象的操作" class="headerlink" title="监听对象的操作"></a>监听对象的操作</h2><ol><li>Object.defineProperty( obj,key, { get(){}, set(){}} )<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;* 监听对象的所有属性 *&#x2F;let obj &#x3D; &#123; name: &#39;nano&#39;, age: 18 &#125;Object.keys.forEach( item &#x3D;&gt; &#123;  let value &#x3D; obj[ item ]  Object.defineProperty( obj, item, &#123; get( )&#123; &#125;, set( newV )&#123; value &#x3D; newV &#125; &#125; )&#125; )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li>Proxy类监听</li></ol><h2 id="Proxy类"><a href="#Proxy类" class="headerlink" title="Proxy类"></a>Proxy类</h2><ol><li><strong>定义: 如果需要监听一个对象,就对这个对象生成一个代理对象,通过这个代理对象的捕获器去捕捉这个代理对象的值的获取和改变,改变和获取值的操作通过代理对象会直接<font color="red">映射到原对象</font></strong></li><li>使用结构: new Proxy(代理对象, 捕获器[13种])<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const obj &#x3D; &#123; name: &#39;nano&#39;, age:18 &#125;const objProxy &#x3D; new Proxy(obj,&#123;  get(target,key,receiver)&#123;    console.log(&#39;watch&#39;)    return target[key]  &#125;,  set(target,key,value,receiver)&#123;    console.log(&#39;change&#39;)    target[key] &#x3D; value  &#125;&#125;)objProxy.name &#x3D; &#39;roily&#39;console.log(objProxy.age)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li>get/set捕获器的参数解析<br>(1) target: 代理的目标对象<br>(2) key: 获取和发生变动的键值<br>(3) value: 需要设置的新值 [set捕获器]<br>(4) receiver: 调用的代理对象</li></ol><h2 id="Proxy的捕获器-常用"><a href="#Proxy的捕获器-常用" class="headerlink" title="Proxy的捕获器(常用)"></a>Proxy的捕获器(常用)</h2><ol><li><p>has( target,key )<br>(1) 定义: 判断某个key值是否在代理对象上<br>(2) 注意: 只能拦截<font color="red"> <strong>in 关键字</strong></font>的判断,无法拦截hasOwnProperty()的判断</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const obj &#x3D; &#123; name:&#39;nano&#39; &#125;const objProxy &#x3D; new Proxy(obj,&#123;  has(target,key)&#123;    console.log(&#39;监听操作&#39;)    return key in target  &#125;&#125;)&#39;name&#39; in objProxy --&gt; &#39;监听操作&#39;objProxy.hasOwnProperty(&#39;name&#39;) --&gt; 不会触发<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li><p>deleteProperty( target,key )<br>(1) 定义: 删除捕获器,捕获delete操作符删除的内容</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const obj &#x3D; &#123; name: &#39;nano&#39; &#125;const objProxy &#x3D; new Proxy(obj,&#123;  deleteProperty(target,key)&#123;    console.log( &#39;监听delete操作&#39; )    return delete target.key  &#125;&#125;)delete objProxy.name --&gt; &#39;监听delete操作&#39;console.log(obj) --&gt; &#123;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="Proxy的捕获器-补充"><a href="#Proxy的捕获器-补充" class="headerlink" title="Proxy的捕获器(补充)"></a>Proxy的捕获器(补充)</h2><ol><li><p>getPrototypeOf( )<br>定义: 监听调用Object.getPropertyOf( )获取原型时的操作</p></li><li><p>setPrototypeOf( )<br>定义: 监听调用Object.setPropertyOf( )设置原型时的操作</p></li><li><p>isExtensible( )<br>定义: 判断一个对象是否可扩展时的捕捉</p></li><li><p>preventExtensible( )<br>定义: 监听调用Object.preventExtensions( )时的操作</p></li><li><p>getOwnPropertyDescriptor( )<br>定义: 监听调用Object.getOwnPropertyDescriptor( )时的操作</p></li><li><p>defineProperty( )<br>定义: 监听调用Object.defineProperty( )时的操作</p></li><li><p>ownKeys( )<br>定义: 监听调用Object.getOwnPropertyNames( )或Object.getOwnPropertySymbols( )时的操作</p></li><li><p>apply( target,this,argArray )<br>(1)定义: 监听函数调用的操作</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">functin add()&#123;&#125;let proxyAdd &#x3D; new Proxy( add,&#123;  apply( target,_this,applyArg )&#123;    return target.apply(_this,applyArg)  &#125;&#125; )proxyAdd.apply(&#123;&#125;,[1,2])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>注意: 用于函数对象</p></blockquote></li><li><p>construct(target,argArray,newTarget )<br>(1)定义: 监听new操作符</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">functin add()&#123;&#125;let ProxyAdd &#x3D; new Proxy( add,&#123;  construct( target,argArray,newTarget )&#123;    return new target(...argArray)  &#125;&#125; )new ProxyAdd( )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>注意: 用于函数对象</p></blockquote></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ES12常用语法</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_28/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_28/</url>
+    
+    <content type="html"><![CDATA[<h2 id="FinalizationRegistry-类"><a href="#FinalizationRegistry-类" class="headerlink" title="FinalizationRegistry (类)"></a>FinalizationRegistry (类)</h2><ol><li>定义:用来监听GC之前的回调</li><li>使用: 通过声明FinalizationRegistry类,调用原型上的register方法检测GC回收之前的状态<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const finalRegistry &#x3D; new FinalizationRegistry( (objName)&#x3D;&gt;&#123; console.log(objName + &#39;被回收了&#39;) &#125; )let obj &#x3D; &#123; name:&#39;nano&#39; &#125;&#x2F;*  调用类上的 register 方法 ,传入两个参数 第一个参数为需要监听的对象,第二个参数为该对象的标记名称 *&#x2F;finalRegistry.register(obj,&#39;obj&#39;)obj &#x3D; null --&gt; obj被回收了  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>注意: 因为GC是不定时回收的,所以打印的时间不是固定的</p></blockquote></li></ol><h2 id="WeakRef-类"><a href="#WeakRef-类" class="headerlink" title="WeakRef (类)"></a>WeakRef (类)</h2><ol><li>定义: 设置对一个对象的引用为弱引用,会被GC回收</li><li>使用: 返回一个WaekRef类,通过deref( )方法获取具体对象内容<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let obj &#x3D; &#123; name:&#39;nano&#39; &#125;let info &#x3D; new WeakRef( obj )console.log(info.deref( ).name) --&gt; &#39;nano&#39;obj &#x3D; null &#x2F;*  因为是弱引用,当obj这个强引用被释放时,info也会被GC检测释放  返回一个WaekRef类,通过deref方法获取具体对象名称*&#x2F;console.log(info.deref( ).name) --&gt; undefined <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p><strong><font color="red">值得注意</font></strong>: 因为GC机制不是实时的,所以可能还是会获取弱引用中的值,但实际GC回收后就会返回undefined,代码会执行报错</p></blockquote></li></ol><h2 id="逻辑赋值运算符"><a href="#逻辑赋值运算符" class="headerlink" title="逻辑赋值运算符"></a>逻辑赋值运算符</h2><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">  &#x2F;*    ||&#x3D; 逻辑或赋值运算*&#x2F;     let msg &#x3D; &#39;&#39;    msg ||&#x3D; &#39;hello&#39; --&gt;  msg &#x3D; msg || &#39;hello&#39;&#x2F;*     &amp;&amp;&#x3D; 逻辑与赋值运算*&#x2F;    let value &#x3D; &#39;abc&#39;    value &amp;&amp;&#x3D; null --&gt; value &#x3D; value &amp;&amp; value &#x3D; null    console.log( value )  --&gt; null&#x2F;*     ??&#x3D; 逻辑空赋值运算*&#x2F;    let value &#x3D; null    value ??&#x3D; &#39;abc&#39; --&gt; value &#x3D; value ?? value &#x3D; &#39;abc&#39;    console.log( value ) --&gt; &#39;abc&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h2 id="replaceAll"><a href="#replaceAll" class="headerlink" title="replaceAll"></a>replaceAll</h2><ol><li>定义:替换字符串中匹配到的全部结果<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let str &#x3D; &#39;abbbbb&#39;let newStr &#x3D; str.replaceAll(&#39;b&#39;,&#39;c&#39;)console.log(newStr) --&gt; &#39;accccc&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES12</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ES11常用语法</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_27/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_27/</url>
+    
+    <content type="html"><![CDATA[<h2 id="BigInt"><a href="#BigInt" class="headerlink" title="BigInt"></a>BigInt</h2><ol><li>定义: 新增的基础数据类型,用来表达更大的数值</li><li>使用: 在大数值的后面加n标记或者使用BigInt( )函数<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 获取js基础最大数let maxInt &#x3D; Number.MAX_SAFE_INTEGERconsole.log(maxInt) --&gt; 9007199254740991000&#x2F;&#x2F; 用n标记为BigInt类型let num &#x3D; 9007199254740991000nconsole.log(num)  --&gt; 9007199254740991000n<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p><font color="red"><strong>值得注意</strong></font>: BigInt类型是不能直接和普通数字类型相加的,没有隐式转换,需要将普通数字类型用n标记为BigInt类型进行相加或者用BigInt( )函数转换类型</p></blockquote></li></ol><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let num &#x3D; 9007199254740991000nlet num2 &#x3D; 10let num3 &#x3D; 10nlet num4 &#x3D; BigInt(10)console.log( num + num2 ) --&gt; 报错console.log( num + num3 ) --&gt; 9007199254740991010nconsole.log (num + num4 ) --&gt; 9007199254740991010n<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>提醒: BigInt类型也可以通过Number( )函数转为number类型,但是会数字溢出,计算不准确,所以不推荐使用Number( )转换后去计算</p></blockquote><h2 id="空值合并运算符"><a href="#空值合并运算符" class="headerlink" title="??(空值合并运算符)"></a>??(空值合并运算符)</h2><ol><li>定义: 如果左侧是null或者undefined时,执行右边的表达式<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let value  &#x3D; null ?? &#39;a&#39;console.log( value ) --&gt; &#39;a&#39;function add()&#123; console.log(&#39;aaa&#39;) &#125;undefined ?? add() --&gt; &#39;aaa&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="可选连操作符"><a href="#可选连操作符" class="headerlink" title="?.(可选连操作符)"></a>?.(可选连操作符)</h2><ol><li>定义: 可以直接判断深层次的数据是否存在,而不会因为前面任意一个变量是undefined或者null而导致报错<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let obj &#x3D; &#123; name:&#123; age: &#123;&#125; &#125; &#125;&#x2F;&#x2F;会因为age对象中没有year,year为undefined,undefined.number就会报错console.log( obj.name.age.year.number )&#x2F;&#x2F;显示undefined   console.log( obj.name.age.year?.number ) <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="globalThis-全局对象"><a href="#globalThis-全局对象" class="headerlink" title="globalThis(全局对象)"></a>globalThis(全局对象)</h2><ol><li>定义: 获取全局对象,不分浏览器和node环境</li><li>出现原因: 浏览器的全局对象通过this或者window获取,node环境下的全局变量获取时global({ })<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">console.log( globalThis )  --&gt;  浏览器执向window  node 指向&#123;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li></ol><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ol><li><p>for…in标准化<br>定义: key只能用来标明对象的键名</p></li><li><p>import动态导入<br>定义: 使用import导入文件之后直接promise方式调用(.then)</p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES11</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ES10常用语法</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_26/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_26/</url>
+    
+    <content type="html"><![CDATA[<h2 id="flat-amp-flatMap"><a href="#flat-amp-flatMap" class="headerlink" title="flat &amp; flatMap"></a>flat &amp; flatMap</h2><ol><li><p>flat<br>定义: 传递层数进行多维数组降维,返回一个新的一维数组<br>参数: flat(层级数)<br>提示: 如果是不确定层次的多维数组降维,则可以传递参数 <strong>Infinity</strong> 进行全部层次的降维</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const arr &#x3D; [[1],[2],[3,[4,5]],[[[[6,7]]]]]const flatArr &#x3D; arr.flat(Infinity)console.log(flatArr) --&gt; [1,2,3,4,5,6,7]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li><li><p>flatMap<br>定义: 先对数组进行map操作,再进行flat操作,返回一个新的数组<br>参数:flatMap(callback, 层级数)</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let arr&#x3D;[&#39;hello world&#39;,&#39;I am a good man&#39;,&#39;shuai bi &#39;]let newArr&#x3D;arr.flatMap((item) &#x3D;&gt; item.trim().split(&#39; &#39;),Infinity)console.log(newArr) --&gt;[&#39;hello&#39;,&#39;world&#39;,&#39;I&#39;,&#39;am&#39;,&#39;a&#39;,&#39;good&#39;,&#39;man&#39;,&#39;shuai&#39;,&#39;bi&#39;] <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>值得注意:<br><strong><font color="red">(1) 数组与任意类型相加都会转变为字符串拼接的形式, 对象 类型则是拼接’[object Object]’</font></strong><br><strong><font color="red">(2) 遍历数组的API除了传递回调参数,第二个参数还以可以传递this,用来修改this指向 </font></strong></p></blockquote></li></ol><h2 id="Object-fromEntries"><a href="#Object-fromEntries" class="headerlink" title="Object.fromEntries()"></a>Object.fromEntries()</h2><ol><li>定义: 将Object.entries( )转换出来的数据结构返回成对象<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let arr &#x3D; [ [&#39;name&#39;,&#39;nano&#39;], [&#39;age&#39;, 18] ]let obj &#x3D; Object.fromEntries(arr)console.log(obj)--&gt;&#123;  &quot;name&quot;: &quot;nano&quot;,  &quot;age&quot;: 18&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="trimStart-amp-trimEnd"><a href="#trimStart-amp-trimEnd" class="headerlink" title="trimStart &amp; trimEnd"></a>trimStart &amp; trimEnd</h2><ol><li>定义:去除首尾空格<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let str &#x3D; &#39; nano &#39;let trimStart &#x3D; str.trimStart()  console.log( trimStart ) --&gt; &#39;nano &#39;let trimEnd &#x3D; str.trimEnd()console.log(trimEnd) --&gt; &#39; nano&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES8</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ES8常用语法</title>
+    <link href="/2022/04/13/JavaScript/jsBasic_25/"/>
+    <url>/2022/04/13/JavaScript/jsBasic_25/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Object-values"><a href="#Object-values" class="headerlink" title="Object.values()"></a>Object.values()</h2><ol><li>用法: 获取对象的所有value值并返回一个数组<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const obj &#x3D; &#123; name:&#39;nano&#39;,say()&#123;&#125;,skill:[ &#39;JS&#39; ] &#125;const objValues &#x3D; Object.values( obj )console.log( objValues )--&gt; [ &#39;nano&#39;, say(), [ &#39;JS&#39; ] ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div><h2 id="Object-entries"><a href="#Object-entries" class="headerlink" title="Object.entries()"></a>Object.entries()</h2></li><li>用法: 获取到对象中<strong>可枚举</strong>的key/value组成的二维数组<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const obj &#x3D; &#123; name:&#39;nano&#39;,say()&#123;&#125;,skill:[ &#39;JS&#39; ] &#125;const objValues &#x3D; Object.entries( obj )console.log( objValues )--&gt; [ [ &#39;name&#39;,&#39;nano&#39; ], [&#39;say&#39;,function()&#123;&#125;], [ &#39;skill&#39;,[&#39;JS&#39;] ] ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="padStart-length-sign-amp-padEnd-length-sign"><a href="#padStart-length-sign-amp-padEnd-length-sign" class="headerlink" title="padStart( length, sign ) &amp; padEnd( length, sign )"></a>padStart( length, sign ) &amp; padEnd( length, sign )</h2><ol><li>定义: 字符串首尾填充,只能填充一次</li><li>参数:<br>length: 填充之后字符串的总长度<br>sign: 填充标记,默认为空格<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let str &#x3D; &#39;nano&#39;console.log( str.padStart(5,&#39;*&#39;) ) --&gt; &#39;*nano&#39;console.log( str.padEnd(5) )  --&gt; &#39;nano &#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="Object-getOwnPropertyDescriptors"><a href="#Object-getOwnPropertyDescriptors" class="headerlink" title="Object.getOwnPropertyDescriptors()"></a>Object.getOwnPropertyDescriptors()</h2><ol><li>定义: 获取对象所有属性描述符</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES8</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ES7常用语法</title>
     <link href="/2022/04/12/JavaScript/jsBasic_24/"/>
     <url>/2022/04/12/JavaScript/jsBasic_24/</url>
     

@@ -1,0 +1,574 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/egg.png">
+  <link rel="icon" href="/img/egg.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="前端菜鸡的博客">
+  <meta name="author" content="Nano">
+  <meta name="keywords" content="">
+  <meta name="description" content="Promise的类方法 定义:可以直接通过Promise类直接调用的方法  Promise.resolve() 使用: 将现有结果直接转变成一个fulfilled状态的promise对象返回const fulPromise &#x3D; Promise.resolve(&amp;#123;name:&#39;nano&#39;&amp;#125;) fulPromise.then( res &#x3D;&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise(五)">
+<meta property="og:url" content="https://roily.github.io/2022/04/13/JavaScript/jsBasic_35/index.html">
+<meta property="og:site_name" content="Nano-Block">
+<meta property="og:description" content="Promise的类方法 定义:可以直接通过Promise类直接调用的方法  Promise.resolve() 使用: 将现有结果直接转变成一个fulfilled状态的promise对象返回const fulPromise &#x3D; Promise.resolve(&amp;#123;name:&#39;nano&#39;&amp;#125;) fulPromise.then( res &#x3D;&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-13T08:19:01.000Z">
+<meta property="article:modified_time" content="2022-04-13T14:21:55.993Z">
+<meta property="article:author" content="Nano">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="ES6">
+<meta property="article:tag" content="ES11">
+<meta property="article:tag" content="ES12">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>Promise(五) - Nano-Block</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"roily.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Nano</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/banner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Promise(五)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-13 16:19" pubdate>
+        2022年4月13日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Promise(五)</h1>
+            
+            <div class="markdown-body">
+              <h2 id="Promise的类方法"><a href="#Promise的类方法" class="headerlink" title="Promise的类方法"></a>Promise的类方法</h2><ol>
+<li>定义:可以直接通过Promise类直接调用的方法</li>
+</ol>
+<h2 id="Promise-resolve"><a href="#Promise-resolve" class="headerlink" title="Promise.resolve()"></a>Promise.resolve()</h2><ol>
+<li>使用: 将现有结果直接转变成一个fulfilled状态的promise对象返回<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const fulPromise &#x3D; Promise.resolve(&#123;name:&#39;nano&#39;&#125;)
+fulPromise.then( res &#x3D;&gt; console.log(res)  ) 
+--&gt; &#123; name:&#39;nano&#39; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li>
+</ol>
+<h2 id="Promise-reject"><a href="#Promise-reject" class="headerlink" title="Promise.reject()"></a>Promise.reject()</h2><ol>
+<li>使用: 将现有结果直接转变成一个rejected状态的promise对象返回<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let obj&#x3D;&#123;name: 11&#125;
+let promiseFn&#x3D;Promise.reject(obj)
+promiseFn.then(res &#x3D;&gt; &#123;
+  console.log(res);
+  &#125;,err &#x3D;&gt; &#123;
+  console.log(err);   --&gt;   &#123; name: 11 &#125;
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<blockquote>
+<p>注意: reject方法无论传入的promise对象还是普通的值,都是直接进入rejected状态阶段,直接返回传入的值,不会因为传入了一个promise对象而继续向下判断</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a>Promise.all()</h2><ol>
+<li>定义: 传入一个数组promise,等所有数组中的所有promise参数都执行成功之后进入fulfilled状态,返回值是一个结果对应的数组,如果数组中任意一个promise参数执行失败,则直接进入rejected状态</li>
+<li>使用场景: 多个接口并发<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Promise.all([promise1,promise2,promise3])
+  .then(res &#x3D;&gt; &#123;console.log(res)&#125;,err &#x3D;&gt; &#123;&#125;)
+  --&gt;[res1,res2,res3]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<blockquote>
+<p>注意: 进入rejected状态不意味着promise全部执行结束并且拿不到成功调用的promise的结果</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="Promise-allSettled-ES11"><a href="#Promise-allSettled-ES11" class="headerlink" title="Promise.allSettled [ES11]"></a>Promise.allSettled [ES11]</h2><ol>
+<li>定义: 必须等到所有promise对象有结果才会返回,无论是fulfilled状态还是rejected,都会进入fulfilled状态,该方法最终只有fulfilled状态</li>
+<li>使用场景:解决多个接口并发且其中某个接口报错也不会影响其它结果执行</li>
+<li>使用: 如果promise对象返回的是fulfilled状态,结果则是 { status: ‘fulfilled’, value: resolve的结果 };如果是rejected状态,结果则是 { status:’rejected’, reason: reject的结果 }</li>
+</ol>
+  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let obj&#x3D;&#123;name: 11&#125;
+let promiseFn&#x3D;Promise.resolve(obj)
+let promiseFn2&#x3D;Promise.reject(obj)
+let promiseFn3&#x3D;Promise.reject(obj)
+Promise.allSettled([promiseFn,promiseFn2,promiseFn3])
+.then(res &#x3D;&gt; &#123;console.log(res)&#125;,err &#x3D;&gt; &#123;console.log(err)&#125;)
+
+res --&gt; [
+  &#123; status: &#39;fulfilled&#39;, value: &#123; name:11 &#125; &#125;,
+  &#123; status: &#39;rejected&#39;, reason: &#123; name:11 &#125; &#125;,
+  &#123; status: &#39;rejected&#39;, reason: &#123; name:11 &#125; &#125;
+]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+
+<h2 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race()"></a>Promise.race()</h2><ol>
+<li>定义: 传入一个数组promise,哪一个promise对象先有结果那么就直接返回该promise对象结果,无论是fulfilled状态还是rejected状态</li>
+<li>使用场景: 图片限时加载,如果超过定时器设置的加载时间,就抛出异常</li>
+</ol>
+  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Promise.race( [ p1,p2] ).then( res &#x3D;&gt;&#123;&#125;,err &#x3D;&gt; &#123;&#125; )<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<blockquote>
+<p>注意: 即使返回了结果,也并不意味着其它的promise对象终止执行</p>
+</blockquote>
+<h2 id="Promise-any-ES12"><a href="#Promise-any-ES12" class="headerlink" title="Promise.any() [ES12]"></a>Promise.any() [ES12]</h2><ol>
+<li>定义: 传入一个数组promise,只要有一个promise对象返回fulfilled状态,那么整个Promise类返回fulfilled状态,必须全部promise对象都是rejected状态才会返回rejected状态</li>
+</ol>
+  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">Promise.any( [ p1,p2] ).then( res &#x3D;&gt; &#123;&#125;,err &#x3D;&gt; &#123;&#125; )<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+
+<blockquote>
+<p>注意: 即使返回了结果,也并不意味着其它的promise对象终止执行</p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/ES6/">ES6</a>
+                    
+                      <a class="hover-with-bg" href="/tags/ES11/">ES11</a>
+                    
+                      <a class="hover-with-bg" href="/tags/ES12/">ES12</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/13/JavaScript/jsBasic_36/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">迭代器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/13/JavaScript/jsBasic_34/">
+                        <span class="hidden-mobile">Promise(四)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"pIIYtyAseIm98EqtlgsVpaaP-9Nh9j0Va","appKey":"bl8RS111YlhxP561NotpPyJv","path":"window.location.pathname","placeholder":"吐槽一哈","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div>这是Nano的个人博客 | 记录成长的过程 @2022</div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+    
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+</html>

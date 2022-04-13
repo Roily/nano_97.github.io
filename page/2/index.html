@@ -178,32 +178,33 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_14/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="原型链">
+        <a href="/2022/04/13/JavaScript/jsBasic_32/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="Promise(二)">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_14/" target="_self">
-          原型链
+        <a href="/2022/04/13/JavaScript/jsBasic_32/" target="_self">
+          Promise(二)
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_14/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_32/" target="_self">
           
           
             
           
-          原型链
-什么是原型链?当在一个对象上找不到某个属性或者方法时,会去该对象的原型对象中([[prototype]])查找,如果该对象的原型对象也没有该属性,那么会在原型对象的原型对象中查找,这样逐层查找原型对象直到查到顶层对象,这样的链式查找就是原型链。
-
-
-注意: Object是所有类的父类,他的[[prototype]]是null
-
-
+          resolve参数
+普通参数传递
+let promiseFn &#x3D; ()&#x3D;&gt;&#123;
+  return new Promise((resolve,reject)&#x3D;&gt;&#123;
+    resolve( &#123; name: &#39;nano&#39; &#125; )
+  &#125;)
+&#125;
+promiseFn().then( res 
         </a>
       </p>
 
@@ -211,8 +212,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 15:30" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 15:03" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -230,6 +231,8 @@
             
               <a href="/tags/JavaScript/">JavaScript</a>
             
+              <a href="/tags/ES6/">ES6</a>
+            
           </div>
         
       </div>
@@ -240,30 +243,33 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_13/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="隐式原型和显示原型">
+        <a href="/2022/04/13/JavaScript/jsBasic_31/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="Promise(一)">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_13/" target="_self">
-          隐式原型和显示原型
+        <a href="/2022/04/13/JavaScript/jsBasic_31/" target="_self">
+          Promise(一)
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_13/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_31/" target="_self">
           
           
             
           
-          隐式原型
-什么是隐式原型?定义: 每一个对象都有一个隐式原型([[prototype]])
-作用用来继承构造函数中的prototype(显示原型)指针
-如何获取这个隐式原型?(1) 绝大部分浏览器都给对象内置了__proto__属性,可以通过__proto__获取对象的原型const obj  &#x3D; &#123; name: &#39;nano&#39; &#125;
-const objP
+          什么是Promise?
+是一种解决异步调用的解决方案
+
+基础调用
+声明Promiselet promiseFn&#x3D;() &#x3D;&gt; &#123;
+  return new Promise((resolve,reject) &#x3D;&gt; &#123;
+      setTimeout(() &#x3D;&gt; &#123;
+          let num&#x3D;M
         </a>
       </p>
 
@@ -271,8 +277,8 @@ const objP
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 15:01" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 14:46" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -290,68 +296,7 @@ const objP
             
               <a href="/tags/JavaScript/">JavaScript</a>
             
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_12/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="批量创建对象的方法">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/04/12/JavaScript/jsBasic_12/" target="_self">
-          批量创建对象的方法
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_12/" target="_self">
-          
-          
-            
-          
-          工厂模式
-什么是工厂模式?定义: 封装一个方法调用即可创建多个对象
-function createObj( name,age,height )&#123;
-  let obj &#x3D; new Object( )
-  obj.name &#x3D; name
-  obj.age &#x3D; age
-  obj.height &#x3D; height
-  obj.say( ) &#x3D; 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 14:36" pubdate>
-              2022-04-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/JavaScript/">JavaScript</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/JavaScript/">JavaScript</a>
+              <a href="/tags/ES6/">ES6</a>
             
           </div>
         
@@ -363,31 +308,36 @@ function createObj( name,age,height )&#123;
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_11/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="Object.defineProperty解析">
+        <a href="/2022/04/13/JavaScript/jsBasic_30/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="Reflect">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_11/" target="_self">
-          Object.defineProperty解析
+        <a href="/2022/04/13/JavaScript/jsBasic_30/" target="_self">
+          Reflect
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_11/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_30/" target="_self">
           
           
             
           
           定义
-直接定义一个对象上的新属性或者修改一个对象上的现有属性,并返回此对象
+它是一个对象,主要提供了很多操作js对象的方法,像Object中操作对象的方法,一般都通过内置的方法进行操作
 
-接收的参数(1) target 目标对象(2) key 新的属性名或者需要修改的属性名(字符串)(3) desc 属性描述符[ 数据属性描述符(默认都为false ),访问器属性描述符 ](对象)
-const obj &#x3D; &#123; name: &#39;nano&#39; &#125;
-Object.def
+使用场景:
+和Proxy搭配使用
+Q: 那为什么要用Reflect而不是Object?A: Object为构造函数,这些操作不合适,并且还包含了in、delete操作符,让JS看起来会有一些奇怪
+注意: 如果可以使用Reflect那么尽量使用Reflect
+
+
+
+Reflect常见
         </a>
       </p>
 
@@ -395,8 +345,8 @@ Object.def
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 13:49" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 14:22" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -413,6 +363,8 @@ Object.def
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
             
           </div>
         
@@ -424,35 +376,30 @@ Object.def
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_10/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="组合函数">
+        <a href="/2022/04/13/JavaScript/jsBasic_29/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="监听对象的方式">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_10/" target="_self">
-          组合函数
+        <a href="/2022/04/13/JavaScript/jsBasic_29/" target="_self">
+          监听对象的方式
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_10/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_29/" target="_self">
           
           
             
           
-          组合函数
-定义: 多个函数组合成一个新的函数(需要注意函数的调用顺序)&lt;script&gt;
-  function add(a) &#123;
-    return a+&#x3D;5
-  &#125;
-  function mul(b) &#123;
-    return b-&#x3D;5
-  &#125;
-  function comp(add,mul) &#123;
-    retu
+          监听对象的操作
+Object.defineProperty( obj,key, { get(){}, set(){}} )&#x2F;* 监听对象的所有属性 *&#x2F;
+let obj &#x3D; &#123; name: &#39;nano&#39;, age: 18 &#125;
+Object.keys.forEach( item &#x3D;&gt; &#123;
+  let valu
         </a>
       </p>
 
@@ -460,8 +407,8 @@ Object.def
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 13:39" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 13:11" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -478,6 +425,8 @@ Object.def
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
             
           </div>
         
@@ -489,37 +438,28 @@ Object.def
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_09/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="函数式编程">
+        <a href="/2022/04/13/JavaScript/jsBasic_28/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES12常用语法">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_09/" target="_self">
-          函数式编程
+        <a href="/2022/04/13/JavaScript/jsBasic_28/" target="_self">
+          ES12常用语法
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_09/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_28/" target="_self">
           
           
             
           
-          纯函数(pure function)
-定义:(1) 相同的输入产生相同的结果
-
-详解:入参类型相同且 return 的值格式相同,如果给定相同的参数，则得到相同的结果 ,有输入就一定有输出
-
- (2) 不会产生副作用  
-
-详解:不会影响其它作用域的变量的值,不会更改页面的显示,不会对内存存储进行改变等等 
-
- (3) 只通过return返回输出的值,不会在其它地方打印
-
-优势只需要关注函数内部的
+          FinalizationRegistry (类)
+定义:用来监听GC之前的回调
+使用: 通过声明FinalizationRegistry类,调用原型上的register方法检测GC回收之前的状态const finalRegistry &#x3D; new FinalizationRegistry( (objName)&#x3D;&gt;&#123; console.log(objName + &#
         </a>
       </p>
 
@@ -527,8 +467,8 @@ Object.def
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 12:57" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 13:02" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -545,6 +485,8 @@ Object.def
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES12/">ES12</a>
             
           </div>
         
@@ -556,39 +498,32 @@ Object.def
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_08/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="函数的arguments">
+        <a href="/2022/04/13/JavaScript/jsBasic_27/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES11常用语法">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_08/" target="_self">
-          函数的arguments
+        <a href="/2022/04/13/JavaScript/jsBasic_27/" target="_self">
+          ES11常用语法
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_08/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_27/" target="_self">
           
           
             
           
-          什么是函数的arguments?
-定义: 是函数内置的函数参数的一个集合,是一个类数组对象,每一个函数都有该属性
-注意: 箭头函数是没有arguments的,与ES6的剩余参数做搭配
+          BigInt
+定义: 新增的基础数据类型,用来表达更大的数值
+使用: 在大数值的后面加n标记或者使用BigInt( )函数&#x2F;&#x2F; 获取js基础最大数
+let maxInt &#x3D; Number.MAX_SAFE_INTEGER
+console.log(maxInt) --&gt; 9007199254740991000
 
-
-
-常用用法
-获取参数长度
- function foo()&#123;
-  console.log( arguments.length )
-&#125;
-foo(1,2,3,4) --&gt; 4
-
-备注: 通过函
+&#x2F;&#x2F; 用n标记为BigInt类型
         </a>
       </p>
 
@@ -596,8 +531,8 @@ foo(1,2,3,4) --&gt; 4
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 12:43" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 11:52" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -614,6 +549,8 @@ foo(1,2,3,4) --&gt; 4
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES11/">ES11</a>
             
           </div>
         
@@ -625,34 +562,30 @@ foo(1,2,3,4) --&gt; 4
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_07/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="this">
+        <a href="/2022/04/13/JavaScript/jsBasic_26/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES10常用语法">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_07/" target="_self">
-          this
+        <a href="/2022/04/13/JavaScript/jsBasic_26/" target="_self">
+          ES10常用语法
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_07/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_26/" target="_self">
           
           
             
           
-          不同环境下的全局this指向
-在浏览器环境下,this指向了window
-在node的环境下,this指向了global({})
-
-
-因为不同环境this的指向不一致,所以在ES11的时候新增了一个属性:GlobalThis,根据不同环境动态指向对应的全局this
-
-函数this的指向
-在执行函数执行栈(FEC)时,会创建VO,scope chain和this这时的this是动态绑定的,不是创建时
+          flat &amp; flatMap
+flat定义: 传递层数进行多维数组降维,返回一个新的一维数组参数: flat(层级数)提示: 如果是不确定层次的多维数组降维,则可以传递参数 Infinity 进行全部层次的降维
+const arr &#x3D; [[1],[2],[3,[4,5]],[[[[6,7]]]]]
+const flatArr &#x3D; arr.flat(Infinity)
+c
         </a>
       </p>
 
@@ -660,8 +593,8 @@ foo(1,2,3,4) --&gt; 4
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 11:38" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 11:22" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -678,6 +611,8 @@ foo(1,2,3,4) --&gt; 4
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES8/">ES8</a>
             
           </div>
         
@@ -689,36 +624,29 @@ foo(1,2,3,4) --&gt; 4
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_06/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="闭包">
+        <a href="/2022/04/13/JavaScript/jsBasic_25/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES8常用语法">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_06/" target="_self">
-          闭包
+        <a href="/2022/04/13/JavaScript/jsBasic_25/" target="_self">
+          ES8常用语法
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_06/" target="_self">
+        <a href="/2022/04/13/JavaScript/jsBasic_25/" target="_self">
           
           
             
           
-          什么是闭包?
-一个普通的函数,如果可以访问外层作用域的变量,那么这就是一个闭包
-
-广义的角度上: JS的函数都是闭包狭义的角度上: JS中的一个函数,内部引用了外部作用域的变量,那就是闭包
-
-
-  function foo( param &#x3D; 1 )&#123;
-  return function()&#123;
-    return param +&#x3D; 1
-  &#125;
-&#
+          Object.values()
+用法: 获取对象的所有value值并返回一个数组const obj &#x3D; &#123; name:&#39;nano&#39;,say()&#123;&#125;,skill:[ &#39;JS&#39; ] &#125;
+const objValues &#x3D; Object.values( obj )
+console.log( objValues )
         </a>
       </p>
 
@@ -726,8 +654,8 @@ foo(1,2,3,4) --&gt; 4
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 11:23" pubdate>
-              2022-04-12
+            <time datetime="2022-04-13 10:51" pubdate>
+              2022-04-13
             </time>
           </div>
         
@@ -744,6 +672,8 @@ foo(1,2,3,4) --&gt; 4
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES8/">ES8</a>
             
           </div>
         
@@ -755,34 +685,34 @@ foo(1,2,3,4) --&gt; 4
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/04/12/JavaScript/jsBasic_05/" target="_self">
-          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="浅谈JavaScript中的函数">
+        <a href="/2022/04/12/JavaScript/jsBasic_24/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES7常用语法">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/04/12/JavaScript/jsBasic_05/" target="_self">
-          浅谈JavaScript中的函数
+        <a href="/2022/04/12/JavaScript/jsBasic_24/" target="_self">
+          ES7常用语法
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/04/12/JavaScript/jsBasic_05/" target="_self">
+        <a href="/2022/04/12/JavaScript/jsBasic_24/" target="_self">
           
           
             
           
-          函数
-JavaScript中,函数是一等公民,可以作为一个参数传递,也可以作为一个函数的返回结果
+          includes(value,index)
+判断数组内是否包含某个值,返回布尔值(判断元素为引用类型的值时需要注意指针地址,一般不用来做元素为引用类型的判断)
+值得注意: 可以判断是否包含NaN
 
-高阶函数
-当一个函数的返回值是另一个函数或者接收的参数是另一个函数,这时候我们将这个函数称之为高阶函数funciton foo()&#123;
-  return function()&#123;&#125;
-&#125;
 
-function foo(callback)&#123; callback(
+参数(1) value: 是否包含的值(2) index: 从第几个索引开始判断(可以不传)
+使用const arr &#x3D; [ 1,2,3, NaN ]
+
+arr.includes(NaN,1
         </a>
       </p>
 
@@ -790,7 +720,7 @@ function foo(callback)&#123; callback(
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-04-12 00:49" pubdate>
+            <time datetime="2022-04-12 22:14" pubdate>
               2022-04-12
             </time>
           </div>
@@ -808,6 +738,77 @@ function foo(callback)&#123; callback(
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES7/">ES7</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/04/12/JavaScript/jsBasic_23/" target="_self">
+          <img src="/img/js-icon.jpg" srcset="/img/loading.gif" lazyload alt="ES6语法(5)">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/04/12/JavaScript/jsBasic_23/" target="_self">
+          ES6语法(5)
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/04/12/JavaScript/jsBasic_23/" target="_self">
+          
+          
+            
+          
+          Map
+前提:普通对象的key无论写什么类型最后都会转为字符串[除了symbol],而对象类型转为字符串则是’[object Object]’,变成相同key值,后一个会覆盖前一个
+定义:与对象的区别是可以用任意数据类型做为key值且不会转成字符串类型
+注意: 如果是数组作为key存值,那么需要传递entires格式
+
+
+
+    const map &#x3D; new Map()
+
+&#x2F
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-12 22:08" pubdate>
+              2022-04-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+              <a href="/tags/ES9/">ES9</a>
             
           </div>
         
@@ -819,7 +820,7 @@ function foo(callback)&#123; callback(
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
