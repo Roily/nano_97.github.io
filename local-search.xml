@@ -4,6 +4,399 @@
   
   
   <entry>
+    <title>pinia基本使用(四)の仓库互调用&amp;重置仓库</title>
+    <link href="/2022/04/30/Vue/pinia4/"/>
+    <url>/2022/04/30/Vue/pinia4/</url>
+    
+    <content type="html"><![CDATA[<h2 id="仓库互调用"><a href="#仓库互调用" class="headerlink" title="仓库互调用"></a>仓库互调用</h2><ol><li>理解: 在仓库中引入另一个仓库实例化后进行调用<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">index.tsimport &#123;defineStore,storeToRefs&#125; from &#39;pinia&#39;&#x2F;&#x2F; 引入另一个仓库import &#123;effStore&#125; from &#39;.&#x2F;eff&#39;type numbers&#x3D;&#123;  count: any&#125;export const mainStore&#x3D;defineStore(&#39;main&#39;,&#123;  state: () &#x3D;&gt; &#123;    return &lt;numbers&gt;&#123;      count: 0    &#125;  &#125;,  getters: &#123;&#125;,  actions: &#123;    changeV(v: number) &#123;        &#x2F;&#x2F; 在这里对引入的仓库进行实例化,可以直接相互调用      const &#123;num&#125;&#x3D;effStore()      this.count&#x3D;this.count+num    &#125;  &#125;&#125;)eff.tsimport &#123;defineStore&#125; from &#39;pinia&#39;type v&#x3D;&#123;  num: Number&#125;export const effStore&#x3D;defineStore(&#39;eff&#39;,&#123;  state: () &#x3D;&gt; &#123;    return &lt;v&gt;&#123;      num: 5    &#125;  &#125;&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="仓库的重置"><a href="#仓库的重置" class="headerlink" title="仓库的重置"></a>仓库的重置</h2><p>  定义: 使用仓库实例上的$reset方法,将仓库数据全部初始化<br>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;script setup lang&#x3D;&quot;ts&quot;&gt;import &#123; mainStore &#125; from &#39;.&#x2F;store&#x2F;index&#39;import &#123; storeToRefs &#125; from &#39;pinia&#39;const store &#x3D; mainStore()const &#123; count, countDouble &#125; &#x3D; storeToRefs(store)const foo &#x3D; () &#x3D;&gt; &#123;  store.changeV(3)&#125;const reset &#x3D; () &#x3D;&gt; &#123; &#x2F;&#x2F; 仓库实例上调用重置方法  store.$reset()&#125;&lt;&#x2F;script&gt;&lt;template&gt;  &lt;h1&gt;&#123;&#123; count &#125;&#125;&lt;&#x2F;h1&gt;  &lt;h2&gt;&#123;&#123; countDouble &#125;&#125;&lt;&#x2F;h2&gt;  &lt;button @click&#x3D;&quot;foo&quot;&gt;点击&lt;&#x2F;button&gt;  &lt;button @click&#x3D;&quot;reset&quot;&gt;重置&lt;&#x2F;button&gt;&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Vue3</tag>
+      
+      <tag>pinia</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pinia基本使用(三)の值得修改</title>
+    <link href="/2022/04/30/Vue/pinia3/"/>
+    <url>/2022/04/30/Vue/pinia3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="值的修改"><a href="#值的修改" class="headerlink" title="值的修改"></a>值的修改</h2><ol><li><p>直接修改(不推荐)<br>定义: 可以在setup里直接对store里的值进行修改</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;script setup lang&#x3D;&quot;ts&quot;&gt;import &#123; mainStore &#125; from &#39;.&#x2F;store&#x2F;index&#39;import &#123; storeToRefs &#125; from &#39;pinia&#39;const &#123; stateValue &#125; &#x3D; storeToRefs(mainStore())stateValue &#x3D; 20&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li><p>$patch修改<br>定义: 当同时修改多个变量时,效率比直接修改高<br>用法: 对象写法 和 函数写法</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import &#123; mainStore &#125; from &#39;.&#x2F;store&#x2F;index&#39;import &#123; storeToRefs &#125; from &#39;pinia&#39;const store &#x3D; mainStore()&#x2F;* 对象写法 *&#x2F;store.$patch(&#123;  count:store.count++&#125;)&#x2F;* 函数写法 *&#x2F;store.$patch((state)&#x3D;&gt;&#123;  state.count++&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li><p>actions<strong>[推荐]</strong><br>定义: 在store的actions中定义方法,同过this直接修改</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">state:()&#x3D;&gt;&#123;  return &#123; count:0 &#125;&#125;,actions:&#123;  changeV(param)&#123;    this.count &#x3D; this.count + param  &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>Vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Vue3</tag>
+      
+      <tag>pinia</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pinia基本使用(二)の值的获取</title>
+    <link href="/2022/04/30/Vue/pinia2/"/>
+    <url>/2022/04/30/Vue/pinia2/</url>
+    
+    <content type="html"><![CDATA[<h2 id="仓库获取值的方式"><a href="#仓库获取值的方式" class="headerlink" title="仓库获取值的方式"></a>仓库获取值的方式</h2><ol><li>通过仓库实例获取<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;script lang&#x3D;&quot;ts&quot; setup&gt;  import &#123; mainStore &#125; from &#39;.&#x2F;sotre&#x2F;index&#39;  const store &#x3D; mainStore()  const change &#x3D; ()&#x3D;&gt;&#123; store.change(1) &#125;&lt;&#x2F;script&gt;&lt;template&gt;    &lt;h1&gt;&#123;&#123; store.count &#125;&#125;&lt;&#x2F;h1&gt;    &lt;button @click&#x3D;&quot;change&quot;&gt;改变&lt;&#x2F;button&gt;&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li>解构仓库实例获取</li></ol><p>  <strong>注意:</strong> 解构都会使数据失去响应式,所以可以通过vue本身提供的<code>toRefs</code>添加响应式或者pinia提供的<code>storeToRefs</code><br>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;script lang&#x3D;&quot;ts&quot; setup&gt;    import &#123; mainStore &#125; from &#39;.&#x2F;sotre&#x2F;index&#39;    &#x2F;* 推荐使用pinia提供的添加响应式方法 *&#x2F;    import &#123; storeToRefs &#125; from &#39;pinia&#39;    const store &#x3D; mainStore()    const &#123; count &#125; &#x3D; storeToRefs(store)    const change &#x3D; ()&#x3D;&gt;&#123; store.change(1) &#125;&lt;&#x2F;script&gt;&lt;template&gt;  &lt;h1&gt;&#123;&#123; count &#125;&#125;&lt;&#x2F;h1&gt;  &lt;button @click&#x3D;&quot;change&quot;&gt;改变&lt;&#x2F;button&gt;&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p><blockquote><p><strong>值得注意:</strong> 在ts中,使用storeToRefs解构actions中的方法会提示找不到,所以如果是方法不推荐解构获取</p></blockquote><ol start="3"><li>map函数<br>定义: pinia提供了类似vuex中的map函数,返回一个值/方法的集合对象<br>用法:<br>   mapState(模块名称,数组/对象),mapGetters(),mapActions()<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;script lang&#x3D;&quot;ts&quot; setup&gt;    import &#123; mainStore &#125; from &#39;.&#x2F;sotre&#x2F;index&#39;    &#x2F;* 推荐使用pinia提供的添加响应式方法 *&#x2F;    import &#123; mapState,mapActions, mapGetters &#125; from &#39;pinia&#39;    const &#123; count &#125; &#x3D; mapState(mainStore,[      &#39;count&#39;,&#39;value1&#39;, &#39;value2&#39;    ])    &#x2F;* 对象方法写法 mapState独有      可以对state的值进行加工     *&#x2F;    const stateAll &#x3D; mapState(mainStore, &#123;       count(state)&#123;        return state.count ** 2       &#125;    &#125;)    const store4 &#x3D; mapGetters(mainStore, [&#39;countDouble&#39;])    const dbCount &#x3D; store4.dbCount()    const &#123; changeV &#125; &#x3D; mapActions(mainStore, [&#39;changeV&#39;])    const foo &#x3D; ()&#x3D;&gt;&#123; changeV(3) &#125;&lt;&#x2F;script&gt;&lt;template&gt;  &#x2F;&#x2F; 返回的是函数需要执行一下才能返回真正的值  &lt;h1&gt;&#123;&#123; count() &#125;&#125;&lt;&#x2F;h1&gt;  &lt;button @click&#x3D;&quot;foo&quot;&gt;改变&lt;&#x2F;button&gt;&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p><strong>注意</strong>: 使用mapState和mapGetters获取指定值,返回的都是函数,需要调用获取真正的值<br><strong>注意</strong>: 解构不会失去响应式</p></blockquote></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>Vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Vue3</tag>
+      
+      <tag>pinia</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pinia基本使用(一)の简单使用</title>
+    <link href="/2022/04/30/Vue/pinia/"/>
+    <url>/2022/04/30/Vue/pinia/</url>
+    
+    <content type="html"><![CDATA[<h2 id="pinia的优点"><a href="#pinia的优点" class="headerlink" title="pinia的优点"></a>pinia的优点</h2><ol><li>支持vue2、vue3</li><li>抛弃了Mutations操作,只有state、getters和actions</li><li>不需要嵌套模块,符合vue3的Composition API</li><li>完整的TS支持</li><li>代码更加简洁</li><li>没有命名空间</li></ol><h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><ol><li><p>安装<br><code>npm install pinia || yarn add pinia</code></p></li><li><p>在main.ts中挂载pinia实例</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import &#123;createApp&#125; from &#39;vue&#39;&#x2F;&#x2F; 引入createPinia 构造方法import &#123;createPinia&#125; from &#39;pinia&#39;import App from &#39;.&#x2F;App.vue&#39;&#x2F;&#x2F; 调用createPinia方法创建pinia实例const pinia&#x3D;createPinia()const app&#x3D;createApp(App)&#x2F;&#x2F; 通过app.use挂载到全局app.use(pinia).mount(&#39;#app&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li><p>创建仓库<br>(1) 通过pinia提供的defineStore函数创建<br>(2) defineStore接收两个参数(仓库名称,配置项)<br>(3) 创建实例后导出</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import &#123; defineStore &#125; from &#39;pinia&#39;&#x2F;**  基本格式:    state: 函数返回    getters: 与vuex一致    actions: 取消了上下文参数,通过this获取state和getters里的变量*&#x2F;export const mainStore &#x3D; defineStore( &#39;main&#39;,&#123;  state:( )&#x3D;&gt;&#123;    return&#123;      count: 0    &#125;  &#125;,  getters:&#123;    doubleCount(state)&#123;        return state.count*2    &#125;  &#125;,  actions:&#123;    changeCount( )&#123;        this.count +&#x3D;2    &#125;  &#125;&#125; )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li><p>使用<br>定义:在vue组件或ts文件中引入导出的仓库实例</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;script setup lang&#x3D;&quot;ts&quot;&gt;import &#123; mainStore &#125; from &#39;.&#x2F;store&#x2F;index&#39;const store &#x3D; mainStore()&lt;&#x2F;script&gt;&lt;template&gt;  &#x2F;* 这里不同于vuex,不需要通过.[属性名]去获取   *&#x2F;  &lt;h1&gt; &#123;&#123;store.count&#125;&#125; &lt;&#x2F;h1&gt;  &lt;h1&gt; &#123;&#123;store.doubleCount&#125;&#125; &lt;&#x2F;h1&gt;  &lt;button @click&#x3D;&quot;store.changeCount&quot;&gt;改变&lt;&#x2F;button&gt;&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>Vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Vue3</tag>
+      
+      <tag>pinia</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>事件总线</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_53/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_53/</url>
+    
+    <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ol><li><p>属于一种观察者模式,其中包括三个角色:<br>(1) 发布者 : 发出事件<br>(2) 订阅者 : 订阅事件,并且会进行响应<br>(3) 事件总线 : 无论是发布者还是订阅者都是通过事件总线作为中台的</p></li><li><p>代码</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">class NanoEventBus &#123;  constructor() &#123;    this.eventBus &#x3D; &#123;&#125;  &#125;  on(eventName, eventCallback, thisArg) &#123;    let handler &#x3D; this.eventBus[eventName]    if (!handler) &#123;      handler &#x3D; []      this.eventBus[eventName] &#x3D; handler    &#125;    handler.push(&#123;      eventCallback,      thisArg    &#125;)  &#125;  off(eventName, eventCallback) &#123;    const handlers &#x3D; this.eventBus[eventName]    if (!handlers) return    const newHandlers &#x3D; [...handlers]    for (let i &#x3D; 0; i &lt; newHandlers.length; i++) &#123;      const handler &#x3D; newHandlers[i]      if (handler.eventCallback &#x3D;&#x3D;&#x3D; eventCallback) &#123;        const index &#x3D; handlers.indexOf(handler)        handlers.splice(index, 1)      &#125;    &#125;  &#125;  emit(eventName, ...playload) &#123;    const handler &#x3D; this.eventBus[eventName]    if (!handler) return    handler.forEach(item &#x3D;&gt; &#123;      if (item.thisArg) &#123;        item.eventCallback.apply(item.thisArg, playload)      &#125; else &#123;        item.eventCallback(...playload)      &#125;    &#125;)  &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>深拷贝</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_52/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_52/</url>
+    
+    <content type="html"><![CDATA[<ol><li>代码<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">function isObject(value) &#123;  const valueType &#x3D; typeof value  return (value !&#x3D;&#x3D; null) &amp;&amp; (valueType &#x3D;&#x3D;&#x3D; &#39;object&#39; || valueType &#x3D;&#x3D;&#x3D; &#39;function&#39;)&#125;function deepClone(param, map &#x3D; new WeakMap()) &#123;  &#x2F;&#x2F; 判断是否是一个Set类型  if (param instanceof Set) &#123;    return new Set([...param])  &#125;  &#x2F;&#x2F; 判断是否是一个Map类型  if (param instanceof Map) &#123;    return new Map([...param])  &#125;  &#x2F;&#x2F; 判断symbol  if (typeof param &#x3D;&#x3D;&#x3D; &#39;symbol&#39;) &#123;    return Symbol(param.description)  &#125;  &#x2F;&#x2F; 判断非函数和对象直接返回  if (!isObject(param) || typeof param &#x3D;&#x3D;&#x3D; &#39;function&#39;) return param  &#x2F;&#x2F; 判断是数组还是对象  &#x2F;&#x2F; 判断是否存储过newObj (解决循环引用)  if (map.has(param)) &#123;    return map.get(param)  &#125;  const newObj &#x3D; Array.prototype.isPrototypeOf(param) ? [] : &#123;&#125;  map.set(param, newObj)  for (let key in param) &#123;    newObj[key] &#x3D; deepClone(param[key], map)  &#125;  &#x2F;&#x2F; 对symbol的key做特殊处理  const symbolKeys &#x3D; Object.getOwnPropertySymbols(param)  for (const item of symbolKeys) &#123;    newObj[item] &#x3D; deepClone(param[item], map)  &#125;  return newObj&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>防抖(debounce) &amp; 节流(throttle)</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_51/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_51/</url>
+    
+    <content type="html"><![CDATA[<h2 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖(debounce)"></a>防抖(debounce)</h2><ol><li>定义: 在规定的时间内如果事件被密集触发,则规定的时间重新计算并且规定的时间结束后只触发最后一次事件。</li><li>应用场景:<br>(1) 输入框中频繁的输入内容,搜索或者提交信息<br>(2) 频繁的点击按钮,触发某个时间<br>(3) 监听浏览器滚动事件,完成某些特定操作<br>(4) 用户缩放浏览器的resize事件</li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">function debounce(fn, delay, immediate &#x3D; false, resultCb) &#123;let timer &#x3D; null&#x2F;&#x2F; 定义是否执行过let isInvoke &#x3D; false&#x2F;&#x2F; 不能用箭头函数,否则this指向声明的作用域const _debounce &#x3D; function(...args) &#123;  if (immediate &amp;&amp; !isInvoke) &#123;    const res &#x3D; fn.apply(this, args)    if (resultCb) &#123;      resultCb(res)    &#125;    isInvoke &#x3D; true  &#125; else &#123;    if (timer) clearTimeout(timer)    timer &#x3D; setTimeout(() &#x3D;&gt; &#123;      &#x2F;&#x2F; 绑定触发对象的this和事件参数      const res &#x3D; fn.apply(this, args)      if (resultCb) &#123;        &#x2F;&#x2F; 回调传递返回值        resultCb(res)      &#125;      timer &#x3D; null      &#x2F;&#x2F; 设置为false下次事件第一次输入仍然是立即执行      isInvoke &#x3D; false    &#125;, delay)  &#125;&#125;&#x2F;&#x2F; 取消功能 函数也是一个对象,可以挂载一个方法_debounce.cancel &#x3D; function() &#123;  if (timer) clearTimeout(timer)  timer &#x3D; null  isInvoke &#x3D; false&#125;return _debounce&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><h2 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流(throttle)"></a>节流(throttle)</h2><ol><li>定义: 在规定的一段时间内密集触发事件,事件只会触发一次,并且这段时间只有完全结束后才会重置( 一般都是执行规定时间内第一次触发的事件 )</li><li>应用场景:<br>(1) 监听页面的滚动事件<br>(2) 鼠标移动事件<br>(3) 用户频繁点击按钮操作<br>(4) 游戏中的一些设计( 飞机大战发射子弹 )</li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">    function throttle(fn, interval, options &#x3D; &#123;  leading: true,  trailing: false&#125;) &#123;  &#x2F;&#x2F; 上一次开始时间,默认为0  const &#123;    leading &#x3D; true,      trailing &#x3D; false  &#125; &#x3D; options  let lastTime &#x3D; 0  let timer &#x3D; null  const _throttle &#x3D; function(..args) &#123;    &#x2F;&#x2F; 每次触发时的当前时间    const nowTime &#x3D; new Date().getTime()    &#x2F;&#x2F; 如果是第一次进入并且不希望一开始就执行(leading &#x3D;&#x3D;&#x3D; false)    if (lastTime &#x3D;&#x3D;&#x3D; 0 &amp;&amp; leading &#x3D;&#x3D;&#x3D; false) &#123;      lastTime &#x3D; nowTime    &#125;    &#x2F;&#x2F; 计算剩余期间    const remainTime &#x3D; interval - (nowTime - lastTime)    if (remainTime &lt;&#x3D; 0) &#123;      &#x2F;&#x2F; 如果有真正执行的函数,则不需要触发同一期间内非第一次执行的函数      if (timer) &#123;        clearTimeout(timer)        timer &#x3D; null      &#125;      &#x2F;&#x2F; 如果剩余期间小于等于0执行事件函数      fn.apply(this, args)      &#x2F;&#x2F; 将本次当前时间设置为最后一次触发时间,进入下一个周期      lastTime &#x3D; nowTime      return    &#125;    &#x2F;&#x2F; 范围期间内非第一次输入的值是否执行    if (trailing &amp;&amp; !timer) &#123;      &#x2F;&#x2F; 只需要一个定时器      timer &#x3D; setTimeout(() &#x3D;&gt; &#123;        timer &#x3D; null        lastTime &#x3D; !leading ? 0 : new Date().getTime()        fn.apply(this, args)      &#125;, remainTime)    &#125;  &#125;  _throttle.cancel &#x3D; function() &#123;    if (timer) &#123;      clearTimeout(timer)      timer &#x3D; null      lastTime &#x3D; 0    &#125;  &#125;  return _throttle&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>DOM</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_50/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_50/</url>
+    
+    <content type="html"><![CDATA[<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><ol><li>定义: 提供了一系列的模型和对象,让我们可以方便的来操作Web页面。</li></ol><h2 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h2><ol><li><p>定义: 在web当中,事件在浏览器窗口中被处罚,并且通过绑定到某些元素上或者浏览器窗口本身,那么我们就可以给这些元素或者window窗口来绑定事件的处理程序,来对事件进行监听</p></li><li><p>方式:<br>(1) 在script中直接监听<br>(2) 通过元素的on来监听事件</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;div onclick&#x3D;&quot; console.log(&#39;被点击了&#39;) &quot; id&#x3D;&quot;div1&quot; &gt; 点击 &lt;&#x2F;div&gt;    &lt;div onclick&#x3D;&quot; onClick() &quot; &gt; 点击 &lt;&#x2F;div&gt;    &lt;script&gt;  function onClick( )&#123; console.log( &#39;被点击了&#39; ) &#125;  const div1 &#x3D; document.querySelect(&#39; #div1 &#39;)  div1.onclick &#x3D; onClick&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>注意: 这两种方式一次只能监听一个事件,后一个会覆盖前一个</p></blockquote><p> (3) 通过EvnetTarget中的addEventListener来监听 </p> <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&lt;div id&#x3D;&quot;div1&quot;&gt; 点击 &lt;&#x2F;div&gt;    &lt;script&gt;  function onClick( )&#123; console.log( &#39;被点击了&#39; ) &#125;  const div1 &#x3D; document.querySelect(&#39; #div1 &#39;)  div1.addEventListener( &#39;click&#39;, onClick ,false)&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>备注: 可以监听多个相同事件    </p></blockquote></li></ol><h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><ol><li><p>定义: 事件冒泡和事件捕获</p></li><li><p>事件冒泡<br>(1) 定义: 从内部元素到外部元素</p></li><li><p>事件捕获<br> (1) 定义: 从外部元素到内部元素</p></li></ol><blockquote><p>注意: 先捕获再冒泡</p></blockquote><h2 id="事件对象-event"><a href="#事件对象-event" class="headerlink" title="事件对象(event)"></a>事件对象(event)</h2><ol><li><p>定义:获取触发事件的对象</p></li><li><p>event.target 和event.currentTarget 区别:<br> (1) event.target 指向发生事件时操作的元素<br> (2) event.currentTarget 一直指向绑定发生事件的元素</p></li><li><p>常见方法<br> (1) 阻止默认行为</p><div class="code-wrapper"><pre><code> i. event.preventDefault()</code></pre></div><p> (2) 阻止事件传递( 捕获&amp;冒泡 )</p><div class="code-wrapper"><pre><code> i. event.stopPropagation()</code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>BOM</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_49/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_49/</url>
+    
+    <content type="html"><![CDATA[<h2 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h2><ol><li>定义: 浏览器模型对象,是js脚本与浏览器窗口的桥梁。</li><li>对象模型：<br>(1) window ： 包括全局属性、方法，控制浏览器窗口相关的属性、方法<br>(2) location：浏览器连接到对象的位置（URL）<br>(3) history：浏览器的历史<br>(4) document：当前窗口操作文档的对象</li></ol><h2 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h2><ol><li><p>全局对象<br>在node是Global, 在浏览器里就是window</p></li><li><p>浏览器窗口对象(BOM)<br>(1) 作为浏览器窗口时,提供了对浏览器操作的相关的API(继承自Event Target)</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">window.onhashChange 监听地址栏哈希地址的改变&#x2F;* 继承自Event Target ,所以有 addEventListener()&#x2F;removeEventListener()&#x2F;window.dispatchEvent() *&#x2F;&#x2F;* 派发事件 *&#x2F;window.dispatchEvent( new Event(&#39;自定义事件对象&#39;) )addEventListener( &#39;自定义事件对象&#39;,()&#x3D;&gt;&#123;&#125; )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h2><ol><li>定义: 获取URL信息</li></ol><h2 id="history"><a href="#history" class="headerlink" title="history"></a>history</h2><ol><li>定义:访问会话历史记录</li><li>属性:<br>(1) length: 会话中记录的条数<br>(2) state: 当前保留的状态值</li><li>常用方法 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">back(): 返回上一页,等价于history.go(-1)forward(): 前进下一页,等价于history.go(1)go(): 加载历史中的某一页pushState( &#123; name:  &#39;xxx&#39; &#125;, &#39;&#39;,  &#39;&#x2F;path&#39;( 路径 )  ): 打开一个指定的地址,不刷新网页replaceState( ):打开一个新地址,并且使用replace<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>html</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>cookie</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_48/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_48/</url>
+    
+    <content type="html"><![CDATA[<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><ol><li>定义: 某些网站为了辨别用户身份而存储在用户本地终端上的数据,类型为小型文本文件。</li><li>场景: 浏览器会在特定的情况下携带上cookie来发送请求,我们可以通过cookie来获取一些信息。</li><li>分类:<br>(1) 内存cookie<br>   i. 定义: 存储在浏览器,由浏览器保存,浏览器关闭就会清除<br>(2) 硬盘cookie<br>   i. 定义: 存储在硬盘中,有过期时间,时间到期清除或者用户手动清除<br>(3) Q:如何判断是内存cookie还是硬盘cookie?<br>   A: cookie设置了过期时间,且过期时间不为0或者负数,那么就是硬盘cookie</li></ol><blockquote><p>备注: 主要由服务器端生成并设置在客户端(并不是我们手动设置),客户端也主动可以设置,比较少。<br>通过响应头(response header)中的set-cookie自动设置到客户端<br>设置后同一服务器的请求会自动在请求头 (request header)中携带cookie</p></blockquote><h2 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h2><ol><li><p>domain<br>(1) 定义: 指定哪些主机可以接收cookie<br>(2) 默认值: origin,不包括子域名</p></li><li><p>path<br>(1) 定义: 指定主机下的那些路径可以接收cookie<br>(2) 使用: 如果设置 /docs, 那么 /docs/a , /docs/b 都可以接收</p></li><li><p>max-age<br>(1) 定义:设置过期时间</p></li></ol><h2 id="客户端-JS-操作cookie"><a href="#客户端-JS-操作cookie" class="headerlink" title="客户端(JS)操作cookie"></a>客户端(JS)操作cookie</h2><ol><li>document.cookie<br>使用: 不能获取服务器设置的cookie,可以设置或者获取js设置的cookie</li></ol><h2 id="cookie缺点"><a href="#cookie缺点" class="headerlink" title="cookie缺点"></a>cookie缺点</h2><ol><li>浪费客户流量,每次相同域名下的请求都会自动携带cookie</li><li>cookie明文传输Headers,存在一定安全风险</li><li>大小限制为4KB</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>html</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>浏览器存储方案</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_47/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_47/</url>
+    
+    <content type="html"><![CDATA[<h2 id="localStorage-amp-sessionStorage"><a href="#localStorage-amp-sessionStorage" class="headerlink" title="localStorage &amp; sessionStorage"></a>localStorage &amp; sessionStorage</h2><ol><li><p>localStorage:<br>(1) 定义: 本地存储,提供的是一种永久性的存储方法,在关闭掉网页重新打开时,存储的内容依然保留</p></li><li><p>sessionStorage:<br>(1) 定义: 会话存储,提供的是本次会话的存储,在关闭掉会话时(浏览器本身或者浏览器标签页),存储的内容会被清除</p></li></ol><blockquote><p>备注: 同一域名下localStorage可以共享,同一标签栏下sessionStorage可以共享,Storage的大小只有5MB</p></blockquote><h2 id="IndexdDB"><a href="#IndexdDB" class="headerlink" title="IndexdDB"></a>IndexdDB</h2><ol><li>定义: 是一种底层的API,用于在客户端存储大量的结构化数据。它是一种事务型数据库系统,是一种基于JS面向对象数据库,有点类似于NoSQL(非关系型数据库)。</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>html5</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JSON &amp; JSON序列化 &amp; JSON解析</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_46/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_46/</url>
+    
+    <content type="html"><![CDATA[<h2 id="什么是JSON"><a href="#什么是JSON" class="headerlink" title="什么是JSON?"></a>什么是JSON?</h2><ol><li>定义: 是一种非常重要的数据格式,不是编程语言,而是一种可以在服务器和客户端之间传输的数据格式。</li></ol><h2 id="JSON序列化"><a href="#JSON序列化" class="headerlink" title="JSON序列化"></a>JSON序列化</h2><ol><li>JSON.stringify( )</li><li>定义: 将值转为JSON字符串</li><li>参数: target, foramt, space<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">format: 用来指定数据序列化的数据或者修改数据内容&#x2F;* 指定数据序列化  这里需要传递一个指定内容的数组*&#x2F;let obj &#x3D; &#123;  name: &#39;nano&#39;,  age:18,  height:180&#125;let jsonObj &#x3D; JSON.stringify( obj, [ &#39;name&#39;, &#39;age&#39; ] )console.log( jsonObj )  --&gt; &#123;&quot;name&quot;:&quot; nano&quot;,&quot;age&quot;:18&#125;&#x2F;* 修改数据内容 这里需要传递一个回调函数 回调参数接收两个参数 key,value*&#x2F;let obj &#x3D; &#123;  name: &#39;nano&#39;,  age:18,  height:180&#125;let jsonObj &#x3D; JSON.stringify( obj,   (key, value)&#x3D;&gt;&#123;     if(key &#x3D;&#x3D;&#x3D; &#39;age&#39;)&#123;       return value+&#x3D;1     &#125;else&#123; return value &#125;   &#125; )console.log( jsonObj ) --&gt; &#123;&quot;name&quot;:&quot;nano&quot;,&quot;age&quot;:19,&quot;height&quot;:180&#125; &#x2F;*  space: 用来进行格式化空格 *&#x2F;let obj &#x3D; &#123;  name: &#39;nano&#39;,  age:18,  height:180&#125;let jsonObj &#x3D; JSON.stringify( obj, null, 2 )console.log( jsonObj )--&gt; &#123;&quot;name&quot;: &quot;nano&quot;,&quot;age&quot;: 18,&quot;height&quot;: 180&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>注意: 实际调用了对象的toJSON( )方法</p></blockquote></li></ol><h2 id="JSON解析"><a href="#JSON解析" class="headerlink" title="JSON解析"></a>JSON解析</h2><ol><li>JSON.parse( )</li><li>定义: 将JSON字符串进行解析</li><li>参数: target , cb<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;* cb: 转变解析参数的函数,接收两个参数(key,value) *&#x2F;  let obj &#x3D; &#123; name:&#39;nano&#39;, age:18 &#125;let jsonObj &#x3D; JSON.stringify( obj )let parseObj &#x3D; JSON.parse( jsonObj,   ( key, value )&#x3D;&gt;&#123;  if(key &#x3D;&#x3D;&#x3D; &#39;age&#39;)&#123; return --value &#125;else&#123; return value &#125;   &#125; )console.log( parseObj ) --&gt; &#123;name: &#39;nano&#39;, age: 17&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div><blockquote><p>注意:target参数只接受JSON字符串</p></blockquote></li></ol><h2 id="深拷贝-乞丐版"><a href="#深拷贝-乞丐版" class="headerlink" title="深拷贝(乞丐版)"></a>深拷贝(乞丐版)</h2><ol><li>JSON.parse( JSON.stringify() )<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">let obj &#x3D; &#123; name: &#39;nano&#39;, child:&#123; name:&#39;roily&#39; &#125;, foo()&#123;&#125;, height:null, gf:undefined&#125;let deepObj &#x3D; JSON.parse(JSON.stringify( obj ))console.log( deepObj )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><blockquote><p>注意: 不会对方法和undefined的值,Symbol进行拷贝处理,深拷贝的值里面是不会出现的<br>注意: 不支持循环引用,拷贝会报错</p></blockquote></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>包管理工具和命令介绍</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_45/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_45/</url>
+    
+    <content type="html"><![CDATA[<h2 id="包管理工具"><a href="#包管理工具" class="headerlink" title="包管理工具"></a>包管理工具</h2><ol><li><p>npm ( Node Package Manager )<br>(1) 定义: Node包管理器,但是目前已经不限于Node,包括前端的其它工程<br>(2) 安装: 下载Node环境之后自动安装对应版本<br>(3) 上传/下载: 都是在registry这个仓库进行上传下载的<br>(4) 初始化项目: <code>npm init</code> / <code>npm init -y</code><br>(5) 版本号: X.Y.Z<br>   i. X 大版本更新,可能会有多个不兼容  Y 小版本更新,向下兼容 Z 修复版本<br>  ii. ^符号: 表示X版本保持不变,Y.Z 永远最新<br> iii. ~符号: 表示X和Y版本保持不变,Z永远安装最新</p></li><li><p>npm install 原理<br><img src="/img/JS/npm.png" alt="npm install 原理" title="npm install 原理 from coderWhy"></p></li></ol><blockquote><p>注意:  npm 安装的依赖默认安装进dependencies 生产依赖,如果需要安装进入devDependencies开发依赖则后面跟-D,cnpm安装的依赖不执行该下载逻辑<br>注意: 如果有lock文件会优先按照lock的版本安装,如果没有则是下载最新的版本;如果是指定版本安装,那么在安装后,lock文件检测版本不一致会自动更新为指定的版本    </p></blockquote><ol start="2"><li><p>yarn<br>(1) 定义:为了弥补早起npm的缺陷<br>(2) 安装: npm install -g yarn</p><blockquote><p>注意:一个项目中最好不要与npm混用</p></blockquote></li><li><p>npx<br>(1) 定义: 查找指定模块版本</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">当全局webpack版本  5.0.0当前项目webpack版本 3.6.1npx webpack --version  --&gt; 3.6.1如果是npm webpack --version,默认读取全局的版本信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>npm</tag>
+      
+      <tag>yarn</tag>
+      
+      <tag>npx</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ES Module解析过程</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_44/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_44/</url>
+    
+    <content type="html"><![CDATA[<h2 id="ES-Module解析过程"><a href="#ES-Module解析过程" class="headerlink" title="ES Module解析过程"></a>ES Module解析过程</h2><ol><li><p>构建<br> 根据地址查找js文件,并且下载,将其静态分析成模块记录(Module Record)</p><blockquote><p>备注: 重复引用的文件不会重新下载,会有一个映射关系记录文件下载的状态,如果已经下载完成则不会再下载,进行一个缓存</p></blockquote></li><li><p>实例化<br> 对模块记录进行实例化,并且分配内存空间,只解析模块的导入和导出语句,把模块指向对应的内存地址( 此时导出和导入的值都是undefined,因为代码没有执行 )</p></li><li><p>运行<br> 运行代码,计算值,并且将值填充到内存地址中</p></li></ol><blockquote><p>注意: 导出的模块可以修改值,导入的模块不能修改</p></blockquote><h2 id="CommonJS和ES-Module的相互调用"><a href="#CommonJS和ES-Module的相互调用" class="headerlink" title="CommonJS和ES Module的相互调用"></a>CommonJS和ES Module的相互调用</h2><ol><li><p>定义: 需要分环境判断<br> (1) 浏览器环境</p><div class="code-wrapper"><pre><code> 结果: 不能 原因: 浏览器不支持CommonJS</code></pre></div><p> (2) node环境</p><div class="code-wrapper"><pre><code> 结果: 部分支持 原因: 部分node版本不支持ES Module</code></pre></div><p> (3) 基于Webpack的开发环境</p><div class="code-wrapper"><pre><code> 结果: 支持 原因: 会对CommonJS和ES Module做转换,进行相互支持</code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ES Module</title>
+    <link href="/2022/04/14/JavaScript/jsBasic_43/"/>
+    <url>/2022/04/14/JavaScript/jsBasic_43/</url>
+    
+    <content type="html"><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ol><li>使用关键字import进行导入 export 进行导出,并默认开启严格模式</li></ol><h2 id="导出方式"><a href="#导出方式" class="headerlink" title="导出方式"></a>导出方式</h2><ol><li>export<br>(1) 定义: 声明语句导出<br>(2) 用法1: 后面可以直接跟声明语句</li></ol>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">export const name &#x3D; &#39;nano&#39;export function add()&#123;&#125;export class Person &#123; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div><p>  (3) 用法2: 导出和声明分开<br>  <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const name &#x3D; &#39;nano&#39;const obj &#x3D; &#123; age:18 &#125;function add()&#123;&#125;export &#123;  name, obj, add&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p><blockquote><p><strong>注意:</strong> 这里并不是导出一个对象,而是导出一个变量集合</p></blockquote><p>  (4) 导出时起别名<br>    i. 定义: 使用<strong>as</strong>关键字<br>    <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">const name &#x3D; &#39;nano&#39;const obj &#x3D; &#123; age:18 &#125;function add()&#123;&#125;export &#123;  name as otherName,   obj as otherObj,   add as otherAdd&#125;import &#123;otherName, otherObj, otherAdd &#125; from &#39;index.js&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></p><blockquote><p>备注: 一般都是在导入时候起别名,导出时起别名用的较少</p></blockquote><h2 id="导入的方式"><a href="#导入的方式" class="headerlink" title="导入的方式"></a>导入的方式</h2><ol><li><p>普通导入<br>(1) 使用import导入</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import &#123; foo &#125; from &#39;.&#x2F;export.js&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>起别名导入<br>(1) 定义:防止导入的变量命名冲突<br>(2) 使用<strong>as</strong>关键字</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import &#123; foo as bar &#125; from &#39;.&#x2F;export.js&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li><li><p>将所有内容导入在一个标识符中<br>(1) 定义: 使用*和<strong>as</strong>关键字</p><div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import * as allVariable from &#39;.&#x2F;index.js&#39;allVariable.foo()let obj &#x3D; allVariable.obj<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="结合使用"><a href="#结合使用" class="headerlink" title="结合使用"></a>结合使用</h2><ol><li>定义:导入后导出的语法糖<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">export &#123; foo &#125; from &#39;.&#x2F;index.js&#39;&#x2F;* 等价于↓↓↓ *&#x2F;import &#123; foo &#125; from &#39;.&#x2F;index.js&#39;export &#123; foo &#125;&#x2F;* 导入导出全部 *&#x2F;export * from &#39;.&#x2F;index.js&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li></ol><h2 id="默认导出"><a href="#默认导出" class="headerlink" title="默认导出"></a>默认导出</h2><ol><li>默认导出方式1(常用)<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;* export.js *&#x2F;const name &#x3D; &#39;nano&#39;const obj &#x3D; &#123; age:18 &#125;function add()&#123; console.log(&#39;add&#39;) &#125;export default add &#x2F;* import.js *&#x2F;import bar from &#39;.&#x2F;export.js&#39;bar() --&gt; &#39;add&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li>默认导出方式2<div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;* export.js *&#x2F;const name &#x3D; &#39;nano&#39;const obj &#x3D; &#123; age:18 &#125;function add()&#123; console.log(&#39;add&#39;) &#125;export&#123;  name as nickName,  obj as nickObj,  add as default&#125;&#x2F;* import.js *&#x2F;import bar from &#39;.&#x2F;export.js&#39;bar() --&gt; &#39;add&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></li><li>与export区别<br>(1) 每一个js文件默认导出只能使用一次,并且后面不可以接声明语句<br>(2) 导入默认导出的变量时可以随意命名并且不需要 { } 包裹</li></ol><h2 id="导入同步异步的问题"><a href="#导入同步异步的问题" class="headerlink" title="导入同步异步的问题"></a>导入同步异步的问题</h2><ol><li>普通导入方式是同步的,会阻塞下面的代码执行,需要下载完导入的文件才可以往后执行 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">&#x2F;* 普通导入方式 *&#x2F;import &#123;a &#125; from &#39;index.js&#39;import foo from &#39;foo.js&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div></li><li><strong>import<font color="red">函数导入是异步的</font></strong>,不会阻止后续代码执行<br>(1) 定义: 使用import()函数导入,返回一个promise,内部调用resolve,通过.then函数获取导入的变量 <div class="code-wrapper"><pre class="line-numbers language-none"><code class="language-none">import(&#39;.&#x2F;index.js&#39;).then( res &#x3D;&gt; &#123; console.log(res) &#125; )<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>ES6</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>模块化</title>
     <link href="/2022/04/13/JavaScript/jsBasic_42/"/>
     <url>/2022/04/13/JavaScript/jsBasic_42/</url>
